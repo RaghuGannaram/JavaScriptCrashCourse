@@ -1,14 +1,25 @@
-let obj = {
-    name: "John",
-    age:24
+function dupeFilter(nums) {
+//   let distArr = [];
+//   for (let n of nums) {
+//     if (!distArr.includes(n)) {
+//       distArr.push(n);
+//     }
+//   }
+//   let nullArr = new Array(nums.length - distArr.length);
+//   for (let i = 0; i < nums.length - distArr.length; i++) {
+//     nullArr[i] = '_';
+//   }
+//   return distArr.concat(...nullArr);
+let s = new Set(nums);
+console.log(s)
+let l = new Array(...s);
+let k = l.length;
+l.sort();
+console.log(l)
+for(let i =0; i<k;i++){
+    nums[i] = l[i]
+}
+console.log(nums)
 }
 
-// let obj2 = {
-//     ...obj
-// }
-let obj2 =obj;
-
-obj.age=25;
-
-console.log("obj", obj)
-console.log("obj2",obj2)
+console.log(dupeFilter([1, 7,1, 2, 2, 3, 4, 5]));
