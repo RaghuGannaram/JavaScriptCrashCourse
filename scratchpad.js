@@ -23,3 +23,8 @@ console.log(nums)
 }
 
 console.log(dupeFilter([1, 7,1, 2, 2, 3, 4, 5]));
+for(var m=10;m>=0;m--){
+    if(m<5) break;
+    console.log(m)
+}
+console.log(m)
