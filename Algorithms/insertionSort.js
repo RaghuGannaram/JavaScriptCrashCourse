@@ -8,10 +8,11 @@ function insertionSort(arr) {
         arr[j+1] = element;
     }
     return arr;
-  }
+}
 
 let input = [234, 43,234, -56,-56, 55, 63,  5, 6, 235, 547];
 let output = insertionSort(input);
+console.log(input)
 console.log(output)
 
 
