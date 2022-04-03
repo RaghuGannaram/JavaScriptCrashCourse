@@ -17,7 +17,9 @@ console.log(person["age"]);
 console.log(person["country"]);
 // for(let key in person) console.log(person.key)
 for (let key in person) console.log(person[key]);
-
+console.log(person.age)
+console.log(person["age"])
+console.log(person.hasOwnProperty("age"))
 /*************************************************Object Creation********************************************************** */
 let emp1 = {
   name: "John",
