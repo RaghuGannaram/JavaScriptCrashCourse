@@ -60,9 +60,20 @@ console.log(fruits.splice(2,'1'))
 console.log(fruits)
 
 console.log(fruits)
-console.log(fruits.slice(2,4))
+console.log(fruits.slice(2,-2))
 console.log(fruits)
 console.log(fruits.slice())
 console.log(fruits)
 
+console.log(fruits.includes('Banana'))
 
+
+
+
+let nums =[6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3];
+let l = nums.length;
+
+// nums[nums.length-1] = nums[nums.length-1]+ 100
+console.log(String(BigInt(nums.join(''))+BigInt(1)).split('').map(n=>Number(n)))
+nums[0] =10
+console.log(nums)
