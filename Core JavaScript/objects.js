@@ -29,6 +29,7 @@
 // Object literal syntax------------------1
 {
   let emp1 = {
+    obj: "emp1",
     first_name: "John",
     last_name: "Doe",
     id: 123,
@@ -36,10 +37,12 @@
   };
   console.log(emp1);
   console.log(emp1.__proto__);
+  console.log(emp1.__proto__.constructor);
   console.log(emp1.__proto__.__proto__);
 
   // Object function syntax-----------------2
   let emp2 = new Object({
+    obj: "emp2",
     first_name: "Jane",
     last_name: "Doe",
     id: 456,
@@ -55,19 +58,25 @@
   console.log(Object.getPrototypeOf(emp31));
 
   let emp3 = Object.create(emp2);
+  emp3.obj = "emp3";
   console.log(emp3.hasOwnProperty("first_name"));
   console.log(emp3.hasOwnProperty("last_name"));
   console.log(emp3.first_name);
   console.log(emp3.last_name);
+  console.log(emp3);
+  console.log(emp3.constructor);
+  console.log(emp3.__proto__);
+  console.log(emp3.__proto__.constructor);
+  console.log(emp3.__proto__.constructor.prototype);
+  console.log(emp3.__proto__.__proto__);
+  console.log(emp3.__proto__.__proto__.__proto__);
+
+  // Object.setPrototypeOf(emp3, emp1);
   console.log(emp3.__proto__);
   console.log(emp3.__proto__.__proto__);
   console.log(emp3.__proto__.__proto__.__proto__);
 
-  Object.setPrototypeOf(emp3, emp1);
-  console.log(emp3.__proto__);
-  console.log(emp3.__proto__.__proto__);
-  console.log(emp3.__proto__.__proto__.__proto__);
-
+  console.log(Object.getPrototypeOf(emp2))
   console.log(emp1.isPrototypeOf(emp3));
   console.log(emp2.isPrototypeOf(emp3));
   console.log(emp3);
@@ -77,11 +86,14 @@
   console.log(emp3.name);
 
   // Object.assign syntax------------------4
-  let emp4 = Object.assign(emp3, emp1, emp2, { height: 6 });
+  let emp4 = Object.assign(emp3, emp2, { height: 6 });
   console.log(emp3);
   console.log(emp4);
+  console.log(Object.getPrototypeOf(emp4))
   console.log(emp1.isPrototypeOf(emp4));
   console.log(emp2.isPrototypeOf(emp4));
+  console.log(emp3.isPrototypeOf(emp4));
+  console.log(Object.prototype.isPrototypeOf(emp4));
   console.log(emp3.name);
   console.log(emp3.__proto__);
   console.log(emp3.__proto__.__proto__);
@@ -106,6 +118,15 @@
   }
   let emp6 = new Employee("James", "Cameron");
   console.log(emp6);
+  console.log(emp6.__proto__);
+  console.log(emp6.__proto__.constructor);
+  console.log(emp6.__proto__.constructor.prototype);
+  console.log(emp6.__proto__.__proto__);
+  console.log(emp6.__proto__.__proto__.constructor);
+  console.log(emp6.__proto__.__proto__.constructor.prototype);
+
+  console.log(Employee);
+  console.log(Employee.prototype);
 
   let person = {
     firstName: "James",
@@ -258,4 +279,3 @@
   console.log(typeof child.__proto__);
   console.log(typeof child.prototype);
 }
-

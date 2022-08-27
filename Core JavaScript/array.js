@@ -57,6 +57,8 @@ console.log(fruits.splice());
 console.log(fruits);
 console.log(fruits.splice(2, 0, "Sapota"));
 console.log(fruits);
+console.log(fruits.splice(-2, 1, "Apple"));
+console.log(fruits);
 console.log(fruits.splice(3, 1, "Orange"));
 console.log(fruits);
 console.log(fruits.splice(5, 0, "Lemon", "Kiwi"));
