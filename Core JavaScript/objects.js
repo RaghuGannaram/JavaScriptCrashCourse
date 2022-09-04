@@ -4,6 +4,7 @@
   // Using variable as object key-------
   let sub_division = "state";
   let person = {
+    1 : "one",
     first_name: "John",
     ["last name"]: "Doe",
     "nick name": "Jo",
@@ -15,6 +16,7 @@
   person["role designation"] = "Software Engineer";
 
   console.log(person);
+  console.log(person[1]);
   console.log(person.age);
   console.log(person["age"]);
   console.log(person["last name"]);
@@ -279,3 +281,4 @@
   console.log(typeof child.__proto__);
   console.log(typeof child.prototype);
 }
+

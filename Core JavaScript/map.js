@@ -41,5 +41,13 @@ for (let [i,j] of map.entries()) console.log(i, j)
 console.log(map.size)
 console.log(map.size)
 
+let mapTwo = new Map([[10],[20],[40],[50], [30], [30]])
+let mapThree = new Map([[10,"a"],[20, "b"],[40, "c"],[50, "d"], [30, "e"], [30, "f"]])
+// let mapFour = new Map({10:"a",20: "b",40: "c",50: "d", 30: "e", 30: "f"}) //Throws error: Not iterable
+
+console.log(mapTwo)
+console.log(mapThree)
+console.log(mapThree.has(60))
+
 
 

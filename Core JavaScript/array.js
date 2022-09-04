@@ -1,4 +1,5 @@
 let arr = [234, 43, 234, -56, -56, 55, 63, 5, 6, 235, 547];
+console.log(arr.slice(1,4).reduce((acc,cur)=>acc+cur))
 
 console.log(arr.sort());
 console.log(arr.sort((a, b) => a - b));

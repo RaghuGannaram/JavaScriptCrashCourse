@@ -13,5 +13,5 @@ function quickSort(arr) {
 
 let input = [234, 43,234, -56,-56, 55, 63,  5, 6, 235, 547];
 let output = quickSort(input);
-console.log(input)
-console.log(output)
+console.log("input : ", input)
+console.log("output : ", output)

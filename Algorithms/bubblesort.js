@@ -10,6 +10,6 @@ function bubbleSort(arr){
 }
 
 let input = [234, 43,234, -56,-56, 55, 63,  5, 6, 235, 547];
+console.log("input : ", input)
 let output = bubbleSort(input);
-console.log(input)
-console.log(output)
+console.log("output : ", output)

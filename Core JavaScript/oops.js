@@ -1,35 +1,39 @@
 /*----------------------------------------------Prototypal inheritance-------------------------------------------------*/
 {
-  function Employee(f_name, l_name, designation) {
-    this.f_name = f_name;
-    this.l_name = l_name;
+  function Employee(firstname, lastname, designation) {
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.designation = designation;
   }
 
-  function Manager(f_name, l_name, designation, subordinates) {
-    this.f_name = f_name;
-    this.l_name = l_name;
-    this.designation = designation;
+  function Manager(firstname, lastname, designation, subordinates) {
+    Employee.call(this, firstname, lastname, designation)
     this.subordinates = subordinates;
   }
 
   Employee.prototype.work = function () {
-    return `${this.f_name} is working`;
+    return `${this.firstname} is working`;
   };
 
   Manager.prototype.manage = function () {
-    return `${this.f_name} manages ${this.subordinates} people`;
+    return `${this.firstname} manages ${this.subordinates} people`;
   };
+
   console.log(Manager.prototype.__proto__);
   Manager.prototype.__proto__ = Employee.prototype; //Manager inherits properties from Employee
   console.log(Manager.prototype.__proto__);
 
+
   let employee1 = new Employee("Peter", "Parker", "Software Engineer");
+  console.log(employee1);
+
+  console.log(employee1.__proto__);
   console.log(employee1.work());
   console.log(employee1.__proto__.work());
   console.log(employee1.__proto__.work.call(employee1));
 
   let manager1 = new Manager("Tony", "Stark", "Manager", 10);
+  console.log(manager1);
 
   console.log(manager1.__proto__);
   console.log(manager1.__proto__.__proto__);
@@ -37,7 +41,9 @@
 
   console.log(manager1.manage());
   console.log(manager1.work());
-  console.log(manager1.work.call(employee1));
+
+  console.log(manager1.__proto__.work());
+  console.log(manager1.__proto__.work.call(manager1));
 }
 
 /*----------------------------------------------------Classes--------------------------------------------------------*/
@@ -48,7 +54,6 @@
     }
 
     getWheels() {
-      // return 4
       return this.wheels;
     }
   }
@@ -61,13 +66,17 @@
     getGears() {
       return this.gears;
     }
+    getFeatures(){
+      return {
+        gears : this.getGears(),
+        wheels : this.getWheels()
+      }
+    }
   }
 
   let benz = new Car(4, 9);
+  
   console.log(benz.getWheels());
   console.log(benz.getGears());
-  console.log(
-    `Benz car has ${benz.getGears()} gears and ${benz.getWheels()} wheels`
-  );
-  console.log(`Benz car has ${benz.gears} gears and ${benz.wheels} wheels`);
+  console.log(benz.getFeatures());
 }
