@@ -1,14 +1,14 @@
-console.log(a)
+console.log(a);
 var a = 10;
-// let a = 10;  Syntax Error : a is already defined
+// let a = 10;  //Syntax Error : a is already defined
 
 // console.log(b)
-//Temporal Dead Zone for b 
+//Temporal Dead Zone for b
 let b = 20;
-// var b =20;   Syntax Error : b is already defined
+// var b =20;  //Syntax Error : b is already defined
 
 // console.log(c)
-//Temporal Dead Zone for c 
+//Temporal Dead Zone for c
 const c = 30;
 
 //var variable can be redeclared
@@ -24,5 +24,17 @@ var f;
 let g;
 // const h;
 
-i=10;
-console.log(i)
+i = 10;
+function dummy() {
+	i = 11;
+	j = 20;
+	console.log(i);
+	console.log(j);
+}
+
+j = 21;
+console.log(i);
+console.log(j);
+dummy();
+console.log(i);
+console.log(j);

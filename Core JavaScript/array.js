@@ -21,6 +21,8 @@ let fruits = ["Banana", "Orange", "Apple", "Mango"];
 console.log(fruits);
 console.log(fruits.toString());
 console.log(fruits);
+console.log(fruits.join());
+console.log(fruits.join(""));
 console.log(fruits.join("----*---"));
 console.log(fruits);
 console.log(fruits.sort());
@@ -55,6 +57,8 @@ console.log(fruits.splice.__proto__.__proto__.__proto__);
 
 console.log(fruits);
 console.log(fruits.splice());
+console.log(fruits);
+console.log(fruits.splice(4));
 console.log(fruits);
 console.log(fruits.splice(2, 0, "Sapota"));
 console.log(fruits);
@@ -99,9 +103,13 @@ console.log(
 nums[0] = 10;
 console.log(nums);
 
+
+
 let [x1, ...result] = ["a", "b", "c"];
 
 console.log(result);
 console.log(typeof(result));
+console.log(result instanceof Object);
+console.log(result instanceof Array);
 
 console.log(Array.isArray(result));
