@@ -1,5 +1,7 @@
 let str = "0123456789";
 
+console.log("a"==="A");
+
 console.log(str)
 console.log(typeof(str))
 console.log(str.__proto__)
