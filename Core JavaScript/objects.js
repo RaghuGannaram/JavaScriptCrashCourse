@@ -9,9 +9,9 @@
     ["last name"]: "Doe",
     "nick name": "Jo",
     age: age,
-    country: "US",
     [sub_division]: "LA",
-  };
+    country: "US",
+  };    
   person.gender = "M";
   person["role designation"] = "Software Engineer";
 
@@ -39,8 +39,8 @@
   };
   console.log(emp1);
   console.log(emp1.__proto__);
-  console.log(emp1.__proto__.constructor);
   console.log(emp1.__proto__.__proto__);
+  console.log(emp1.__proto__.constructor);
 
   // Object function syntax-----------------2
   let emp2 = new Object({
@@ -53,25 +53,28 @@
   console.log(emp2);
   console.log(emp2.__proto__);
   console.log(emp2.__proto__.__proto__);
+  console.log(emp1.__proto__.constructor);
+
 
   // Object.create syntax-------------------3
   let emp31 = Object.create(emp2, {});
   console.log(emp31);
   console.log(Object.getPrototypeOf(emp31));
-
+  
   let emp3 = Object.create(emp2);
+  console.log(Object.getPrototypeOf(emp3));
   emp3.obj = "emp3";
   console.log(emp3.hasOwnProperty("first_name"));
   console.log(emp3.hasOwnProperty("last_name"));
   console.log(emp3.first_name);
   console.log(emp3.last_name);
   console.log(emp3);
-  console.log(emp3.constructor);
   console.log(emp3.__proto__);
-  console.log(emp3.__proto__.constructor);
-  console.log(emp3.__proto__.constructor.prototype);
   console.log(emp3.__proto__.__proto__);
   console.log(emp3.__proto__.__proto__.__proto__);
+  console.log(emp3.constructor);
+  console.log(emp3.__proto__.constructor);
+  console.log(emp3.__proto__.__proto__.constructor);
 
   // Object.setPrototypeOf(emp3, emp1);
   console.log(emp3.__proto__);
@@ -79,6 +82,7 @@
   console.log(emp3.__proto__.__proto__.__proto__);
 
   console.log(Object.getPrototypeOf(emp2))
+  console.log(Object.getPrototypeOf(emp3))
   console.log(emp1.isPrototypeOf(emp3));
   console.log(emp2.isPrototypeOf(emp3));
   console.log(emp3);
@@ -121,9 +125,10 @@
   let emp6 = new Employee("James", "Cameron");
   console.log(emp6);
   console.log(emp6.__proto__);
+  console.log(emp6.__proto__.__proto__);
+  console.log(emp6.__proto__.__proto__.__proto__);
   console.log(emp6.__proto__.constructor);
   console.log(emp6.__proto__.constructor.prototype);
-  console.log(emp6.__proto__.__proto__);
   console.log(emp6.__proto__.__proto__.constructor);
   console.log(emp6.__proto__.__proto__.constructor.prototype);
 
@@ -160,6 +165,7 @@
   console.log(person.__proto__); //at Object
   console.log(person.__proto__.__proto__); // Object is inherited from null
   console.log(person.constructor);
+  console.log(person.constructor.prototype);
   console.log(person.__proto__.constructor);
   console.log(typeof person.__proto__);
   console.log(typeof person.constructor);
@@ -174,6 +180,7 @@
   person.height = 7;
   console.log(Object.getOwnPropertyDescriptor(person, "name"));
   console.log(Object.getOwnPropertyDescriptor(person, "height"));
+  console.log(Object.getOwnPropertyDescriptors(person));
 
   //Object.defineProperties Object.getOwnPropertyDescriptors--------------------------------
   Object.defineProperties(person, {
@@ -186,11 +193,28 @@
       value: "Male",
       writable: false,
       enumerable: true,
+      configurable: true,
     },
+    secrete: {
+      value: "Top Secrete",
+      writable: true,
+      enumerable: false,
+    }
   });
+  person.gender = "Female"
+  console.log(person);
+  Object.defineProperty(person, "gender", {
+    writable: true,
+  })
+  console.log(Object.getOwnPropertyDescriptors(person));
 
+  person.gender = "Female"
   console.log(person);
   console.log(Object.getOwnPropertyDescriptors(person));
+
+  console.log(person.secrete);
+  person.secrete = "Elite secrete";
+  console.log(person.secrete);
 
   // Object.preventExtension---------------------------------------------------------------------
   let alien = Object.assign({}, person);
@@ -227,8 +251,8 @@
   console.log(Object.isSealed(clonedPerson));
   console.log(Object.isFrozen(clonedPerson));
   Object.freeze(clonedPerson);
-  console.log(Object.isSealed(clonedPerson));
   console.log(Object.isFrozen(clonedPerson));
+  console.log(Object.isSealed(clonedPerson));
   console.log(Object.isExtensible(clonedPerson));
   // Object.setPrototypeOf(clonedPerson, {}) //Prevents prototype reassignment
   clonedPerson.country = "US"; //Prevents new properties from being added

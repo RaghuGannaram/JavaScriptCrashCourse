@@ -44,13 +44,15 @@
 //     console.log(element)
 // })
 
-function test(){
-    let x = 10;
-    // console.log(this === window)
-    console.log(this.x)
-    return this
-  }
-//   console.log(this === window)
+// function test(){
+//     let x = 10;
+//     // console.log(this === window)
+//     console.log(this.x)
+//     return this
+//   }
+// //   console.log(this === window)
   
-  let customScope = test();
-  console.log(customScope.x)
+//   let customScope = test();
+//   console.log(customScope.x)
+
+

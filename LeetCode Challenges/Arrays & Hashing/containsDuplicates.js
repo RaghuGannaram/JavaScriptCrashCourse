@@ -31,4 +31,4 @@ var containsDuplicate3 = function (nums) {
     return new Set(nums).size !== nums.length;
 };
 
-containsDuplicate2([1,3,2,4,2,5])
+console.log(containsDuplicate2([1,3,2,4,2,5]))

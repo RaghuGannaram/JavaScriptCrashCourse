@@ -61,7 +61,7 @@ function five() {
     var varX = 12;
     let letX = 22;
     // let varX = 12;   // Legal Shadowing
-    // var letX = 22;   Illeagal Shadowing
+    // var letX = 22;   //Illeagal Shadowing
     console.log(varX);
     console.log(letX);
   }

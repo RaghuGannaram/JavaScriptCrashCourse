@@ -39,7 +39,6 @@ for (let i of map.keys()) console.log(i instanceof Object)
 for (let [i,j] of map.entries()) console.log(i, j)
 
 console.log(map.size)
-console.log(map.size)
 
 let mapTwo = new Map([[10],[20],[40],[50], [30], [30]])
 let mapThree = new Map([[10,"a"],[20, "b"],[40, "c"],[50, "d"], [30, "e"], [30, "f"]])
@@ -48,6 +47,15 @@ let mapThree = new Map([[10,"a"],[20, "b"],[40, "c"],[50, "d"], [30, "e"], [30, 
 console.log(mapTwo)
 console.log(mapThree)
 console.log(mapThree.has(60))
+
+const first = new Map([
+  [1, 'one'],
+  [2, 'two'],
+  [3, 'three'],
+  [3, 'thre'],
+]);
+
+console.log(first)
 
 
 
