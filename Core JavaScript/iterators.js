@@ -1,96 +1,125 @@
-let monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September"];
+// Array are iterable by default---
+let daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday"];
 
-monthsArr[9] = "October";
-monthsArr.penultimateMonth = "November";
-Object.defineProperty(monthsArr, "lastMonth", {
-	value: "December",
+daysArr[4] = "Thurday";
+daysArr.penultimateDay = "Friday";
+Object.defineProperty(daysArr, "lastDay", {
+	value: "Saturday",
 	enumerable: true,
 });
 
-console.log(monthsArr);
+console.log(daysArr);
 
-for (let i in monthsArr) {
+for (let i in daysArr) {
 	console.log(i);
 }
-for (let i of monthsArr) {
+for (let i of daysArr) {
 	console.log(i);
 }
 
-let monthsObj = {
-	0: "January",
-	1: "February",
-	2: "March",
-	3: "April",
-	4: "May",
-	5: "June",
-	6: "July",
-	7: "August",
-	8: "September",
+// Objects should have Symbol.iterator method implemented to become iterable---
+let daysObj = {
+	0: "Sunday",
+	1: "Monday",
+	2: "Tuesday",
+	3: "Wednesday",
 };
 
-monthsObj[9] = "October";
-monthsObj.penultimateMonth = "November";
-Object.defineProperty(monthsObj, "lastMonth", {
-	value: "December",
+daysObj[9] = "Thursday";
+daysObj.penultimateMonth = "Friday";
+Object.defineProperty(daysObj, "lastMonth", {
+	value: "Saturday",
 	enumerable: true,
 });
 
-console.log(monthsObj);
+// Making daysObj Iterable | Creating the Symbol.iterator methos on daysObj
+daysObj[Symbol.iterator] = function () {
+	let index = -1;
+	let arrKeys = Object.keys(this);
+	let arrValues = Object.values(this);
 
-for (let i in monthsObj) {
+	return {
+		next: function () {
+			++index;
+			return {
+				value: arrValues[index],
+				done: index >= arrKeys.length,
+			};
+		},
+	};
+};
+
+console.log(daysObj);
+
+for (let i in daysObj) {
 	console.log(i);
 }
 
-// for (let i of monthsObj) {
-// 	// console.log(i);
-// }
+for (let i of daysObj) {
+	console.log(i);
+}
 
-function simpleIterator() {
-	let init = 0;
+//-------------------------------------------------------------------------------------------------
+//Iterator which provides natural numbers upto specified limit
+function simpleIterator(limit) {
+	let count = 0;
 	return {
 		next: function () {
-			init += 10;
-			return { value: init, done: false };
+			count++;
+			return {
+				value: count <= limit ? count : undefined,
+				done: count > limit,
+			};
 		},
 	};
 }
 
-let itr = simpleIterator();
-console.log(itr.next());
-console.log(itr.next());
-console.log(itr.next());
-console.log(itr.next());
-console.log(itr.next());
+let naturalNumbers = simpleIterator(3);
+console.log(naturalNumbers.next());
+console.log(naturalNumbers.next());
+console.log(naturalNumbers.next());
+console.log(naturalNumbers.next());
+console.log(naturalNumbers);
 
-let nums = [5, 3, 7, 2, 6];
-let numsIterator = nums[Symbol.iterator]();
-console.log(numsIterator.next());
-console.log(numsIterator.next());
-console.log(numsIterator.next());
-console.log(numsIterator.next());
-console.log(numsIterator.next());
-console.log(numsIterator.next());
-
-function squared(max) {
+//Iterable which provides squared numbers upto specified limit
+function squaredIterator(limit) {
 	return {
 		[Symbol.iterator]: function () {
-			let num = 0;
+			let n = 0;
 			return {
 				next: function () {
-					num++;
-					if (num <= max) return { value: num * num, done: false };
-					else return { value: undefined, done: true };
+					n++;
+					return {
+						value: n <= limit ? n * n : undefined,
+						done: n > limit,
+					};
 				},
 			};
 		},
 	};
 }
 
-console.log([...squared(10)]);
-
-for (let sqr of squared(5)) {
+//Iterable
+let squaredIterable = squaredIterator(3);
+console.log(squaredIterable);
+console.log(...squaredIterable);
+for (let sqr of squaredIterable) {
 	console.log(sqr);
 }
 
-for (let i in [4, 5, 3, 6, 1]) console.log(i);
-for (let i of [4, 5, 3, 6, 1]) console.log(i);
+//Iterator
+let squaredItr = squaredIterable[Symbol.iterator]();
+console.log(squaredItr.next());
+console.log(squaredItr.next());
+console.log(squaredItr.next());
+console.log(squaredItr.next());
+
+//Iterable
+let nums = [5, 3, 7];
+
+//Iterator
+let numsIterator = nums[Symbol.iterator]();
+console.log(numsIterator.next());
+console.log(numsIterator.next());
+console.log(numsIterator.next());
+console.log(numsIterator.next());
