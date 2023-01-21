@@ -34,9 +34,9 @@ console.log(four());
 //Anonymus function
 // console.log(five)
 // five()
-(function five() {
-  console.log("Immediate Invocable Function");
-})()
+// (function five() {
+//   console.log("Immediate Invocable Function");
+// })()
 (function funcOne() {
   console.log("Hello from funcOne ---|", this);
 })();
@@ -58,3 +58,11 @@ console.log(myfunc);
 console.log(myfunc.__proto__);
 console.log(myfunc.__proto__.constructor);
 console.log(myfunc.__proto__.__proto__ === Object.prototype);
+
+
+function testFunction(a, ...params) {
+  console.log(params)
+  console.log(arguments)
+}
+
+testFunction(10, 20, 30)
