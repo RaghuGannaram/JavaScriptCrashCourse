@@ -312,3 +312,24 @@
 	console.log(typeof child.__proto__);
 	console.log(typeof child.prototype);
 }
+
+let avengers = {
+	steve: { name: "Steve Rogers", heroName: "Captain America" },
+	tony: { name: "Toney Stark", heroName: "Iron Man" },
+	natasha: { name: "Natasha Romanoff", heroName: "Black Widow" },
+	bruce: { name: "Bruce Banner", heroName: "Hulk" },
+};
+
+let { steve, ...team } = avengers;
+
+console.log(avengers);
+console.log(steve);
+console.log(team);
+
+function avengerList(...heros) {
+	for (let hero of heros) {
+		console.log(`Hello ${hero} 🤟`);
+	}
+}
+
+avengerList(...avengers);

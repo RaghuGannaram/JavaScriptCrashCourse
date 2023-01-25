@@ -93,7 +93,6 @@ console.log(fruits.lastIndexOf("Apple", 100));
 console.log(fruits.lastIndexOf("Apple", -100));
 console.log(fruits.indexOf("App"));
 
-
 //Array.prototype.includes() : time complexity = O(n), non-mutating, returns => boolean
 console.log(fruits.indexOf("Banana"));
 console.log(fruits.length);
@@ -165,11 +164,38 @@ console.log(numbers.find((num) => num > 600));
 console.log(numbers.find((num) => true));
 console.log(numbers.find((num) => false));
 
-//Array.prototype.findIndex() : time complexity = O(n), non-mutating, returns => found element
+// //Array.prototype.findLast() : time complexity = O(n), non-mutating, returns => found element from last
+// console.log(numbers.findLast((num) => num > 500));
+// console.log(numbers.findLast((num) => num > 600));
+// console.log(numbers.findLast((num) => true));
+// console.log(numbers.findLast((num) => false));
+
+//Array.prototype.findIndex() : time complexity = O(n), non-mutating, returns => found element's index
 console.log(numbers.findIndex((num) => num > 500));
 console.log(numbers.findIndex((num) => num > 600));
 console.log(numbers.findIndex((num) => true));
 console.log(numbers.findIndex((num) => false));
+
+//Array.prototype.entries() : time complexity = O(n), non-mutating, returns => Array Iterator
+let numsItr = [10, , 20, 30].entries();
+console.log(numsItr instanceof Array);
+console.log(numsItr instanceof Object);
+// console.log(...numsItr);
+for (let [index, element] of numsItr) {
+	// console.log(index,element)
+}
+console.log(numsItr.next());
+console.log(numsItr.next());
+console.log(numsItr.next());
+console.log(numsItr.next());
+
+//Array.prototype.flat() : non-mutating, returns => flattened array
+let nestedArr = [1, 2, , [3, 4, [5, 6, [7]]]];
+console.log(nestedArr.flat())
+console.log(nestedArr.flat(0))
+console.log(nestedArr.flat(2))
+console.log(nestedArr.flat(3))
+console.log(nestedArr.flat(100))
 
 //Array.prototype.sort() : time complexity = O(nlog(n)), mutating, returns => sorted array
 //Array.prototype.reverse() : time complexity = O(n), mutating, returns => reversed array
@@ -184,6 +210,22 @@ console.log(numbers.sort((a, b) => a - b)[numbers.length - 1]);
 console.log(numbers);
 console.log(numbers.reverse());
 console.log(numbers);
+
+let avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "HawkEye", "Black Widow"];
+
+let [captain, ...team] = avengers;
+
+console.log(avengers);
+console.log(captain);
+console.log(team);
+
+function avengerList(...heros) {
+	for (let hero of heros) {
+		console.log(`Hello ${hero} 🤟`);
+	}
+}
+
+avengerList(...avengers);
 
 for (let i in fruits) console.log(i);
 for (let [i, j] in fruits) console.log(i, j);
