@@ -31,6 +31,22 @@ var isAnagram2 = function (s, t) {
 };
 
 var isAnagram3 = function (s, t) {
+	if (s.length != t.length) {
+		return false;
+	}
+
+	let sMap = new Map(),
+		tMap = new Map();
+
+	for (let i = 0; i < s.length; i++) {
+		sMap.set(s[i], (sMap.get(s[i]) ?? 0) + 1);
+		tMap.set(t[i], (tMap.get(t[i]) ?? 0) + 1);
+	}
+	for (let [char, count] of sMap) if (tMap.get(char) !== count) return false;
+	return true;
+};
+
+var isAnagram4 = function (s, t) {
 	if (s.length !== t.length) {
 		return false;
 	}
