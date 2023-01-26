@@ -2,6 +2,7 @@
  * @param {number[]} prices
  * @return {number}
  */
+
 var maxProfit = function (prices) {
   let l = 0,
     r = 1,
@@ -12,7 +13,7 @@ var maxProfit = function (prices) {
     } else {
       l = r;
     }
-    r += 1;
+    r++;
   }
   return maxGain;
 };
