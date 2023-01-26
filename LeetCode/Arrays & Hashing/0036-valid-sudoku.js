@@ -2,6 +2,7 @@
  * @param {character[][]} board
  * @return {boolean}
  */
+
 function isValidSudoku(board) {
   const rows = {};
   const cols = {};
@@ -33,6 +34,7 @@ function isValidSudoku(board) {
       cols[c].add(num);
       rows[r].add(num);
       squares[grid].add(num);
+      console.log(cols)
     }
   }
 
