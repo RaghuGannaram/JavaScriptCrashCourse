@@ -5,9 +5,9 @@
 
 var maxArea1 = function (height) {
 	let l = 0,
-		r = height.length - 1,
-		container;
-	let maxWater = 0;
+		r = height.length,
+		container,
+		maxWater = 0;
 
 	while (l < r) {
 		if (height[l] < height[r]) {
