@@ -104,11 +104,16 @@ console.log(fruits.includes("Banana", -2));
 console.log(fruits.includes("Banana", -5));
 console.log(fruits.includes("Banana", -6));
 
-//Array.prototype.concat() : time complexity = O(n), non-mutating, returns => boolean
+//Array.prototype.concat() : time complexity = O(n), non-mutating, returns => created array
 console.log(fruits);
-console.log(fruits.concat(["a", "b"], "Pears"));
+console.log(fruits.concat([]));
+console.log(fruits.concat(["a", , "b"], "Pears"));
 console.log(fruits.concat("Pears", ["a", "b"]));
-console.log(fruits);
+let nestedArr1 = [[10, 20], 3, 4];
+let concatedArr1 = nestedArr1.concat([5, 6]);
+console.log(concatedArr1);
+nestedArr1[0].push(30);
+console.log(concatedArr1);
 
 //Array.prototype.toString() : time complexity = O(n), non-mutating, returns => comma-separated items as string
 //Array.prototype.join() : time complexity = O(n), non-mutating, returns => specifier-separated items as string
@@ -121,17 +126,18 @@ console.log(fruits.join("-"));
 
 //Array.prototype.at() : non-mutating, returns => item at given index
 console.log(fruits);
+console.log(fruits.at());
 console.log(fruits.at(1));
 console.log(fruits.at(-1));
 
 //Array.prototype.copyWithin() : mutating, returns => mutated array
-fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
+fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0));
-fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
+fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(2, 1));
-fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
+fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(2, 1, 3));
-fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
+fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0, 1));
 
 //Array.prototype.fill() : time complexity = O(n), mutating, returns => mutated array
@@ -150,6 +156,11 @@ let numbers = [234, 43, 234, -57, -56, -20, 55, 63, 5, 6, 235, 547];
 console.log(numbers.every((num) => num < 1000));
 console.log([10, , 15].every((num) => num >= 10));
 console.log([].every((num) => num >= 10));
+console.log(
+	[].every(() => {
+		return;
+	})
+);
 console.log([].every(() => false));
 
 //Array.prototype.some() : non-mutating, returns => boolean
@@ -158,44 +169,109 @@ console.log([10, , 15].some((num) => num <= 10));
 console.log([].some((num) => num >= 10));
 console.log([].some(() => true));
 
-//Array.prototype.find() : time complexity = O(n), non-mutating, returns => found element
+//Array.prototype.find() : time complexity = O(n), non-mutating, returns => found first element
 console.log(numbers.find((num) => num > 500));
 console.log(numbers.find((num) => num > 600));
 console.log(numbers.find((num) => true));
 console.log(numbers.find((num) => false));
 
-// //Array.prototype.findLast() : time complexity = O(n), non-mutating, returns => found element from last
+// //Array.prototype.findLast() : time complexity = O(n), non-mutating, returns => found last element
 // console.log(numbers.findLast((num) => num > 500));
 // console.log(numbers.findLast((num) => num > 600));
 // console.log(numbers.findLast((num) => true));
 // console.log(numbers.findLast((num) => false));
 
-//Array.prototype.findIndex() : time complexity = O(n), non-mutating, returns => found element's index
+//Array.prototype.findIndex() : time complexity = O(n), non-mutating, returns => found element's first index
 console.log(numbers.findIndex((num) => num > 500));
 console.log(numbers.findIndex((num) => num > 600));
 console.log(numbers.findIndex((num) => true));
 console.log(numbers.findIndex((num) => false));
 
+// //Array.prototype.findLastIndex() : time complexity = O(n), non-mutating, returns => found element's last index
+// console.log(numbers.findLastIndex((num) => num > 500));
+// console.log(numbers.findLastIndex((num) => num > 600));
+// console.log(numbers.findLastIndex((num) => true));
+// console.log(numbers.findLastIndex((num) => false));
+
 //Array.prototype.entries() : time complexity = O(n), non-mutating, returns => Array Iterator
 let numsItr = [10, , 20, 30].entries();
 console.log(numsItr instanceof Array);
 console.log(numsItr instanceof Object);
+console.log(numsItr);
 // console.log(...numsItr);
-for (let [index, element] of numsItr) {
-	// console.log(index,element)
-}
+// for (let [index, element] of numsItr) {
+// 	console.log(index, element);
+// }
+console.log(numsItr.next());
 console.log(numsItr.next());
 console.log(numsItr.next());
 console.log(numsItr.next());
 console.log(numsItr.next());
 
+//Array.prototype.keys() : time complexity = O(n), non-mutating, returns => Array Iterator
+let numKeys = [10, 20, 30, , 50].keys();
+console.log(numKeys instanceof Array);
+console.log(numKeys instanceof Object);
+console.log(numKeys);
+// console.log(...numKeys);
+// for (let element of numKeys) {
+// console.log(element);
+// }
+console.log(numKeys.next());
+console.log(numKeys.next());
+console.log(numKeys.next());
+console.log(numKeys.next());
+console.log(numKeys.next());
+console.log(numKeys.next());
+
+//Array.prototype.values() : time complexity = O(n), non-mutating, returns => Array Iterator
+let numValues = [10, 20, 30, , 50].values();
+console.log(numValues instanceof Array);
+console.log(numValues instanceof Object);
+console.log(numValues);
+// console.log(...numValues);
+// for (let element of numValues) {
+// console.log(element);
+// }
+console.log(numValues.next());
+console.log(numValues.next());
+console.log(numValues.next());
+console.log(numValues.next());
+console.log(numValues.next());
+console.log(numValues.next());
+
 //Array.prototype.flat() : non-mutating, returns => flattened array
-let nestedArr = [1, 2, , [3, 4, [5, 6, [7]]]];
-console.log(nestedArr.flat())
-console.log(nestedArr.flat(0))
-console.log(nestedArr.flat(2))
-console.log(nestedArr.flat(3))
-console.log(nestedArr.flat(100))
+let flatArr1 = [1, 2, , [40, [500, 600, [7000]]]];
+console.log(flatArr1.flat());
+console.log(flatArr1.flat(0));
+console.log(flatArr1.flat(2));
+console.log(flatArr1.flat(3));
+console.log(flatArr1.flat(100));
+
+//Array.prototype.flatMap() : non-mutating, returns => flattened array
+console.log([1, 2, 3, 4].flatMap((item) => item));
+console.log([1, 2, 3, 4].flatMap((item) => [item, item * 3]));
+
+//Array.prototype.from() : returns => created array
+console.log(Array.from("").length);
+console.log(Array.from(" ").length);
+console.log(Array.from([1,2]).length);
+console.log(Array.from([1, 2, 3], x => x + x));
+console.log(Array.from("foo"));
+console.log(Array.from(new Set(["foo", "bar", "baz", "foo"])));
+console.log(Array.from(new Map([
+  [1, 2],
+  [2, 4],
+  [4, 8],
+])));
+
+//Array.isArray() : returns => boolean
+console.log(Array.isArray())
+console.log(Array.isArray([]))
+console.log(Array.isArray([1]))
+console.log(Array.isArray("abc"))
+
+
 
 //Array.prototype.sort() : time complexity = O(nlog(n)), mutating, returns => sorted array
 //Array.prototype.reverse() : time complexity = O(n), mutating, returns => reversed array
@@ -251,7 +327,29 @@ console.log(result);
 console.log(typeof result);
 console.log(result instanceof Object);
 console.log(result instanceof Array);
-
 console.log(Array.isArray(result));
 
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+console.log(
+	months.filter((month) => {
+		return month.startsWith("J");
+	})
+);
+
+console.log(
+	months.map((month) => {
+		return month.toUpperCase();
+	})
+);
+console.log(months);
+months.forEach((month) => {
+	month.toLowerCase();
+});
+console.log(months);
+
+
+console.log(Array.of())
+console.log(Array.of(""))
+console.log(Array.of(1))
+console.log(Array.of(1, 2, 3))

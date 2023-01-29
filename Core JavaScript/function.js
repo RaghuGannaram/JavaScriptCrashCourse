@@ -66,3 +66,28 @@ function testFunction(a, ...params) {
 }
 
 testFunction(10, 20, 30)
+
+
+
+//Once function
+
+function once(fn, context) { 
+	var result;
+
+	return function() { 
+		if(fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+
+		return result;
+	};
+}
+
+// Usage
+var canOnlyFireOnce = once(function() {
+	console.log('Fired!');
+});
+
+canOnlyFireOnce(); // "Fired!"
+canOnlyFireOnce(); // nada
