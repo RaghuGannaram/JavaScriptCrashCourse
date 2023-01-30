@@ -5,7 +5,7 @@
 
 var maxArea1 = function (height) {
 	let l = 0,
-		r = height.length,
+		r = height.length-1,
 		container,
 		maxWater = 0;
 
@@ -38,4 +38,4 @@ var maxArea2 = function (height) {
 	return maxWater;
 };
 
-console.log(maxArea2([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+console.log(maxArea1([1, 8, 6, 2, 5, 4, 8, 3, 7]));
