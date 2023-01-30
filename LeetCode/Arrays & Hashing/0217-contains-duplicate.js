@@ -25,13 +25,10 @@ var containsDuplicate2 = function (nums) {
 	return false;
 };
 
-//Second method using Map() (Has to map entire array but code is more readable)
 var containsDuplicate2 = function (nums) {
-	//create a new hashmap with all the items in the array. Any duplicates will be removed.
 	console.log(nums.map((i, index) => [i, index]));
 	const totalWithoutDuplicates = new Map(nums.map((i, index) => [i, index]));
 	console.log(totalWithoutDuplicates);
-	//check if the size of the initial array is larger than the new hashmap.
 	return totalWithoutDuplicates.size !== nums.length;
 };
 
