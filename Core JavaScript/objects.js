@@ -1,335 +1,627 @@
-/*------------------------------------------------Object Syntax----------------------------------------------* */
-{
-	let age = 26;
-	// Using variable as object key-------
-	let sub_division = "state";
-	let person = {
-		1: "one",
-		first_name: "John",
-		["last name"]: "Doe",
-		"nick name": "Jo",
-		age: age,
-		[sub_division]: "LA",
-		country: "US",
-	};
-	person.gender = "M";
-	person["role designation"] = "Software Engineer";
+// ----------------------------------------------Object creation | Object constructure-------------
+console.log(new Object());
+console.log(new Object(null));
+console.log(new Object(undefined));
 
-	console.log(person);
-	console.log(person[1]);
-	console.log(person.age);
-	console.log(person["age"]);
-	console.log(person["last name"]);
-	console.log(person.state);
-	console.log(person["state"]);
-	console.log(person[sub_division]);
+let strObj = new Object("abc");
+console.log(strObj);
+strObj.x = 10;
+strObj.y = 20;
+console.log(strObj);
+console.log(strObj[0]);
+console.log(strObj["x"]);
+console.log(strObj["y"]);
 
-	for (let key in person) console.log(key);
-	for (let key in person) console.log(person[key]);
-}
-/*----------------------------------------------Object Creation----------------------------------------------*/
-// Object literal syntax------------------1
-{
-	let emp1 = {
-		obj: "emp1",
-		first_name: "John",
-		last_name: "Doe",
-		id: 123,
-		country: "US",
-	};
-	console.log(emp1);
-	console.log(emp1.__proto__);
-	console.log(emp1.__proto__.__proto__);
-	console.log(emp1.__proto__.constructor);
+let arrObj = new Object([5, 0, 0]);
+console.log(arrObj);
+arrObj["x"] = 10;
+arrObj["y"] = 20;
+console.log(arrObj);
+console.log(arrObj[0]);
+console.log(arrObj.x);
+console.log(arrObj.y);
 
-	// Object function syntax-----------------2
-	let emp2 = new Object({
-		obj: "emp2",
-		first_name: "Jane",
-		last_name: "Doe",
-		id: 456,
-		age: 24,
-	});
-	console.log(emp2);
-	console.log(emp2.__proto__);
-	console.log(emp2.__proto__.__proto__);
-	console.log(emp1.__proto__.constructor);
+let numObj = new Object(500);
+console.log(numObj);
+numObj.x = 10;
+numObj.y = 20;
+console.log(numObj);
+console.log(numObj[0]);
+console.log(numObj.x);
+console.log(numObj.y);
 
-	// Object.create syntax-------------------3
-	let emp31 = Object.create(emp2, {});
-	console.log(emp31);
-	console.log(Object.getPrototypeOf(emp31));
+//-----------------------------------------------Object creation | Object literal------------------
 
-	let emp3 = Object.create(emp2);
-	console.log(Object.getPrototypeOf(emp3));
-	emp3.obj = "emp3";
-	console.log(emp3.hasOwnProperty("first_name"));
-	console.log(emp3.hasOwnProperty("last_name"));
-	console.log(emp3.first_name);
-	console.log(emp3.last_name);
-	console.log(emp3);
-	console.log(emp3.__proto__);
-	console.log(emp3.__proto__.__proto__);
-	console.log(emp3.__proto__.__proto__.__proto__);
-	console.log(emp3.constructor);
-	console.log(emp3.__proto__.constructor);
-	console.log(emp3.__proto__.__proto__.constructor);
-	for (let i in emp3) {
-		console.log(i);
-		console.log(emp3[i]);
-		if (emp3.hasOwnProperty(i)) {
-			console.log(i);
-			console.log(emp3[i]);
-		}
-	}
+let age = 26;
+let sub_division = "state";
+let keyArr1 = [1, 2];
+let keyArr2 = [3, 4];
+let keyBool = true;
+let person = {
+	1: "one",
+	first_name: "John",
+	["last name"]: "Doe",
+	"nick name": "Jo",
+	age,
+	[sub_division]: "LA",
+	country: "US",
+	[keyArr1]: "One Two",
+};
+person.gender = "M";
+person["role designation"] = "Software Engineer";
+person[keyArr2] = "Three Four";
+person[keyBool] = "Boolean Key";
 
-	// Object.setPrototypeOf(emp3, emp1);
-	console.log(emp3.__proto__);
-	console.log(emp3.__proto__.__proto__);
-	console.log(emp3.__proto__.__proto__.__proto__);
+console.log(person);
+console.log(person[1]);
+console.log(person.age);
+console.log(person["age"]);
+console.log(person["last name"]);
+console.log(person.state);
+console.log(person["state"]);
+console.log(person[sub_division]);
+console.log(person[keyArr1]);
+console.log(person[keyArr2]);
+console.log(person[keyBool]);
+console.log(Object.getOwnPropertyDescriptors(person));
 
-	console.log(Object.getPrototypeOf(emp2));
-	console.log(Object.getPrototypeOf(emp3));
-	console.log(emp1.isPrototypeOf(emp3));
-	console.log(emp2.isPrototypeOf(emp3));
-	console.log(emp3);
-	console.log(emp3.first_name);
-	console.log(emp3.last_name);
-	console.log(emp3.id);
-	console.log(emp3.name);
-
-	// Object.assign syntax------------------4
-	let emp4 = Object.assign(emp3, emp2, { height: 6 });
-	console.log(emp3);
-	console.log(emp4);
-	console.log(Object.getPrototypeOf(emp4));
-	console.log(emp1.isPrototypeOf(emp4));
-	console.log(emp2.isPrototypeOf(emp4));
-	console.log(emp3.isPrototypeOf(emp4));
-	console.log(Object.prototype.isPrototypeOf(emp4));
-	console.log(emp3.name);
-	console.log(emp3.__proto__);
-	console.log(emp3.__proto__.__proto__);
-	console.log(emp3.__proto__.__proto__.__proto__);
-
-	// Function in regular mode synatx--------5
-	function employee(name, id) {
-		let obj = {};
-		// let obj ={name, id}
-		obj.name = name;
-		obj.id = id;
-		return obj;
-	}
-	let emp5 = employee("Jane", 456);
-	console.log(emp5);
-
-	// Function in constructure mode syntax-----6
-	function Employee(name, id) {
-		this.name = name;
-		this.id = id;
-		//   console.log(this)
-	}
-	let emp6 = new Employee("James", "Cameron");
-	console.log(emp6);
-	console.log(emp6.__proto__);
-	console.log(emp6.__proto__.__proto__);
-	console.log(emp6.__proto__.__proto__.__proto__);
-	console.log(emp6.__proto__.constructor);
-	console.log(emp6.__proto__.constructor.prototype);
-	console.log(emp6.__proto__.__proto__.constructor);
-	console.log(emp6.__proto__.__proto__.constructor.prototype);
-
-	console.log(Employee);
-	console.log(Employee.prototype);
-
-	let person = {
-		firstName: "James",
-		lastName: "Bond",
-
-		get fullName() {
-			return `${this.firstName} ${this.lastName}`;
-		},
-
-		set fullName(name) {
-			[this.firstName, this.lastName] = name.split(" ");
-		},
-	};
-}
-/*------------------------------------------Object function----------------------------------------*/
-{
-	let person = new Object({
-		name: "John Doe",
-		// age: 24,
-		// gender: "Male",
-		// Married: false,
-		// Hobbies: ["cricket", "Piano", "Movies"],
-		// Address : {
-		//   street_no : 123,
-		//   city: "Newyork"
-		// }
-	});
-	console.log(person); //at obj
-	console.log(person.__proto__); //at Object
-	console.log(person.__proto__.__proto__); // Object is inherited from null
-	console.log(person.constructor);
-	console.log(person.constructor.prototype);
-	console.log(person.__proto__.constructor);
-	console.log(typeof person.__proto__);
-	console.log(typeof person.constructor);
-
-	//Object.defineProperty Object.getOwnPropertyDescriptor-----------------------------------
-	Object.defineProperty(person, "height", {
-		value: 6,
-		writable: false,
-		enumerable: true,
-		configurable: true,
-	});
-	person.height = 7;
-	console.log(Object.getOwnPropertyDescriptor(person, "name"));
-	console.log(Object.getOwnPropertyDescriptor(person, "height"));
-	console.log(Object.getOwnPropertyDescriptors(person));
-
-	//Object.defineProperties Object.getOwnPropertyDescriptors--------------------------------
-	Object.defineProperties(person, {
-		age: {
-			value: 24,
-			writable: true,
-			enumerable: true,
-		},
-		gender: {
-			value: "Male",
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		secrete: {
-			value: "Top Secrete",
-			writable: true,
-			enumerable: false,
-		},
-	});
-	person.gender = "Female";
-	console.log(person);
-	Object.defineProperty(person, "gender", {
-		writable: true,
-	});
-	console.log(Object.getOwnPropertyDescriptors(person));
-
-	person.gender = "Female";
-	console.log(person);
-	console.log(Object.getOwnPropertyDescriptors(person));
-
-	console.log(person.secrete);
-	person.secrete = "Elite secrete";
-	console.log(person.secrete);
-
-	// Object.preventExtension---------------------------------------------------------------------
-	let alien = Object.assign({}, person);
-	console.log(alien);
-	console.log(Object.isExtensible(alien));
-	console.log(Object.isSealed(alien));
-	Object.preventExtensions(alien);
-	console.log(Object.isSealed(alien));
-	console.log(Object.isExtensible(alien));
-	// Object.setPrototypeOf(alien, {})      //Prevents prototype reassignment
-	alien.country = "US"; //Prevents new properties from being added
-	delete alien.name; //Can delete existing property
-	alien.age = 25; //Can Update existing properties unless writable is false
-	console.log(alien);
-
-	// Object.seal---------------------------------------------------------------------------------
-	let mutant = Object.assign({}, person);
-	console.log(mutant);
-	console.log(Object.isExtensible(mutant));
-	console.log(Object.isSealed(mutant));
-	Object.seal(mutant);
-	console.log(Object.isSealed(mutant));
-	console.log(Object.isExtensible(mutant));
-	// Object.setPrototypeOf(mutant, {})     //Prevents prototype reassignment
-	mutant.country = "US"; //Prevents new properties from being added
-	delete mutant.name; //Prevents deleting existing properties
-	mutant.age = 25; //Can Update existing properties unless writable is false
-	console.log(mutant);
-
-	// Object.freeze--------------------------------------------------------------------------------
-	let clonedPerson = Object.assign({}, person);
-	console.log(clonedPerson);
-	console.log(Object.isExtensible(clonedPerson));
-	console.log(Object.isSealed(clonedPerson));
-	console.log(Object.isFrozen(clonedPerson));
-	Object.freeze(clonedPerson);
-	console.log(Object.isFrozen(clonedPerson));
-	console.log(Object.isSealed(clonedPerson));
-	console.log(Object.isExtensible(clonedPerson));
-	// Object.setPrototypeOf(clonedPerson, {}) //Prevents prototype reassignment
-	clonedPerson.country = "US"; //Prevents new properties from being added
-	delete clonedPerson.name; //Prevents deleting existing properties
-	clonedPerson.age = 25; //Prevents updating existing properties
-	console.log(clonedPerson);
-
-	console.log(Object.keys(person));
-	console.log(Object.values(person));
-	console.log(Object.entries(person));
-	console.log(
-		Object.fromEntries([
-			["a", 1],
-			["b", 2],
-			["c", 3],
-		])
-	);
-
-	console.log(Object.getOwnPropertyNames(person));
-	console.log(Object.getOwnPropertySymbols(person));
-}
-/*---------------------------------------------------Prototypes------------------------------------------------*/
-{
-	function Parent() {}
-	console.log(Parent.__proto__ === Function.prototype);
-	Parent.prototype.f_name = "Martin";
-	console.log(Parent);
-	console.log(Parent.__proto__);
-	console.log(Parent.__proto__.__proto__);
-	console.log(Parent.__proto__.__proto__.__proto__);
-	console.log(Parent.prototype);
-
-	let child = new Parent();
-	child.__proto__.l_name = "Scorsese";
-	child.__proto__.film = "Department";
-	child.film = "Taxi Driver";
-
-	console.log(child);
-	console.log(child.f_name);
-	console.log(child.l_name);
-	console.log(child.film);
-
-	console.log(child.__proto__);
-	console.log(child.__proto__.constructor);
-
-	console.log(typeof Parent);
-	console.log(typeof Parent.__proto__);
-	console.log(typeof Parent.prototype);
-	console.log(typeof child);
-	console.log(typeof child.__proto__);
-	console.log(typeof child.prototype);
+//-----------------------------------------------Object creation | Object.create()------------------
+function Employee(name, role) {
+	this.name = name;
+	this.role = role;
+	this.company = "Google";
 }
 
-let avengers = {
-	steve: { name: "Steve Rogers", heroName: "Captain America" },
-	tony: { name: "Toney Stark", heroName: "Iron Man" },
-	natasha: { name: "Natasha Romanoff", heroName: "Black Widow" },
-	bruce: { name: "Bruce Banner", heroName: "Hulk" },
+Employee.prototype.greet = function () {
+	return `Hello world`;
+};
+Employee.prototype.info = function () {
+	return `name: ${this.name}, \n role: ${this.role}, \n company: ${this.company} \n pay: ${"$100k"}`;
 };
 
-let { steve, ...team } = avengers;
+let employee1 = Object.create(Employee.prototype, {
+	pay: {
+		value: "$100k",
+		writable: true,
+		enumerable: true,
+		configurable: true,
+	},
+});
 
-console.log(avengers);
-console.log(steve);
-console.log(team);
+// Default data descriptors in general
+// writable: true,
+// enumerable: true,
+// configurable: true,
 
-function avengerList(...heros) {
-	for (let hero of heros) {
-		console.log(`Hello ${hero} 🤟`);
-	}
+employee1.bonus = "$10k";
+
+console.log(Object.getOwnPropertyDescriptors(employee1));
+console.log(Object.getPrototypeOf(employee1));
+console.log(employee1.greet());
+console.log(employee1.info());
+
+console.log(employee1);
+console.log(employee1.__proto__);
+console.log(employee1.__proto__.__proto__);
+console.log(employee1.__proto__.__proto__.__proto__);
+console.log(employee1.constructor);
+console.log(employee1.__proto__.constructor);
+console.log(employee1.__proto__.__proto__.constructor);
+// console.log(employee1.__proto__.__proto__.__proto__.constructor);
+
+//-----------------------------------------------Object creation | Object.assign()------------------
+let employee2 = Object.assign({}, employee1, { city: "New York" });
+console.log(employee2);
+console.log(Object.getPrototypeOf(employee2));
+console.log(employee2.__proto__);
+console.log(employee2.__proto__.__proto__);
+
+let objAsn1 = {
+	a: 1,
+	b: 2,
+	c: {
+		d: 30,
+		e: 40,
+	},
+};
+
+let objAsn2 = Object.assign({}, objAsn1, { f: 5 });
+
+console.log(objAsn2);
+objAsn1.a = 100;
+objAsn1.c.d = 300;
+console.log(objAsn2);
+
+let objAsn3 = Object.assign({}, JSON.parse(JSON.stringify(objAsn1)));
+
+console.log(objAsn3);
+objAsn1.a = 1000;
+objAsn1.c.d = 3000;
+console.log(objAsn3);
+
+//---------------------------------Object creation | Object.defineProperty() & Object.defineProperties()------------------
+// Default data descriptors through  Object.defineProperty() & Object.defineProperties()
+// writable: false,
+// enumerable: false,
+// configurable: false,
+
+let objDfn1 = {};
+
+Object.defineProperty(objDfn1, "a", {
+	value: 1,
+});
+
+Object.defineProperty(objDfn1, "b", {
+	value: 2,
+	enumerable: true,
+});
+
+Object.defineProperty(objDfn1, "c", {
+	value: 3,
+	writable: true,
+	enumerable: true,
+});
+
+Object.defineProperty(objDfn1, "c", {
+	value: 30,
+	// writable: true,
+	// enumerable: true,
+});
+
+objDfn1.b = 20;
+objDfn1.c = 300;
+
+console.log(objDfn1);
+
+Object.defineProperty(objDfn1, "c", {
+	writable: false,
+});
+
+// Object.defineProperty(objDfn1, "c", {
+// 	enumerable: false,
+// });
+
+Object.defineProperty(objDfn1, "d", {
+	value: 4,
+	writable: true,
+	enumerable: true,
+	configurable: true,
+});
+
+Object.defineProperty(objDfn1, "d", {
+	value: 5,
+});
+
+Object.defineProperty(objDfn1, "d", {
+	enumerable: false,
+});
+
+console.log(
+	Object.defineProperty(objDfn1, "e", {
+		value: 5,
+	})
+);
+
+let objDfn2 = {};
+Object.defineProperties(objDfn2, {
+	a: {
+		value: 1,
+	},
+	b: {
+		value: 2,
+		enumerable: true,
+	},
+	c: {
+		value: 3,
+		writable: true,
+		enumerable: true,
+	},
+	d: {
+		value: 4,
+		writable: true,
+		enumerable: true,
+		configurable: true,
+	},
+});
+
+console.log(objDfn2);
+
+Object.defineProperties(objDfn2, {
+	c: {
+		value: 30,
+	},
+	// c: {
+	// 	enumerable: false,
+	// }
+	d: {
+		value: 40,
+		writable: false,
+	},
+});
+
+console.log(objDfn2);
+
+//------------------------Object.getOwnPropertyDescriptor() & Object.getOwnPropertyDescriptors()--------------
+
+let objDsc1 = {
+	a: 1,
+	b: 2,
+	c: 3,
+};
+
+console.log(Object.getOwnPropertyDescriptor(objDsc1, "a"));
+console.log(Object.getOwnPropertyDescriptors(objDsc1));
+
+//--------------------------------------------Object.getOwnPropertyNames()-------------------------------------
+let objOpn1 = {
+	a: 1,
+	[Symbol.for("b")]: 2,
+	[Symbol.for("c")]: 3,
+};
+
+console.log(Object.getOwnPropertyNames(objOpn1));
+
+console.log(Object.getOwnPropertyNames("Apple"));
+console.log(Object.getOwnPropertyNames([10, 20, 30]));
+
+//--------------------------------------------Object.getOwnPropertySymbols()-------------------------------------
+let objOps1 = {
+	a: 1,
+	[Symbol.for("b")]: 2,
+	[Symbol.for("c")]: 3,
+};
+
+console.log(Object.getOwnPropertySymbols(objOps1));
+
+//--------------------------------------------Object.prototype.hasOwnProperty()-------------------------------------
+let bSymbol = Symbol.for("b");
+let cSymbol = Symbol.for("c");
+let objHop1 = {
+	a: 1,
+	[bSymbol]: 2,
+	[cSymbol]: 3,
+};
+
+console.log(objHop1.hasOwnProperty("a"));
+console.log(objHop1.hasOwnProperty(bSymbol));
+console.log([10, 20, 30].hasOwnProperty(0));
+console.log([10, 20, 30].hasOwnProperty(3));
+console.log([10, 20, 30].hasOwnProperty("length"));
+
+let objHop2 = {
+	a: 1,
+	b: 2,
+	c: 3,
+	hasOwnProperty: function () {
+		return false;
+	},
+};
+
+console.log(objHop2.hasOwnProperty("a"));
+
+let objHop3 = Object.create(null);
+objHop3.a = 1;
+objHop3.b = 2;
+objHop3.c = 3;
+// console.log(objHop3.hasOwnProperty("a"))
+
+//--------------------------------------------Object.hasOwn()-------------------------------------
+let objHo1 = {
+	a: 1,
+	b: 2,
+	c: 3,
+	hasOwnProperty: function () {
+		return false;
+	},
+};
+
+console.log(Object.hasOwn(objHo1, "a"));
+
+let objHo2 = Object.create(null);
+objHo2.a = 1;
+objHo2.b = 2;
+objHo2.c = 3;
+
+console.log(Object.hasOwn(objHo2, "a"));
+
+//--------------------------------------------Object.is()-------------------------------------
+console.log(Object.is(0, 0));
+console.log(Object.is(+0, -0));
+console.log(+0 === -0);
+console.log(Object.is(5, 5));
+
+console.log(Object.is());
+console.log(Object.is(0, 0));
+console.log(Object.is("", ""));
+console.log(Object.is([], []));
+console.log(Object.is({}, {}));
+console.log(Object.is(25, 25));
+console.log(Object.is("abc", "abc"));
+console.log(Object.is("abc", "abd"));
+console.log(Object.is(null, null));
+console.log(Object.is(undefined, undefined));
+const objA = { a: 1 };
+const objB = { a: 1 };
+const objC = objA;
+console.log(Object.is(objA, objB));
+console.log(Object.is(objA, objC));
+console.log(Object.is(0, 0));
+console.log(Object.is(0, -0));
+console.log(Object.is(-0, -0));
+console.log(Object.is(NaN, 0 / 0));
+console.log(Object.is(NaN, Number.NaN));
+
+// ---------------------------------------Object.isExtensible() | Object.preventExtension() ---------------------------------
+// Prevents extension and prototype reassignment, Allows deletion and value modification and config modification
+let objPrevEx1 = {
+	a: 1,
+	b: 2,
+	c: 3,
+};
+
+console.log(objPrevEx1);
+console.log(Object.getOwnPropertyDescriptors(objPrevEx1));
+
+console.log(Object.isExtensible(objPrevEx1));
+console.log(Object.isSealed(objPrevEx1));
+console.log(Object.isFrozen(objPrevEx1));
+Object.preventExtensions(objPrevEx1);
+console.log(Object.isFrozen(objPrevEx1));
+console.log(Object.isSealed(objPrevEx1));
+console.log(Object.isExtensible(objPrevEx1));
+
+try {
+	objPrevEx1.d = 4;
+} catch (err) {
+	console.log(err);
 }
 
-avengerList(...avengers);
+try {
+	Object.defineProperty(objPrevEx1, "e", {
+		value: 5,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+try {
+	Object.defineProperty(objPrevEx1, "a", {
+		value: 10,
+	});
+} catch (err) {
+	console.log(err);
+}
+console.log(objPrevEx1);
+
+try {
+	Object.defineProperty(objPrevEx1, "a", {
+		value: 10,
+		enumerable: false,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+console.log(objPrevEx1.__proto__);
+try {
+	Object.setPrototypeOf(objPrevEx1, null);
+} catch (err) {
+	console.log(err);
+}
+
+console.log(objPrevEx1);
+delete objPrevEx1.c;
+console.log(objPrevEx1);
+
+// ----------------------------------------- Object.isSeal() | Object.seal()--------------------------------------------
+// Prevents extension and prototype reassignment and deletion and config modification(except writable), Allows value to modify
+let objSeal1 = {
+	a: 1,
+	b: 2,
+	c: 3,
+};
+console.log(objSeal1);
+console.log(Object.getOwnPropertyDescriptors(objSeal1));
+
+console.log(Object.isExtensible(objSeal1));
+console.log(Object.isSealed(objSeal1));
+console.log(Object.isFrozen(objSeal1));
+Object.seal(objSeal1);
+console.log(Object.isFrozen(objSeal1));
+console.log(Object.isSealed(objSeal1));
+console.log(Object.isExtensible(objSeal1));
+
+try {
+	Object.defineProperty(objSeal1, "d", {
+		value: 4,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+try {
+	Object.defineProperty(objSeal1, "a", {
+		value: 10,
+	});
+} catch (err) {
+	console.log(err);
+}
+console.log(objSeal1);
+
+try {
+	Object.defineProperty(objSeal1, "b", {
+		value: 20,
+		enumerable: false,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+objSeal1.b = 200;
+console.log(objSeal1);
+try {
+	Object.defineProperty(objSeal1, "b", {
+		value: 20,
+		writable: false,
+	});
+} catch (err) {
+	console.log(err);
+}
+objSeal1.b = 200;
+console.log(objSeal1);
+
+console.log(objSeal1.__proto__);
+try {
+	Object.setPrototypeOf(objSeal1, null);
+} catch (err) {
+	console.log(err);
+}
+
+console.log(objSeal1);
+delete objSeal1.c;
+console.log(objSeal1);
+
+// -----------------------------------------Object.freeze-----------------------------------------
+// Prevents extension and prototype reassignment and deletion and config modification(including writable) and value modification
+
+let objFreeze1 = {
+	a: 1,
+	b: 2,
+	c: 3,
+};
+console.log(objFreeze1);
+console.log(Object.isExtensible(objFreeze1));
+console.log(Object.isSealed(objFreeze1));
+console.log(Object.isFrozen(objFreeze1));
+Object.freeze(objFreeze1);
+console.log(Object.isFrozen(objFreeze1));
+console.log(Object.isSealed(objFreeze1));
+console.log(Object.isExtensible(objFreeze1));
+
+try {
+	Object.defineProperty(objFreeze1, "d", {
+		value: 4,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+try {
+	Object.defineProperty(objFreeze1, "a", {
+		value: 10,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+try {
+	Object.defineProperty(objFreeze1, "a", {
+		value: 10,
+		enumerable: false,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+objFreeze1.a = 100;
+console.log(objFreeze1);
+try {
+	Object.defineProperty(objFreeze1, "a", {
+		value: 10,
+		writable: false,
+	});
+} catch (err) {
+	console.log(err);
+}
+
+console.log(objFreeze1.__proto__);
+try {
+	Object.setPrototypeOf(objFreeze1, null);
+} catch (err) {
+	console.log(err);
+}
+
+console.log(objFreeze1);
+delete objFreeze1.c;
+console.log(objFreeze1);
+
+//-----------------------------------------------Function as Object-----------------------------------------
+
+function funcObj(param1, param2, param3) {}
+
+console.log(funcObj);
+
+funcObj.a = 1;
+funcObj.b = 2;
+funcObj.c = 3;
+
+funcObj.printProps = function () {
+	return `a: ${this.a} | b:${this.b} | c: ${this.c}`;
+};
+
+console.log(funcObj);
+console.log(Object.getOwnPropertyDescriptors(funcObj));
+console.log(funcObj.name);
+console.log(funcObj.length);
+console.log(funcObj.caller);
+console.log(funcObj.arguments);
+console.log(funcObj.prototype);
+
+console.log(funcObj.printProps());
+console.log(funcObj.toString());
+
+//----------------------------------------Object.prototype.toString()------------------------------
+let objTStr1 = {
+	a: 1,
+	b: 2,
+	c: 3,
+};
+let objTStr2 = new Object("ABCD");
+let objTStr3 = new Object(5);
+
+console.log(objTStr1);
+console.log(objTStr1.toString());
+
+console.log(objTStr2);
+console.log(objTStr2.toString());
+
+console.log(objTStr3);
+console.log(objTStr3.toString());
+
+//--------------------------------------------Prototypal Inheritance-------------------------------
+
+let emp1 = {
+	name: "John Doe",
+};
+console.log(emp1);
+console.log(emp1.__proto__);
+console.log(emp1.hasOwnProperty("name"));
+
+let emp2 = Object.create(null, { name: { value: "Jane Doe", enumerable: true } });
+console.log(emp2);
+console.log(emp2.__proto__);
+try {
+	console.log(emp2.hasOwnProperty("name"));
+} catch (err) {
+	console.log(err);
+}
+
+let emp3 = Object.create(emp1);
+emp3.role = "HR";
+
+console.log(emp3.__proto__ === emp1);
+console.log(emp3.__proto__);
+console.log(emp3.__proto__.__proto__);
+console.log(emp3.__proto__.__proto__.__proto__);
+
+console.log(emp3);
+console.log(emp3.name);
+console.log(Object.hasOwn(emp3, "name"));
+console.log(emp3.hasOwnProperty("name"));
+console.log(emp3.hasOwnProperty("role"));
+
+let emp4 = Object.assign(emp3, { pay: "$100k" });
+
+console.log(emp3);
+console.log(emp4);
+console.log(emp3 === emp4);
