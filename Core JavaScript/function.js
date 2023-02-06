@@ -56,8 +56,8 @@ try {
 function funcProp(param1, param2, param3, ...restParams) {
 	let a = param1,
 		b = param2,
-		c = param3;
-	d = restParams;
+		c = param3,
+		d = restParams;
 
 	console.log("Type of arguments", typeof arguments);
 	console.log(`Listof argumets passed, ${[...arguments]}`);
@@ -140,23 +140,23 @@ console.log(greetOnce());
 console.log(greetOnce());
 
 //-----------------------------------------------Nth time callable Function-----------------------------------------
-function NthTimeCallable(func, n){
+function NthTimeCallable(func, n) {
 	let count = 0;
 
-	return function(){
-		if(count<n){
+	return function () {
+		if (count < n) {
 			count++;
 			return func();
 		}
-		return `${func.name} has already been called ${count} times...!`
-	}
+		return `${func.name} has already been called ${count} times...!`;
+	};
 }
 
-var greetThreePeople = NthTimeCallable(function Greet(){
-	return `Hello guys...!`;
-}, 3)
+var greetThreePeople = NthTimeCallable(function Greet() {
+	return `Hello bro...!`;
+}, 3);
 
-console.log(greetThreePeople())
-console.log(greetThreePeople())
-console.log(greetThreePeople())
-console.log(greetThreePeople())
+console.log(greetThreePeople());
+console.log(greetThreePeople());
+console.log(greetThreePeople());
+console.log(greetThreePeople());
