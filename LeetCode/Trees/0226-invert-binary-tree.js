@@ -14,14 +14,16 @@ class TreeNode {
 function insertLevelOrder(arr, index = 0) {
 	let root = null;
 	if (index < arr.length) {
-		root = new TreeNode(arr[index]);
-		root.left = insertLevelOrder(arr, 2 * index + 1);
-		root.right = insertLevelOrder(arr, 2 * index + 2);
+		if (arr[index]) {
+			root = new TreeNode(arr[index]);
+			root.left = insertLevelOrder(arr, 2 * index + 1);
+			root.right = insertLevelOrder(arr, 2 * index + 2);
+		}
 	}
 	return root;
 }
 
-var invertTree = function (root) {
+var invertTree1 = function (root) {
 	dfs(root);
 	return root;
 
@@ -35,7 +37,18 @@ var invertTree = function (root) {
 	}
 };
 
+var invertTree2 = function (root) {
+	if (!root) return null;
+	
+	let left = invertTree2(root.left);
+	let right = invertTree2(root.right);
+
+	root.left = right;
+	root.right = left;
+
+	return root;
+};
 let root = insertLevelOrder([4, 2, 7, 1, 3, 6, 9]);
 
 console.log(root);
-console.log(invertTree(root));
+console.log(invertTree1(root));
