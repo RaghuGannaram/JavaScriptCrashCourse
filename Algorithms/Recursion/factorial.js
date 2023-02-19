@@ -1,6 +1,6 @@
 function factorial1(n) {
 	if (n < 2) return 1;
-	return n * factorial(n - 1);
+	return n * factorial1(n - 1);
 }
 
 function factorial2(n) {
