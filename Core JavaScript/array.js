@@ -300,6 +300,15 @@ console.log(numbers.sort((a, b) => a - b));
 console.log(numbers.sort((a, b) => a - b)[0]);
 console.log(numbers.sort((a, b) => a - b)[numbers.length - 1]);
 console.log(numbers);
+
+let pairs = [
+	[100, 200],
+	[1, 2],
+	[10, 20],
+];
+console.log(pairs.sort((a, b) => b[0] - a[0]));
+for (let [i, j] of pairs) console.log(i, j);
+
 //-----------------------------------------------Array.prototype.reverse()------------------------
 //time complexity = O(n), mutating, returns => reversed array
 console.log(numbers);
@@ -391,3 +400,4 @@ for (let i of avengers) console.log(i);
 for (let [i, j] in avengers) console.log(i, j);
 for (let [i, j] of avengers) console.log(i, j);
 for (let [i, ...j] of avengers) console.log(i, j);
+for (let [i, j] of avengers.entries()) console.log(i, j);
