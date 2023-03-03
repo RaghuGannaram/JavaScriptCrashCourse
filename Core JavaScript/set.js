@@ -16,13 +16,6 @@ console.log(vowels);
 console.log(vowels.size);
 console.log(vowels);
 
-console.log("------------start-----------")
-
--
-1
-
-console.log("------------end-----------")
-
 
 let person = {
   firstName : "John",
@@ -37,3 +30,4 @@ function printName() {
 }
 
 printName();
+
