@@ -1,21 +1,35 @@
-let str = "0123456789";
-let testStr = new String("Hello World");
+let strLtrl = "0123456789";
+let strObj = new String("Hello World");
 
-console.log(str);
-console.log(testStr);
+console.log(strLtrl);
+console.log(strObj);
 
-console.log(typeof str);
-console.log(typeof testStr);
+console.log(typeof strLtrl);
+console.log(typeof strObj);
+console.log(strLtrl instanceof String);
+console.log(strLtrl instanceof Object);
+console.log(strObj instanceof String);
+console.log(strObj instanceof Object);
 
-console.log(str instanceof String);
-console.log(str instanceof Object);
-console.log(testStr instanceof String);
-console.log(testStr instanceof Object);
+let str = "z0123456789";
 
 console.log(str.__proto__);
 console.log(str.__proto__.__proto__);
-
 console.log(str.length);
+
+//------------------------------------------------String.prototype.at()----------------------------
+console.log(str.at());
+console.log(str.at(0));
+console.log(str.at("1"));
+console.log(str.at(-1));
+console.log(typeof str.at());
+
+//-----------------------------------------------String.prototype.charAt()--------------------------
+console.log(str.charAt());
+console.log(str.charAt(0));
+console.log(str.charAt("1"));
+console.log(str.charAt(-1));
+
 console.log(str);
 console.log(str.slice());
 console.log(str);
@@ -172,6 +186,16 @@ console.log("a" === "A");
 
 let test = "abcdefg";
 
-console.log(test.replace("a", "z"))
+console.log(test.replace("a", "z"));
 
 console.log(test);
+
+console.log(quote);
+let asd = "Bob hit   a ball, the hit BALL flew far after d. it was hit.";
+
+let wed = "   as   fd   we ewe  we";
+console.log(wed.split(" ").filter((x) => x));
+console.log(asd.replace(/(\!|\?|\'|\,|\;|\.)/g, "").toLowerCase());
+for (let i of test) {
+	console.log(i);
+}
