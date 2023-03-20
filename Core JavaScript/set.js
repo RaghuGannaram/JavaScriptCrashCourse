@@ -31,3 +31,8 @@ function printName() {
 
 printName();
 
+console.log([...vowels.values()])
+for (let i of vowels.values()){
+  console.log(i)
+}
+
