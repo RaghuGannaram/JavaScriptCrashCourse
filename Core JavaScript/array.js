@@ -3,26 +3,51 @@ let numbers = [234, 43, 234, -57, -56, -20, 55, 63, 5, 6, 235, 547];
 let planets = ["Mercury", "Venus", "Earth", "Mars", "Jupitor", "Saturn", "Uranus", "Neptune", "Pluto"];
 
 //-----------------------------------------------Array() constructor----------------------------
-//(n)=> [...n], (n1,n2..)=> [n1,n2,...]
+//(n)=> [1...n], (n1,n2..)=> [n1,n2,...]
 console.log(new Array());
+console.log(new Array(0));
+console.log(new Array(undefined));
+console.log(new Array(undefined).length);
 console.log(new Array(""));
 console.log(new Array(" "));
-console.log(new Array(undefined));
+console.log(new Array("  "));
 console.log(new Array(5));
+console.log(new Array(5)[0]);
+console.log(new Array(5).length);
+console.log(new Array("a", "b"));
 console.log(new Array(5, 6));
+console.log(new Array("a", 2));
+console.log(new Array([5, 6]));
+console.log(new Array(...[5, 6]));
+console.log(new Array({ a: 1 }));
 console.log(Array());
+console.log(Array(undefined));
 console.log(Array(""));
 console.log(Array(" "));
-console.log(Array(undefined));
 console.log(Array(5));
+console.log(Array(5)[0]);
+console.log(Array(5).length);
 console.log(Array(5, 6));
-
+console.log(Array([5, 6]));
+console.log(Array(...[5, 6]));
+console.log(Array(new Set(["foo", "bar", "baz", "foo"])));
+console.log(
+	Array(
+		new Map([
+			[1, 2],
+			[2, 4],
+			[4, 8],
+		])
+	)
+);
 //-----------------------------------------Array.prototype.of()----------------------------------
 //Shallow Copies | (n) => [n]
 console.log(Array.of());
 console.log(Array.of(undefined));
 console.log(Array.of(""));
 console.log(Array.of(" "));
+console.log(Array.of("  "));
+console.log(Array.of("  ")[0].length);
 console.log(Array.of(5));
 console.log(Array.of(5, 6));
 console.log(Array.of([5, 6]));
@@ -32,18 +57,38 @@ let arrOf2 = Array.of(arrOf1);
 console.log(arrOf2);
 arrOf1[3].push(60);
 console.log(arrOf2);
+console.log(Array.of(new Set(["foo", "bar", "baz", "foo"])));
+console.log(
+	Array.of(
+		new Map([
+			[1, 2],
+			[2, 4],
+			[4, 8],
+		])
+	)
+);
 
 //-----------------------------------------Array.prototype.from()----------------------------------
 //Shallow Copies | (Iterable) => newArr
-// console.log(Array.from());
+try {
+	// console.log(Array.from());
+	console.log(Array.from(undefined));
+} catch (error) {
+	console.log(error);
+}
+try {
+	console.log(Array.from(5, 6));
+} catch (error) {
+	console.log(error);
+}
 console.log(Array.from(5));
-// console.log(Array.from(5, 6));
-// console.log(Array.from(undefined));
 console.log(Array.from(""));
 console.log(Array.from(" "));
-console.log(Array.from([5, 6]));
-console.log(Array.from([5, 6], (x) => x + x));
+console.log(Array.from("  "));
 console.log(Array.from("foo"));
+console.log(Array.from([5, 6]));
+console.log(Array.from([...[5, 6], [7, 8]]));
+console.log(Array.from([5, 6], (x) => x + x));
 console.log(Array.from(new Set(["foo", "bar", "baz", "foo"])));
 console.log(
 	Array.from(
@@ -66,6 +111,7 @@ console.log(Array.isArray());
 console.log(Array.isArray([]));
 console.log(Array.isArray([1]));
 console.log(Array.isArray("abc"));
+console.log(Array.isArray(Array()));
 
 //-----------------------------------------------Array.prototype.slice()----------------------------
 //time complexity = O(n), non-mutating, returns => sliced out portion
@@ -78,10 +124,12 @@ console.log(fruits.slice(2, 3));
 console.log(fruits.slice(2, 30));
 console.log(fruits.slice(2, -1));
 console.log(fruits.slice(2, 2));
-console.log(fruits.slice(undefined));
-console.log(fruits.slice(undefined, undefined));
+console.log(fruits.slice(0));
+console.log(fruits.slice(0, 0));
 console.log(fruits.slice(null));
 console.log(fruits.slice(null, null));
+console.log(fruits.slice(undefined));
+console.log(fruits.slice(undefined, undefined));
 console.log(fruits);
 
 //-----------------------------------------------Array.prototype.splice()--------------------------
@@ -171,6 +219,7 @@ console.log(fruits.at());
 console.log(fruits.at(1));
 console.log(fruits.at(-1));
 
+console.log(numbers);
 //-----------------------------------------------Array.prototype.find()---------------------------
 //time complexity = O(n), non-mutating, returns => found first element
 console.log(numbers.find((num) => num > 500));
@@ -197,23 +246,38 @@ console.log(numbers.findIndex((num) => false));
 // console.log(numbers.findLastIndex((num) => true));
 // console.log(numbers.findLastIndex((num) => false));
 
-//----------------------------------------------- Array.prototype.push()---------------------------
-//time complexity = O(1), mutating, returns => final length
-console.log(planets.pop());
+console.log(planets);
 //------------------------------------------------Array.prototype.pop()----------------------------
 //time complexity = O(1), mutating, returns => removed element
+console.log(planets.pop());
+//----------------------------------------------- Array.prototype.push()---------------------------
+//time complexity = O(1), mutating, returns => final length
 console.log(planets.push("Pluto"));
 
-//------------------------------------------------Array.prototype.unshift()-------------------------
-//time complexity = O(n), mutating, returns => final length
-console.log(planets.shift());
 //----------------------------------------------- Array.prototype.shift()---------------------------
 //time complexity = O(n), mutating, returns => removed element
+console.log(planets.shift());
+//------------------------------------------------Array.prototype.unshift()-------------------------
+//time complexity = O(n), mutating, returns => final length
 console.log(planets.unshift("Mercury"));
 
 //-----------------------------------------------Array.prototype.toString()------------------------
-//time complexity = O(n), non-mutating, returns => comma-separated items as string
+//time complexity = O(n), non-mutating, returns => comma-separated items as string,
+//Internally uses join method
 console.log(fruits.toString());
+let arrToStr1 = [10, 20, 30];
+console.log(arrToStr1.join.toString());
+console.log(arrToStr1.toString());
+arrToStr1.join = "Hello World...!";
+console.log(arrToStr1.toString());
+arrToStr1.join = () => "a";
+console.log(arrToStr1.toString());
+arrToStr1.join = function () {
+	return Array.prototype.join.call(this);
+	// return this.reduce((a, i) => a + "," + i, "").slice(1);
+};
+console.log(arrToStr1.toString());
+
 //-----------------------------------------------Array.prototype.join()----------------------------
 //time complexity = O(n), non-mutating, returns => specifier-separated items as string
 console.log(fruits);
@@ -228,6 +292,7 @@ console.log(fruits);
 console.log(fruits.concat([]));
 console.log(fruits.concat(["a", , "b"], "Pears"));
 console.log(fruits.concat("Pears", ["a", "b"]));
+console.log(fruits.concat("Pears"));
 let nestedArr1 = [[10, 20], 3, 4];
 let concatedArr1 = nestedArr1.concat([5, 6]);
 console.log(concatedArr1);
@@ -235,7 +300,7 @@ nestedArr1[0].push(30);
 console.log(concatedArr1);
 
 //-----------------------------------------------Array.prototype.copyWithin()-----------------------
-//mutating, mutating, returns => mutated array
+//shallow copies,mutating, mutating, returns => mutated array
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
@@ -252,14 +317,20 @@ console.log(fruits.fill());
 fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.fill(""));
 fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
+console.log(fruits.fill("", 2));
+fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.fill("", 2, 3));
 fruits = ["Apple", "Banana", , "Orange", "Mango"];
-console.log(fruits.fill("Guava", 3));
+console.log(fruits.fill("Cherries", 2, 3));
 
 //-----------------------------------------------Array.prototype.every()----------------------------
 //non-mutating, returns => boolean
+console.log(numbers.every((x) => false));
 console.log(numbers.every((num) => num < 1000));
 console.log([10, , 15].every((num) => num >= 10));
+console.log([10, , 15].every((num) => num !== undefined && num >= 10));
+console.log([10, undefined, 15].every((num) => num !== undefined && num >= 10));
+
 console.log([].every((num) => num >= 10));
 console.log(
 	[].every(() => {
@@ -271,8 +342,9 @@ console.log([].every(() => false));
 //----------------------------------------------Array.prototype.some()-----------------------------
 //non-mutating, returns => boolean
 console.log(numbers.some((num) => num < -50));
+console.log(numbers.some((num) => num < -150));
 console.log([10, , 15].some((num) => num <= 10));
-console.log([].some((num) => num >= 10));
+console.log([].some((num) => num <= 10));
 console.log([].some(() => true));
 
 //-----------------------------------------------Array.prototype.flat()----------------------------
@@ -287,6 +359,7 @@ console.log(flatArr1.flat(100));
 //-----------------------------------------------Array.prototype.flatMap()-------------------------
 //non-mutating, returns => flattened array
 console.log([1, 2, 3, 4].flatMap((item) => item));
+console.log([1, 2, 3, 4].map((item) => [item, item * 3]));
 console.log([1, 2, 3, 4].flatMap((item) => [item, item * 3]));
 
 //-----------------------------------------------Array.prototype.sort()---------------------------
@@ -297,16 +370,19 @@ console.log(numbers.sort((a, b) => a - b));
 console.log(numbers.sort((a, b) => b - a));
 console.log(numbers.sort(() => 0.5 - Math.random()));
 console.log(numbers.sort((a, b) => a - b));
+console.log(numbers.sort((a, b) => a - b).at(0));
+console.log(numbers.sort((a, b) => a - b).at(-1));
 console.log(numbers.sort((a, b) => a - b)[0]);
 console.log(numbers.sort((a, b) => a - b)[numbers.length - 1]);
 console.log(numbers);
 
 let pairs = [
 	[100, 200],
-	[1, 2],
-	[10, 20],
+	[1, 20],
+	[10, 2],
 ];
-console.log(pairs.sort((a, b) => b[0] - a[0]));
+console.log(pairs.sort((a, b) => a[0] - b[0]));
+console.log(pairs.sort((a, b) => a[1] - b[1]));
 for (let [i, j] of pairs) console.log(i, j);
 
 //-----------------------------------------------Array.prototype.reverse()------------------------
@@ -379,13 +455,14 @@ function avengerList(...heros) {
 		console.log(`Hello ${hero} 🤟`);
 	}
 }
-avengers.forEach((month) => {
-	console.log(month);
+avengers.forEach((hero) => {
+	console.log(hero.toUpperCase());
+	console.log(hero.toLowerCase());
 });
 
 console.log(
-	avengers.map((month) => {
-		return month.toUpperCase();
+	avengers.map((hero) => {
+		return hero.toUpperCase();
 	})
 );
 
