@@ -4,6 +4,7 @@ function funcStmt(name) {
 }
 
 console.log(funcStmt("JOhn Doe"));
+console.log(funcStmt.toString())
 
 //-----------------------------------------------Function Expression-----------------------------------------
 var funcExpr = function (name) {
