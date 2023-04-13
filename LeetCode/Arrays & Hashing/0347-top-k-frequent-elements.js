@@ -11,12 +11,9 @@ var topKFrequent1 = function (nums, k) {
 		map = new Map();
 
 	for (let num of nums) {
-		if (map.has(num)) {
-			map.set(map.get(num) + 1);
-		} else {
-			map.set(num, 1);
-		}
+		map.set(num, (map.get(num) ?? 0) + 1);
 	}
+
 	for (let i = 0; i < k; i++) {
 		fz = 0;
 		for (let [n, c] of map) {
@@ -50,4 +47,4 @@ var topKFrequent2 = function (nums, k) {
 	return result;
 };
 
-console.log(topKFrequent1([1, 2], 2));
+console.log(topKFrequent1([7, 1, 2, 7, 1, 3, 7, 4, 2, 7, 2], 2));

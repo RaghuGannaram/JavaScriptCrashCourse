@@ -4,9 +4,9 @@
  */
 
 var longestConsecutiveSequence = function (nums) {
-	let currentMax,
-		max = 0;
-	set = new Set(nums);
+	let max = 0,
+		currentMax,
+		set = new Set(nums);
 
 	for (let i = 0; i < nums.length; i++) {
 		if (set.has(nums[i] - 1)) {

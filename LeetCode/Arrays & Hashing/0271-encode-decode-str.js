@@ -8,8 +8,8 @@ var encode = function (strs) {
 };
 
 var decode = function (str) {
-	const result = [];
-	let i = 0;
+	let i = 0,
+		result = [];
 
 	while (i < str.length) {
 		let j = i;

@@ -4,10 +4,10 @@
  * @return {number[]}
  */
 
-//Bruteforce Time complexity = O(n^2), SPace complexity = O(1)
+//Bruteforce Time complexity = O(n^2), Space complexity = O(1)
 var twoSum1 = function (nums, target) {
-	for (let i = 0; i < nums.length; i++) {
-		for (let j = i; j < nums.length; j++) {
+	for (let i = 0; i < nums.length - 1; i++) {
+		for (let j = i + 1; j < nums.length; j++) {
 			if (nums[i] + nums[j] == target) {
 				return [i, j];
 			}
@@ -21,14 +21,13 @@ var twoSum2 = function (nums, target) {
 
 	for (let i = 0; i < nums.length; i++) {
 		console.log(hashMap);
-		if ((target - nums[i]) in hashMap) {
+		if (target - nums[i] in hashMap) {
 			return [hashMap[target - nums[i]], i];
 		} else {
 			hashMap[nums[i]] = i;
 		}
 	}
 };
-
 
 //hashMap using Map
 var twoSum3 = function (nums, target) {
