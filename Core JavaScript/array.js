@@ -5,9 +5,15 @@ let planets = ["Mercury", "Venus", "Earth", "Mars", "Jupitor", "Saturn", "Uranus
 //-----------------------------------------------Array() constructor----------------------------
 //(n)=> [1...n], (n1,n2..)=> [n1,n2,...]
 console.log(new Array());
+console.log(new Array().length);
 console.log(new Array(0));
+console.log(new Array(0).length);
+console.log(new Array(1));
+console.log(new Array(1).length);
 console.log(new Array(undefined));
 console.log(new Array(undefined).length);
+console.log(new Array(null));
+console.log(new Array(null).length);
 console.log(new Array(""));
 console.log(new Array(" "));
 console.log(new Array("  "));
@@ -19,21 +25,65 @@ console.log(new Array(5, 6));
 console.log(new Array("a", 2));
 console.log(new Array([5, 6]));
 console.log(new Array(...[5, 6]));
+console.log(new Array(...[5]));
 console.log(new Array({ a: 1 }));
+console.log(new Array(new Set(["foo", "bar", "baz", "foo"])));
+console.log(new Array(...new Set(["foo", "bar", "baz", "foo"])));
+console.log(
+	new Array(
+		new Map([
+			[1, 2],
+			[2, 4],
+			[4, 8],
+		])
+	)
+);
+console.log(
+	new Array(
+		...new Map([
+			[1, 2],
+			[2, 4],
+			[4, 8],
+		])
+	)
+);
 console.log(Array());
+console.log(Array().length);
+console.log(Array(0));
+console.log(Array(0).length);
+console.log(Array(1));
+console.log(Array(1).length);
 console.log(Array(undefined));
+console.log(Array(undefined).length);
+console.log(Array(null));
+console.log(Array(null).length);
 console.log(Array(""));
 console.log(Array(" "));
+console.log(Array("  "));
 console.log(Array(5));
 console.log(Array(5)[0]);
 console.log(Array(5).length);
+console.log(Array("a", "b"));
 console.log(Array(5, 6));
+console.log(Array("a", 2));
 console.log(Array([5, 6]));
 console.log(Array(...[5, 6]));
+console.log(Array(...[5]));
+console.log(Array({ a: 1 }));
 console.log(Array(new Set(["foo", "bar", "baz", "foo"])));
+console.log(Array(...new Set(["foo", "bar", "baz", "foo"])));
 console.log(
 	Array(
 		new Map([
+			[1, 2],
+			[2, 4],
+			[4, 8],
+		])
+	)
+);
+console.log(
+	Array(
+		...new Map([
 			[1, 2],
 			[2, 4],
 			[4, 8],
@@ -52,12 +102,14 @@ console.log(Array.of(5));
 console.log(Array.of(5, 6));
 console.log(Array.of([5, 6]));
 console.log(Array.of(...[5, 6]));
+console.log(Array.of(...[5]));
 let arrOf1 = [10, 20, 30, [40, 50]];
 let arrOf2 = Array.of(arrOf1);
 console.log(arrOf2);
 arrOf1[3].push(60);
 console.log(arrOf2);
 console.log(Array.of(new Set(["foo", "bar", "baz", "foo"])));
+console.log(Array.of(...(new Set(["foo", "bar", "baz", "foo"]))));
 console.log(
 	Array.of(
 		new Map([
@@ -65,6 +117,15 @@ console.log(
 			[2, 4],
 			[4, 8],
 		])
+	)
+);
+console.log(
+	Array.of(
+		...(new Map([
+			[1, 2],
+			[2, 4],
+			[4, 8],
+		]))
 	)
 );
 
@@ -90,6 +151,11 @@ console.log(Array.from([5, 6]));
 console.log(Array.from([...[5, 6], [7, 8]]));
 console.log(Array.from([5, 6], (x) => x + x));
 console.log(Array.from(new Set(["foo", "bar", "baz", "foo"])));
+try {
+	console.log(Array.from(...(new Set(["foo", "bar", "baz", "foo"]))));
+} catch (error) {
+	console.log(error);
+}
 console.log(
 	Array.from(
 		new Map([
@@ -117,7 +183,8 @@ console.log(Array.isArray(Array()));
 //time complexity = O(n), non-mutating, returns => sliced out portion
 console.log(fruits.slice());
 console.log(fruits.slice(-2));
-console.log(fruits.slice(-6));
+console.log(fruits.slice(-5));
+console.log(fruits.slice(-100));
 console.log(fruits.slice(2));
 console.log(fruits.slice(5));
 console.log(fruits.slice(2, 3));
@@ -126,6 +193,8 @@ console.log(fruits.slice(2, -1));
 console.log(fruits.slice(2, 2));
 console.log(fruits.slice(0));
 console.log(fruits.slice(0, 0));
+console.log(fruits.slice(0, null));
+console.log(fruits.slice(0, undefined));
 console.log(fruits.slice(null));
 console.log(fruits.slice(null, null));
 console.log(fruits.slice(undefined));
@@ -148,7 +217,7 @@ console.log(fruits.splice(-2, 1, "Kiwis"));
 console.log(fruits);
 console.log(fruits.splice(3, 1, "Muskmelon"));
 console.log(fruits);
-console.log(fruits.splice(5, 0, "Lemon", "Kiwi"));
+console.log(fruits.splice(5, 0, "Lemon", "Pomegranate"));
 console.log(fruits);
 console.log(fruits.splice(5, 1));
 console.log(fruits);
@@ -169,6 +238,8 @@ console.log(fruits.splice(undefined, undefined));
 console.log(fruits);
 fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.splice(undefined, undefined, undefined));
+console.log(fruits);
+// console.log(fruits.splice( ,  , undefined));
 console.log(fruits);
 fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.splice(null));
@@ -276,6 +347,7 @@ arrToStr1.join = function () {
 	return Array.prototype.join.call(this);
 	// return this.reduce((a, i) => a + "," + i, "").slice(1);
 };
+// arrToStr1.join = Array.prototype.join.apply(arrToStr1);
 console.log(arrToStr1.toString());
 
 //-----------------------------------------------Array.prototype.join()----------------------------
@@ -293,10 +365,13 @@ console.log(fruits.concat([]));
 console.log(fruits.concat(["a", , "b"], "Pears"));
 console.log(fruits.concat("Pears", ["a", "b"]));
 console.log(fruits.concat("Pears"));
+console.log(fruits);
 let nestedArr1 = [[10, 20], 3, 4];
-let concatedArr1 = nestedArr1.concat([5, 6]);
+let nestedArr2 = [[100, 200], 30, 40];
+let concatedArr1 = nestedArr1.concat(nestedArr2);
 console.log(concatedArr1);
 nestedArr1[0].push(30);
+nestedArr2[0].push(300);
 console.log(concatedArr1);
 
 //-----------------------------------------------Array.prototype.copyWithin()-----------------------
@@ -320,9 +395,10 @@ fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.fill("", 2));
 fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.fill("", 2, 3));
-fruits = ["Apple", "Banana", , "Orange", "Mango"];
+fruits = ["Apple", "Banana","Dummy fruit" , "Orange", "Mango"];
 console.log(fruits.fill("Cherries", 2, 3));
 
+console.log(numbers);
 //-----------------------------------------------Array.prototype.every()----------------------------
 //non-mutating, returns => boolean
 console.log(numbers.every((x) => false));
@@ -377,8 +453,8 @@ console.log(numbers.sort((a, b) => a - b)[numbers.length - 1]);
 console.log(numbers);
 
 let pairs = [
-	[100, 200],
-	[1, 20],
+	[100, 20],
+	[1, 200],
 	[10, 2],
 ];
 console.log(pairs.sort((a, b) => a[0] - b[0]));
@@ -471,6 +547,8 @@ console.log(
 		return hero.toLowerCase().startsWith("i");
 	})
 );
+
+console.log(avengers);
 
 for (let i in avengers) console.log(i);
 for (let i of avengers) console.log(i);
