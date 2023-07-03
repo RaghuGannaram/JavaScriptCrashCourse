@@ -39,7 +39,12 @@ for (let [i, j] of map) console.log(i, j);
 
 for (let i of map.keys()) console.log(i);
 for (let i of map.values()) console.log(i);
+for (let i of map.entries()) console.log(i);
 for (let [i, j] of map.entries()) console.log(i, j);
+
+let stringifiedResult = "";
+map.forEach((i, j) => (stringifiedResult = stringifiedResult + i + ":" + j + " | "));
+console.log(stringifiedResult);
 
 for (let i of map.keys()) console.log(typeof i);
 for (let i of map.keys()) console.log(i instanceof Array);
@@ -58,8 +63,10 @@ try {
 }
 
 let mapTwo = new Map([[10], [20], [40], [50], [30], [30]]);
+for (let i of mapTwo) console.log(i);
 for (let i of mapTwo.keys()) console.log(i);
 for (let i of mapTwo.values()) console.log(i);
+for (let i of mapTwo.entries()) console.log(i);
 
 let mapThree = new Map([
 	[10, "a"],
@@ -69,8 +76,13 @@ let mapThree = new Map([
 	[30, "e"],
 	[30, "f"],
 ]);
+for (let i of mapThree) console.log(i);
 for (let i of mapThree.keys()) console.log(i);
 for (let i of mapThree.values()) console.log(i);
+for (let i of mapThree.entries()) console.log(i);
+
+mapThree.clear();
+for (let i of mapThree) console.log(i);
 
 let mapFour = new Map([{ 10: "a" }]);
 console.log(mapFour);
