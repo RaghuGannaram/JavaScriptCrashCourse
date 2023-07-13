@@ -10,16 +10,16 @@
  */
 
 var maxSubArray = function (nums) {
-	let max = nums[0],
-		sum = 0;
+	let maxSum = 0,
+		currentSum = 0;
 
 	for (let i = 0; i < nums.length; i++) {
-		if (sum < 0) sum = 0;
-		sum += nums[i];
-		max = Math.max(max, sum);
+		currentSum += nums[i];
+		maxSum = Math.max(currentSum, maxSum);
+		if (currentSum < 0) currentSum = 0;
 	}
 
-	return max;
+	return maxSum;
 };
 
 let input = [-2, 1, -3, 4, -1, 2, 1, -5, 4];

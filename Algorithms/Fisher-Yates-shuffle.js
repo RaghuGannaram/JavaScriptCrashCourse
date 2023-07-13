@@ -1,10 +1,11 @@
 function shuffle(arr) {
-	let i,
-		n = arr.length;
+	let r,
+		i = arr.length - 1;
 
-	while (n) {
-		i = Math.floor(Math.random() * n--);
-		[arr[i], arr[n]] = [arr[n], arr[i]];
+	while (i > 0) {
+		r = Math.floor(Math.random() * (i + 1));
+		[arr[r], arr[i]] = [arr[i], arr[r]];
+		i--;
 	}
 
 	return arr;
