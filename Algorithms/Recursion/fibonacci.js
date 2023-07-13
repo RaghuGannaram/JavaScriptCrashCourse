@@ -1,11 +1,10 @@
-//Fibonacci Series : 0 1 1 2 3 5 8 13 21
+//Fibonacci Series : 0 1 1 2 3 5 8 13 21 34 55
 
 function fibonacci1(n) {
-	if (n === 0) {
-		return 0;
-	} else if (n === 1) {
-		return 1;
-	} else {
+	if (n <= 0) return undefined;
+	else if (n === 1) return 0;
+	else if (n === 2) return 1;
+	else {
 		return fibonacci1(n - 1) + fibonacci1(n - 2);
 	}
 }
@@ -15,9 +14,10 @@ function fibonacci2(n) {
 
 	return calc(n);
 	function calc(x) {
-		if (x < 2) {
-			return x;
-		} else if (cache.has(x)) {
+		if (x <= 0) return undefined;
+		else if (x === 1) return 0;
+		else if (x === 2) return 1;
+		else if (cache.has(x)) {
 			return cache.get(x);
 		} else {
 			let c1 = calc(x - 1);
@@ -29,14 +29,15 @@ function fibonacci2(n) {
 }
 
 function fibonacci3(n) {
+	if (n <= 0) return undefined;
+	else if (n === 1) return 0;
+	else if (n === 2) return 1;
+
 	let a = 0,
 		b = 1,
 		c;
-	if (n < 2) {
-		return n;
-	}
 
-	for (let i = 0; i < n - 1; i++) {
+	for (let i = 3; i <= n; i++) {
 		c = a + b;
 		a = b;
 		b = c;
@@ -45,7 +46,7 @@ function fibonacci3(n) {
 }
 
 let start = Date.now();
-let result = fibonacci3(0);
+let result = fibonacci1(1);
 let end = Date.now();
 
 console.log("Time taken in milli seconds : ", end - start);
