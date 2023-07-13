@@ -45,4 +45,21 @@ var productExceptSelf2 = function (nums) {
 	return res;
 };
 
+var productExceptSelf3 = function (nums) {
+	const l = nums.length;
+	const result = [],
+			leftProductArr = new Array(l),
+			rightProductArr = new Array(l);
+
+	for (let i = 0; i < l; i++) {
+			leftProductArr[i] = (leftProductArr[i - 1] ?? 1) * (nums[i - 1] ?? 1);
+			rightProductArr[l - 1 - i] = (rightProductArr[l - i] ?? 1) * (nums[l - i] ?? 1);
+	}
+
+	for (let i = 0; i < l; i++) {
+			result.push(leftProductArr[i] * rightProductArr[i]);
+	}
+	return result;
+};
+
 console.log(productExceptSelf2([2, 3, 4, 5, 6]));

@@ -47,4 +47,15 @@ var topKFrequent2 = function (nums, k) {
 	return result;
 };
 
+var topKFrequent3 = function (nums, k) {
+	let arr, map = new Map();
+
+	for (let n of nums) {
+			map.set(n, (map.get(n) ?? 0) + 1)
+	}
+	arr = Array.from(map);
+	arr.sort((a, b) => b[1] - a[1])
+	return arr.slice(0, k).map(x => x[0])
+};
+
 console.log(topKFrequent1([7, 1, 2, 7, 1, 3, 7, 4, 2, 7, 2], 2));

@@ -74,4 +74,21 @@ var isAnagram4 = function (s, t) {
 	return true;
 };
 
+var isAnagram5 = function (s, t) {
+	if (s.length !== t.length) return false;
+
+	let sMap = new Map(), tMap = new Map();
+
+	for (let i = 0; i < s.length; i++) {
+			sMap.set(s[i], (sMap.get(s[i]) ?? 0) + 1)
+			tMap.set(t[i], (tMap.get(t[i]) ?? 0) + 1)
+	}
+
+	for (let ch of s) {
+			if (sMap.get(ch) !== tMap.get(ch)) return false;
+	}
+
+	return true;
+};
+
 console.log(isAnagram3("rat", "tar"));

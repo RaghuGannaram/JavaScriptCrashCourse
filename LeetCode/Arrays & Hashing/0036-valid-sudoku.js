@@ -34,7 +34,6 @@ function isValidSudoku(board) {
 			rows[r].add(num);
 			cols[c].add(num);
 			squares[grid].add(num);
-			console.log(cols);
 		}
 	}
 
