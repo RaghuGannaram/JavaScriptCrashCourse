@@ -33,6 +33,9 @@ console.log(map);
 console.log(map.size);
 console.log(map.has(2));
 console.log(map.get(2));
+console.log(map.keys());
+console.log(map.values());
+console.log(map.entries());
 
 for (let i of map) console.log(i);
 for (let [i, j] of map) console.log(i, j);
@@ -86,3 +89,38 @@ for (let i of mapThree) console.log(i);
 
 let mapFour = new Map([{ 10: "a" }]);
 console.log(mapFour);
+
+try {
+	console.log(new Map("123"));
+} catch (error) {
+	console.log(error);
+}
+try {
+	console.log(new Map([1, 2, 3]));
+} catch (error) {
+	console.log(error.name);
+	console.log(error.message);
+	console.log(error.stack);
+	console.log(error.toString());
+}
+try {
+	console.log(
+		new Map([
+			[1, "one"],
+			[2, "two"],
+			[3, "three"],
+		])
+	);
+} catch (error) {
+	console.log(error);
+}
+try {
+	console.log(new Map(["123", "456", "789"]));
+} catch (error) {
+	console.log(error);
+}
+try {
+	console.log(new Map([{ a: "123" }, { b: "456" }, { c: "789" }]));
+} catch (error) {
+	console.log(error);
+}

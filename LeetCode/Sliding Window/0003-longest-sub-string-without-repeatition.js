@@ -39,20 +39,32 @@ var lengthOfLongestSubstring2 = function (s) {
 };
 
 var lengthOfLongestSubstring3 = function (s) {
-	let l = 0,
-		r = 0,
+	let r = 0,
 		max = 0,
 		str = "";
 
 	while (r < s.length) {
 		if (str.includes(s[r])) {
-			str = str.slice(str.indexOf(s[r])+1);
-			l = r;
+			str = str.slice(str.indexOf(s[r]) + 1);
 		}
 		str = str + s[r];
 		max = Math.max(max, str.length);
 		r++;
 	}
+	return max;
+};
+
+var lengthOfLongestSubstring4 = function (s) {
+	let arr = [], max = 0;
+
+	for (let ch of s) {
+			while (arr.includes(ch)) {
+					arr.shift()
+			}
+			arr.push(ch);
+			max = Math.max(max, arr.length);
+	}
+
 	return max;
 };
 

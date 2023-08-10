@@ -5,7 +5,7 @@
 
 var maxArea1 = function (height) {
 	let l = 0,
-		r = height.length-1,
+		r = height.length - 1,
 		container,
 		maxWater = 0;
 
@@ -33,6 +33,19 @@ var maxArea2 = function (height) {
 		maxWater = Math.max(water, maxWater);
 		if (height[l] < height[r]) l++;
 		else r--;
+	}
+
+	return maxWater;
+};
+
+var maxArea3 = function (height) {
+	let l = 0,
+		r = height.length - 1,
+		maxWater = 0;
+
+	while (l < r) {
+		maxWater = Math.max(Math.min(height[l], height[r]) * (r - l), maxWater);
+		height[l] < height[r] ? l++ : r--;
 	}
 
 	return maxWater;

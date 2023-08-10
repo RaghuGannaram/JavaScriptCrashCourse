@@ -29,6 +29,8 @@ console.log(str.at());
 console.log(str.at(0));
 console.log(str.at("1"));
 console.log(str.at(-1));
+console.log(str.at(100));
+console.log(str.at(-100));
 console.log(typeof str.at());
 
 //-----------------------------------------------String.prototype.charAt()--------------------------------
@@ -36,19 +38,25 @@ console.log(typeof str.at());
 console.log(str.charAt());
 console.log(str.charAt(0));
 console.log(str.charAt("1"));
+console.log(str.charAt(100));
+console.log(str.charAt(-100));
 console.log(str.charAt(-1));
 
 //-----------------------------------------------String.prototype.charCodeAt()-----------------------------
 //default parameter : 0,  negativeIndexing : false, returns NaN for index outofbounds,
 console.log(str.charCodeAt(0));
 console.log(str.charCodeAt(1));
+console.log(str.charCodeAt(-1));
 console.log(str.charCodeAt(100));
+console.log(str.charCodeAt(-100));
 
-//-----------------------------------------------String.prototype.codePoinAt()------------------------------
+//-----------------------------------------------String.prototype.codePointAt()------------------------------
 //default parameter : 0,  negativeIndexing : false, returns undefined for index outofbounds,
 console.log(str.codePointAt(0));
 console.log(str.codePointAt(1));
+console.log(str.codePointAt(-1));
 console.log(str.codePointAt(100));
+console.log(str.codePointAt(-100));
 
 //-----------------------------------------------String.fromCharCode()-----------------------------
 console.log(String.fromCharCode(48, 49, 50, 1010022));
@@ -213,16 +221,17 @@ console.log(s.trim());
 console.log(s);
 console.log(s.length);
 console.log(s.includes(" "));
-console.log(s.split(" "));
-console.log(s.split(" ").includes(" "));
 console.log(s.split(""));
 console.log(s.split("").includes(" "));
+console.log(s.split(" "));
+console.log(s.split(" ").includes(" "));
 
 console.log("a" === "A");
 
-let test = "abcdefg";
+let test = "abcdefga";
 
 console.log(test.replace("a", "z"));
+console.log(test.replaceAll("a", "z"));
 
 console.log(test);
 
@@ -230,6 +239,7 @@ console.log(quote);
 let asd = "Bob hit   a ball, the hit BALL flew far after d. it was hit.";
 
 let wed = "   as   fd   we ewe  we";
+console.log(wed.split(" ").filter((x) => true));
 console.log(wed.split(" ").filter((x) => x));
 console.log(asd.replace(/(\!|\?|\'|\,|\;|\.)/g, "").toLowerCase());
 for (let i of test) {

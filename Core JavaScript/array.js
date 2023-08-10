@@ -17,6 +17,7 @@ console.log(new Array(null).length);
 console.log(new Array(""));
 console.log(new Array(" "));
 console.log(new Array("  "));
+console.log(new Array("  ").length);
 console.log(new Array(5));
 console.log(new Array(5)[0]);
 console.log(new Array(5).length);
@@ -149,7 +150,7 @@ console.log(Array.from("  "));
 console.log(Array.from("foo"));
 console.log(Array.from([5, 6]));
 console.log(Array.from([...[5, 6], [7, 8]]));
-console.log(Array.from([5, 6], (x) => x + x));
+console.log(Array.from([5, 6], (x) => x + 10));
 console.log(Array.from(new Set(["foo", "bar", "baz", "foo"])));
 try {
 	console.log(Array.from(...(new Set(["foo", "bar", "baz", "foo"]))));
@@ -381,7 +382,7 @@ console.log(fruits.copyWithin(0));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(2, 1));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
-console.log(fruits.copyWithin(2, 1, 3));
+console.log(fruits.copyWithin(2, 1, 4));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0, 1));
 
@@ -427,6 +428,7 @@ console.log([].some(() => true));
 //non-mutating, returns => flattened array
 let flatArr1 = [1, 2, , [40, [500, 600, [7000]]]];
 console.log(flatArr1.flat());
+console.log(flatArr1.flat(1));
 console.log(flatArr1.flat(0));
 console.log(flatArr1.flat(2));
 console.log(flatArr1.flat(3));
@@ -517,7 +519,7 @@ console.log(numValues.next());
 console.log(numValues.next());
 console.log(numValues.next());
 
-let avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "HawkEye", "Black Widow"];
+let avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "HawkEye", "Black Widow", "Spider Man"];
 let [captain, ...team] = avengers;
 
 console.log(avengers);
@@ -547,7 +549,16 @@ console.log(
 		return hero.toLowerCase().startsWith("i");
 	})
 );
+console.log(
+	avengers.filter((hero) => {
+		return hero.match(/man/i);
+	})
+);
 
+console.log(avengers);
+avengers.forEach((hero) => {
+	console.log(hero.toUpperCase());
+});
 console.log(avengers);
 
 for (let i in avengers) console.log(i);

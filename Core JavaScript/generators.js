@@ -1,26 +1,32 @@
 //Simple Generator
 function* simpleGenerator() {
-	//  console.log(yield "a")
-	//  console.log(yield "b")
-	//  console.log(yield "c")
+	// yield "alpha";
+	console.log(yield "a");
+	console.log(yield "b");
+	console.log(yield "c");
+	console.log("Hello World...1");
+	console.log("Hello World...2");
+	console.log("Hello World...3");
 	yield 1;
 	yield 2;
 }
 
 let customSeries = simpleGenerator();
-console.log(customSeries.next());
+// console.log(customSeries.next());
 // console.log(customSeries.next().value)
-console.log(customSeries.next());
+// console.log(customSeries.next());
 // console.log(customSeries.next().value)
-console.log(customSeries.next());
+// console.log(customSeries.next());
+// console.log(customSeries.next().value)
+// console.log(customSeries.next());
 // console.log(customSeries.next().value)
 
-// console.log(customSeries.next("x").value)
-// console.log(customSeries.next("y").value)
-// console.log(customSeries.next("x").value)
-// console.log(customSeries.next())
-// console.log(customSeries.next())
-// console.log(customSeries.next())
+console.log(customSeries.next("x").value);
+console.log(customSeries.next("y").value);
+console.log(customSeries.next("z").value);
+console.log(customSeries.next());
+console.log(customSeries.next());
+console.log(customSeries.next());
 
 //ID Generator
 function* generateId() {
@@ -90,12 +96,16 @@ console.log(daysIteratorA);
 console.log(daysIteratorA.next());
 console.log(daysIteratorA.next());
 console.log(daysIteratorA.next());
-console.log(daysIteratorA.next());
-console.log(daysIteratorA.next());
-console.log(daysIteratorA.next());
-console.log(daysIteratorA.next());
-console.log(daysIteratorA.next());
-console.log(daysIteratorA.next());
+// console.log(daysIteratorA.next());
+// console.log(daysIteratorA.next());
+// console.log(daysIteratorA.next());
+// console.log(daysIteratorA.next());
+// console.log(daysIteratorA.next());
+// console.log(daysIteratorA.next());
+
+for (let day of daysIteratorA) {
+	console.log(day);
+}
 
 let daysObj = {
 	0: "Sunday",
@@ -120,9 +130,55 @@ console.log(daysIteratorO);
 console.log(daysIteratorO.next());
 console.log(daysIteratorO.next());
 console.log(daysIteratorO.next());
-console.log(daysIteratorO.next());
-console.log(daysIteratorO.next());
-console.log(daysIteratorO.next());
-console.log(daysIteratorO.next());
-console.log(daysIteratorO.next());
-console.log(daysIteratorO.next());
+// console.log(daysIteratorO.next());
+// console.log(daysIteratorO.next());
+// console.log(daysIteratorO.next());
+// console.log(daysIteratorO.next());
+// console.log(daysIteratorO.next());
+// console.log(daysIteratorO.next());
+for (let day of daysIteratorO) {
+	console.log(day);
+}
+
+function* employeeIdGenerator() {
+	let offset,
+		id = 1071082;
+
+	while (true) {
+		offset = yield id;
+		id += offset ?? 1;
+		// offset ? (id += offset) : id++;
+	}
+}
+
+const generateEmpId = employeeIdGenerator();
+console.log(generateEmpId.next());
+console.log(generateEmpId.next(8));
+console.log(generateEmpId.next());
+
+function* fibonacciGenerator() {
+	let reset,
+		x = 0,
+		y = 1;
+
+	while (true) {
+		reset = yield x + y;
+		[x, y] = reset ? [0, 1] : [y, x + y];
+	}
+}
+
+const generateFib = fibonacciGenerator();
+
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next(true));
+console.log(generateFib.next());
+console.log(generateFib.next());
+console.log(generateFib.next());

@@ -27,6 +27,8 @@ function insertLevelOrder(arr, index = 0) {
 }
 
 var isSameTree = function (p, q) {
+	return travel(p, q);
+
 	function travel(root1, root2) {
 		if (!root1 && !root2) {
 			return true;
@@ -36,11 +38,9 @@ var isSameTree = function (p, q) {
 		}
 		return travel(root1.left, root2.left) && travel(root1.right, root2.right);
 	}
-
-	return travel(p, q);
 };
 
 let root1 = insertLevelOrder([1, 2, null, 3]);
 let root2 = insertLevelOrder([1, 2, null, 3]);
 
-console.log(isSameTree(root1, root2))
+console.log(isSameTree(root1, root2));

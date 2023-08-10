@@ -5,6 +5,14 @@ console.log(new Object(undefined));
 
 let strObj = new Object("abc");
 console.log(strObj);
+console.log(typeof strObj);
+
+let strObjItr = strObj[Symbol.iterator]();
+console.log(strObjItr.next());
+console.log(strObjItr.next());
+console.log(strObjItr.next());
+console.log(strObjItr.next());
+
 strObj.x = 10;
 strObj.y = 20;
 console.log(strObj);
@@ -12,8 +20,17 @@ console.log(strObj[0]);
 console.log(strObj["x"]);
 console.log(strObj["y"]);
 
-let arrObj = new Object([5, 0, 0]);
+let arrObj = new Object([5, 0, 0, undefined]);
 console.log(arrObj);
+console.log(typeof arrObj);
+
+let arrObjItr = arrObj[Symbol.iterator]();
+console.log(arrObjItr.next());
+console.log(arrObjItr.next());
+console.log(arrObjItr.next());
+console.log(arrObjItr.next());
+console.log(arrObjItr.next());
+
 arrObj["x"] = 10;
 arrObj["y"] = 20;
 console.log(arrObj);
@@ -23,6 +40,7 @@ console.log(arrObj.y);
 
 let numObj = new Object(500);
 console.log(numObj);
+
 numObj.x = 10;
 numObj.y = 20;
 console.log(numObj);
@@ -37,6 +55,7 @@ let sub_division = "state";
 let keyArr1 = [1, 2];
 let keyArr2 = [3, 4];
 let keyBool = true;
+let keyObj = { a: 1 };
 let person = {
 	1: "one",
 	first_name: "John",
@@ -46,11 +65,13 @@ let person = {
 	[sub_division]: "LA",
 	country: "US",
 	[keyArr1]: "One Two",
+	[false]: "falseValue",
 };
 person.gender = "M";
 person["role designation"] = "Software Engineer";
 person[keyArr2] = "Three Four";
 person[keyBool] = "Boolean Key";
+person[keyObj] = "Object Key";
 
 console.log(person);
 console.log(person[1]);
@@ -63,7 +84,10 @@ console.log(person[sub_division]);
 console.log(person[keyArr1]);
 console.log(person[keyArr2]);
 console.log(person[keyBool]);
+console.log(person[keyObj]);
 console.log(Object.getOwnPropertyDescriptors(person));
+
+console.log(Object.keys(person));
 
 //-----------------------------------------------Object creation | Object.create()------------------
 function Employee(name, role) {
@@ -73,12 +97,13 @@ function Employee(name, role) {
 }
 
 Employee.prototype.greet = function () {
-	return `Hello world`;
+	return `Hello world...!`;
 };
 Employee.prototype.info = function () {
-	return `name: ${this.name}, \n role: ${this.role}, \n company: ${this.company} \n pay: ${"$100k"}`;
+	return `name: ${this.name}, \n role: ${this.role}, \n company: ${this.company} \n pay: ${this.pay}`;
 };
 
+// let employee1 = Object.create(new Employee(), {
 let employee1 = Object.create(Employee.prototype, {
 	pay: {
 		value: "$100k",
@@ -260,10 +285,7 @@ let objOpn1 = {
 };
 
 console.log(Object.getOwnPropertyNames(objOpn1));
-
-console.log(Object.getOwnPropertyNames("Apple"));
-console.log(Object.getOwnPropertyNames([10, 20, 30]));
-
+console.log(Object.getOwnPropertyDescriptors(objOpn1));
 //--------------------------------------------Object.getOwnPropertySymbols()-------------------------------------
 let objOps1 = {
 	a: 1,
@@ -272,6 +294,27 @@ let objOps1 = {
 };
 
 console.log(Object.getOwnPropertySymbols(objOps1));
+console.log(Object.getOwnPropertyDescriptors(objOps1));
+
+//--------------------------------------Defult properties of other data types--------------------------
+let testStr = "test",
+	testArr = ["t", "e", "s", "t"];
+
+console.log(Object.getOwnPropertyDescriptors(testStr));
+console.log(Object.getOwnPropertyDescriptors(testArr));
+
+testArr[-100] = "-ve 100";
+console.log(Object.getOwnPropertyDescriptors(testArr));
+
+console.log(testArr);
+for (let i of testArr) {
+	console.log(i);
+}
+Object.defineProperty(testArr, "e", {
+	enumerable: false,
+}); //Not working as expected
+console.log(Object.getOwnPropertyDescriptors(testArr));
+console.log(testArr);
 
 //--------------------------------------------Object.prototype.hasOwnProperty()-------------------------------------
 let bSymbol = Symbol.for("b");
@@ -350,7 +393,7 @@ console.log(Object.is(0, -0));
 console.log(Object.is(-0, -0));
 console.log(Object.is(NaN, 0 / 0));
 console.log(Object.is(NaN, Number.NaN));
-
+console.log(NaN === NaN);
 // ---------------------------------------Object.isExtensible() | Object.preventExtension() ---------------------------------
 // Prevents extension and prototype reassignment, Allows deletion and value modification and config modification
 let objPrevEx1 = {
@@ -625,3 +668,13 @@ let emp4 = Object.assign(emp3, { pay: "$100k" });
 console.log(emp3);
 console.log(emp4);
 console.log(emp3 === emp4);
+
+let x = {
+	a: {
+		b: {
+			c: 1,
+		},
+	},
+};
+
+console.log(x['abc'])

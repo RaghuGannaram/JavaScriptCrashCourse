@@ -28,8 +28,10 @@ i = 10;
 function dummy() {
 	i = 11;
 	j = 20;
+	var k = 30;
 	console.log(i);
 	console.log(j);
+	console.log(k);
 }
 
 j = 21;
@@ -38,3 +40,8 @@ console.log(j);
 dummy();
 console.log(i);
 console.log(j);
+try {
+	console.log(k);
+} catch (error) {
+	console.log(error);
+}

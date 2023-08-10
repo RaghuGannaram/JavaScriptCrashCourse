@@ -35,16 +35,19 @@ var e = 0;
 
 function three() {
   console.log(e);
+  return e;
 }
 
 function four() {
   var e = 1;
   console.log(e);
-  three();
+  let res = three();
+  console.log(res);
 }
 
 //Throws error as if three is assigned number, then the function declaration will be replaced with number and 3() will throw error
 // var three = 3
+three.n = 3 //this won't throw error as it is a property of function object
 console.log(three);
 four();
 var three = 3;

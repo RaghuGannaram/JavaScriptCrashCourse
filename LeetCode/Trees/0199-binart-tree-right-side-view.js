@@ -62,6 +62,22 @@ var rightSideView2 = function (root) {
 	}
 };
 
+var rightSideView3 = function (root) {
+	if (!root) return [];
+	let res = [];
+
+	dfs(root, 0);
+
+	return res;
+
+	function dfs(root, d) {
+			if (!root) return;
+			res[d] = root.val;
+			dfs(root.left, d + 1);
+			dfs(root.right, d + 1);
+	}
+};
+
 let root = insertLevelOrder([1, 2, 3, null, 5, null, 4]);
 
 console.log(rightSideView1(root));

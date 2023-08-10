@@ -48,12 +48,11 @@ function levelOrderTraversal(root) {
 
 console.log(levelOrderTraversal(apple));
 
-//------------DFS | PreOrder Traversal| Time Complexity = O(n) | Space COmplexity = O(n)------------------------------------
+//------------DFS | PreOrder Traversal| Time Complexity = O(n) | Space Complexity = O(n)------------------------------------
 function preOrderTraversal1(root) {
 	let result = [];
 
 	dfs(root);
-
 	return result;
 
 	function dfs(node) {
@@ -85,6 +84,24 @@ function preOrderTraversal2(root) {
 	return result;
 }
 
+function preOrderTraversal3(root) {
+	let result = [];
+
+	dfs(root);
+	return result;
+
+	function dfs(node) {
+		if (!node) {
+			result.push(null);
+			return;
+		}
+
+		result.push(node.val);
+		dfs(node.left);
+		dfs(node.right);
+	}
+}
+
 //         10
 //     /       \
 //    20       30
@@ -96,22 +113,41 @@ function preOrderTraversal2(root) {
 console.log(preOrderTraversal1(apple));
 console.log(preOrderTraversal2(apple));
 
+function constructBinaryTreeFromPreOrderArray(arr) {
+	let index = 0;
+
+	return constructTree(arr);
+
+	function constructTree(arr) {
+		if (index >= arr.length || arr[index] === null) {
+			index++;
+			return null;
+		}
+
+		let node = new Node(arr[index]);
+		index++;
+		node.left = constructTree(arr);
+		node.right = constructTree(arr);
+
+		return node;
+	}
+}
+const preorderedArray = [10, 20, 40, null, null, 50, null, null, 30, 60, null, null, 70, null, null];
+const constructedPreorderTree = constructBinaryTreeFromPreOrderArray(preorderedArray);
+console.log(constructedPreorderTree);
+console.log(preOrderTraversal3(constructedPreorderTree));
+
 //------------DFS | InOrder Traversal| Time Complexity = O(n) | Space COmplexity = O(n)-------------------------------------------
 
 function inOrderTraversal1(root) {
-	let result = [],
-		count = 0;
+	let result = [];
 
 	dfs(root);
-
-	console.log(count);
 	return result;
 
 	function dfs(node) {
-		++count;
-		if (!node) {
-			return;
-		}
+		if (!node) return;
+
 		dfs(node.left);
 		result.push(node.val);
 		dfs(node.right);
@@ -148,21 +184,42 @@ function inOrderTraversal2(root) {
 console.log(inOrderTraversal1(apple));
 console.log(inOrderTraversal2(apple));
 
+function constructBinaryTreeFromInOrderArray(inOrderArr) {
+	let index = 0;
+
+	function constructTree(start, end) {
+		if (start > end) {
+			return null;
+		}
+
+		let mid = Math.floor((start + end) / 2);
+		let node = new Node(inOrderArr[mid]);
+		index++;
+
+		node.left = constructTree(start, mid - 1);
+		node.right = constructTree(mid + 1, end);
+
+		return node;
+	}
+
+	return constructTree(0, inOrderArr.length - 1);
+}
+
+const inOrderArray = [40, 20, 50, 10, 60, 30, 70];
+const constructedInOrderTree = constructBinaryTreeFromInOrderArray(inOrderArray);
+console.log(constructedInOrderTree);
+console.log(inOrderTraversal1(constructedInOrderTree));
+
 //------------DFS | PostOrder Traversal| Time Complexity = O(n) | Space COmplexity = O(n)-----------------------------------------------
 function postOrderTraversal1(root) {
-	let result = [],
-		count = 0;
+	let result = [];
 
 	dfs(root);
-
-	console.log(count);
 	return result;
 
 	function dfs(node) {
-		++count;
-		if (!node) {
-			return;
-		}
+		if (!node) return;
+
 		dfs(node.left);
 		dfs(node.right);
 		result.push(node.val);
@@ -174,7 +231,7 @@ function postOrderTraversal2(root) {
 		result = [],
 		tempStack = [],
 		stack = [];
-		
+
 	if (!root) return result;
 
 	stack.push(root);
@@ -188,8 +245,8 @@ function postOrderTraversal2(root) {
 		current.right && stack.push(current.right);
 	}
 
-	while(tempStack.length>0){
-			result.push(tempStack.pop())
+	while (tempStack.length > 0) {
+		result.push(tempStack.pop());
 	}
 	return result;
 }
@@ -200,7 +257,36 @@ function postOrderTraversal2(root) {
 //   /  \     /  \
 // 40    50  60   70
 
-// 40 50 20 60 70 3 0 10
+// 40 50 20 60 70 30 10
 
 console.log(postOrderTraversal1(apple));
 console.log(postOrderTraversal2(apple));
+
+function constructBinaryTreeFromPostOrderArray(postOrderArr) {
+  let index = postOrderArr.length - 1;
+
+  return constructTree();
+
+  function constructTree() {
+    if (index < 0) {
+      return null;
+    }
+
+    let value = postOrderArr[index];
+    index--;
+    if (value === null) {
+      return null;
+    }
+
+    let node = new Node(value);
+
+    node.right = constructTree();
+    node.left = constructTree();
+
+    return node;
+  }
+}
+const postOrderArray = [40, 50, 20, 60, 70, 30, 10];
+const constructedPostOrderTree = constructBinaryTreeFromPostOrderArray(postOrderArray);
+console.log(constructedPostOrderTree);
+console.log(postOrderTraversal1(constructedPostOrderTree));

@@ -123,3 +123,15 @@ console.log(numsIterator.next());
 console.log(numsIterator.next());
 console.log(numsIterator.next());
 console.log(numsIterator.next());
+
+let arr = [10, 20, 30];
+let itr = arr[Symbol.iterator]();
+
+console.log(itr.toString());
+console.log(arr[Symbol.iterator].toString());
+// console.log(arr);
+
+console.log(itr.next());
+console.log(itr.next());
+console.log(itr.next());
+console.log(itr.next());

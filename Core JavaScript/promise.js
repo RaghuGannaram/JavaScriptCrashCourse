@@ -5,3 +5,8 @@ const loadVideo = new Promise((resolve, reject) => {
 });
 
 loadVideo.then((data) => console.log(data));
+
+
+const myPromise = new Promise((resolve, reject) => {
+    
+});
