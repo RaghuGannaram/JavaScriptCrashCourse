@@ -3,7 +3,7 @@ async function fetchMoviesInfo(event) {
 	const response = await fetch(`https://online-movie-database.p.rapidapi.com/auto-complete?q=${event.target.value}`, {
 		method: "GET",
 		headers: {
-			"x-rapidapi-key": "0553bfcc08mshba040d0662d8cdfp160500jsnf9ade0588543",
+			"x-rapidapi-key": process.env.RAPIS_API_KEY,
 			"x-rapidapi-host": "online-movie-database.p.rapidapi.com",
 		},
 	});
