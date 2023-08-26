@@ -1,14 +1,24 @@
 /**
- * @param {string} s
- * @return {boolean}
- */
+    @url https://leetcode.com/problems/valid-palindrome/
+	@title 125. Valid Palindrome
+	@difficulty Easy
 
+	@description
+		Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+		Note: For the purpose of this problem, we define empty string as valid palindrome.
+
+	@params {string} s
+	@return {boolean}
+ */
 var validPalindrome1 = function (s) {
 	let l, r, str;
-    
-	str = s.toLowerCase().split("").filter((c) => {
-		return isAlphaNumeric(c);
-	});
+
+	str = s
+		.toLowerCase()
+		.split("")
+		.filter((c) => {
+			return isAlphaNumeric(c);
+		});
 	l = 0;
 	r = str.length - 1;
 	while (l < r) {

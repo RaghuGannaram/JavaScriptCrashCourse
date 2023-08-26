@@ -1,6 +1,13 @@
 /**
- * @param {number[]} height
- * @return {number}
+	@url https://leetcode.com/problems/trapping-rain-water/
+	@title 42. Trapping Rain Water
+	@difficulty Hard
+
+	@description
+		Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
+	@params {number[]} height
+	@return {number}
  */
 
 var trappedRainWater = function (height) {
