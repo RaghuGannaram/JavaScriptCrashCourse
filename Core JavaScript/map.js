@@ -26,8 +26,11 @@ console.log(map);
 console.log(map.size);
 console.log(map.has(2));
 console.log(map.get(2));
+console.log(map.set(12));
+console.log(map.set(12));
 
-map.delete(2);
+
+console.log(map.delete(2))
 
 console.log(map);
 console.log(map.size);

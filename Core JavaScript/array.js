@@ -181,7 +181,8 @@ console.log(Array.isArray("abc"));
 console.log(Array.isArray(Array()));
 
 //-----------------------------------------------Array.prototype.slice()----------------------------
-//time complexity = O(n), non-mutating, returns => sliced out portion
+//time complexity = O(n), non-mutating, returns => sliced out portion 
+//null is treated as 0, undefined is treated no input
 console.log(fruits.slice());
 console.log(fruits.slice(-2));
 console.log(fruits.slice(-5));
@@ -204,6 +205,7 @@ console.log(fruits);
 
 //-----------------------------------------------Array.prototype.splice()--------------------------
 //time complexity = O(n), mutating, returns => removed portion
+//null and undefined are treated as 0
 console.log(fruits.splice());
 console.log(fruits);
 console.log(fruits.splice(3));
@@ -294,6 +296,7 @@ console.log(fruits.at(-1));
 console.log(numbers);
 //-----------------------------------------------Array.prototype.find()---------------------------
 //time complexity = O(n), non-mutating, returns => found first element
+console.log(numbers.find((num) => num > 100));
 console.log(numbers.find((num) => num > 500));
 console.log(numbers.find((num) => num > 600));
 console.log(numbers.find((num) => true));
@@ -338,6 +341,7 @@ console.log(planets.unshift("Mercury"));
 //Internally uses join method
 console.log(fruits.toString());
 let arrToStr1 = [10, 20, 30];
+console.log(arrToStr1.toString.toString());
 console.log(arrToStr1.join.toString());
 console.log(arrToStr1.toString());
 arrToStr1.join = "Hello World...!";
@@ -382,7 +386,7 @@ console.log(fruits.copyWithin(0));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(2, 1));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
-console.log(fruits.copyWithin(2, 1, 4));
+console.log(fruits.copyWithin(2, 1, 3));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0, 1));
 
@@ -402,7 +406,6 @@ console.log(fruits.fill("Cherries", 2, 3));
 console.log(numbers);
 //-----------------------------------------------Array.prototype.every()----------------------------
 //non-mutating, returns => boolean
-console.log(numbers.every((x) => false));
 console.log(numbers.every((num) => num < 1000));
 console.log([10, , 15].every((num) => num >= 10));
 console.log([10, , 15].every((num) => num !== undefined && num >= 10));
@@ -414,6 +417,7 @@ console.log(
 		return;
 	})
 );
+console.log(numbers.every((num) => false));
 console.log([].every(() => false));
 
 //----------------------------------------------Array.prototype.some()-----------------------------
@@ -421,7 +425,9 @@ console.log([].every(() => false));
 console.log(numbers.some((num) => num < -50));
 console.log(numbers.some((num) => num < -150));
 console.log([10, , 15].some((num) => num <= 10));
+console.log(numbers.some((num) => num < -50));
 console.log([].some((num) => num <= 10));
+console.log(numbers.some((num) => true));
 console.log([].some(() => true));
 
 //-----------------------------------------------Array.prototype.flat()----------------------------
@@ -537,6 +543,8 @@ avengers.forEach((hero) => {
 	console.log(hero.toUpperCase());
 	console.log(hero.toLowerCase());
 });
+
+console.log(avengers);
 
 console.log(
 	avengers.map((hero) => {
