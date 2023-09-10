@@ -32,7 +32,5 @@ function maxSubArray(nums) {
 }
 
 let input = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
-let output = maxSubArray(input);
 
-console.log("input : ", input);
-console.log("output : ", output);
+console.log(maxSubArray(input));

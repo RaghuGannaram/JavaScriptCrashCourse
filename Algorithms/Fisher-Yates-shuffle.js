@@ -15,6 +15,7 @@
  * Time Complexity : O(n)
  * Space Complexity: O(1)
  */
+
 function shuffle(arr) {
 	for (let i = arr.length - 1, r; i > 0; i--) {
 		r = Math.floor(Math.random() * (i + 1));
@@ -23,8 +24,6 @@ function shuffle(arr) {
 	return arr;
 }
 
-let input = ["A", "B", "C", "D", "E", "F"];
-let output = shuffle(input);
+let input = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-console.log("input : ", input);
-console.log("output : ", output);
+console.log(shuffle(input));
