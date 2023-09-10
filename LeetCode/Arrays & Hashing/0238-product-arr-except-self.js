@@ -1,63 +1,46 @@
 /**
- * @param {number[]} nums
- * @return {number[]}
+	@url https://leetcode.com/problems/product-of-array-except-self/
+	@title 238. Product of Array Except Self
+	@difficulty medium
+
+	@description
+		Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+		The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+		You must write an algorithm that runs in O(n) time and without using the division operation.
+
+	@params	{number[]} nums
+	@return {number[]}
  */
+
 var productExceptSelf1 = function (nums) {
-	const res = [];
+	let res = new Array(nums.length).fill(1);
 
-	let product = 1;
-
-	for (let i = 0; i < nums.length; i++) {
-		res[i] = product;
-		product *= nums[i];
+	for (let i = 0, p = 1; i < nums.length; i++) {
+		res[i] = p;
+		p *= nums[i];
 	}
 
-	product = 1;
-	for (let j = nums.length - 1; j >= 0; j--) {
-		res[j] *= product;
-		product *= nums[j];
+	for (let i = nums.length - 1, p = 1; i >= 0; i--) {
+		res[i] *= p;
+		p *= nums[i];
 	}
 
 	return res;
 };
 
 var productExceptSelf2 = function (nums) {
-	let product = 1,
-		left = new Array(nums.length),
-		right = new Array(nums.right),
-		res = [];
-
-	for (let i = 0; i < nums.length; i++) {
-		left[i] = product;
-		product *= nums[i];
-	}
-
-	product = 1;
-	for (let j = nums.length - 1; j >= 0; j--) {
-		right[j] = product;
-		product *= nums[j];
-	}
-
-	for (let k = 0; k < nums.length; k++) {
-		res[k] = left[k] * right[k];
-	}
-
-	return res;
-};
-
-var productExceptSelf3 = function (nums) {
 	const l = nums.length;
 	const result = [],
-			leftProductArr = new Array(l),
-			rightProductArr = new Array(l);
+		leftProductArr = new Array(l),
+		rightProductArr = new Array(l);
 
 	for (let i = 0; i < l; i++) {
-			leftProductArr[i] = (leftProductArr[i - 1] ?? 1) * (nums[i - 1] ?? 1);
-			rightProductArr[l - 1 - i] = (rightProductArr[l - i] ?? 1) * (nums[l - i] ?? 1);
+		leftProductArr[i] = (leftProductArr[i - 1] ?? 1) * (nums[i - 1] ?? 1);
+		rightProductArr[l - 1 - i] = (rightProductArr[l - i] ?? 1) * (nums[l - i] ?? 1);
 	}
 
 	for (let i = 0; i < l; i++) {
-			result.push(leftProductArr[i] * rightProductArr[i]);
+		result.push(leftProductArr[i] * rightProductArr[i]);
 	}
 	return result;
 };

@@ -1,24 +1,33 @@
 /**
- * @param {number[]} nums
- * @return {number}
+	@url https://leetcode.com/problems/longest-consecutive-sequence/
+	@title 128. Longest Consecutive Sequence
+	@difficulty hard
+
+	@description
+		Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+		You must write an algorithm that runs in O(n) time.
+
+	@params	{number[]} nums
+	@return {number}
  */
 
-var longestConsecutiveSequence = function (nums) {
-	let max = 0,
-		currentMax,
-		set = new Set(nums);
+var longestConsecutive = function (nums) {
+	let streak, res = 0, set = new Set(nums);
 
-	for (let i = 0; i < nums.length; i++) {
-		if (set.has(nums[i] - 1)) {
-			continue;
+	for (let n of nums) {
+		if (set.has(n - 1)) continue;
+		streak = 0;
+
+		while (set.has(n + streak)) {
+			streak++;
 		}
-		currentMax = 1;
-		while (set.has(nums[i] + currentMax)) {
-			currentMax += 1;
-		}
-		max = Math.max(max, currentMax);
+
+		res = Math.max(res, streak);
 	}
-	return max;
+
+	return res;
 };
 
-console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));
+let nums = [100, 4, 200, 1, 3, 2];
+
+console.log(longestConsecutive(nums));

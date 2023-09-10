@@ -1,8 +1,18 @@
 /**
- * @param {string} s
- * @param {string} t
- * @return {boolean}
+	@url https://leetcode.com/problems/valid-anagram/
+	@title 242. Valid Anagram
+	@difficulty easy
+
+	@description
+		Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+		Note: You may assume the string contains only lowercase alphabets.
+		Follow up: What if the inputs contain unicode characters? How would you adapt your solution to such case?
+
+	@param {string} s
+	@param {string} t
+	@return {boolean}
  */
+
 var isAnagram1 = function (s, t) {
 	if (s.length !== t.length) {
 		return false;

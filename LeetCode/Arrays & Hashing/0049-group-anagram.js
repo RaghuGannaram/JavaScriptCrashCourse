@@ -1,6 +1,14 @@
 /**
- * @param {string[]} strs
- * @return {string[][]}
+	@url https://leetcode.com/problems/group-anagrams/
+	@title 49. Group Anagrams
+	@difficulty medium
+
+	@description
+		Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+		An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+	@param {string[]} strs
+	@return {string[][]}
  */
 
 const CODES = {
@@ -100,8 +108,8 @@ var groupAnagrams4 = function (strs) {
 		sorted = strs[i].split("").sort().join("");
 		map.set(sorted, [...(map.get(sorted) ?? []), strs[i]]);
 	}
-
+	
 	return Array.from(map.values());
 };
 
-console.log(groupAnagrams1(["eat", "tea", "tan", "ate", "nat", "bat"]));
+console.log(groupAnagrams4(["eat", "tea", "tan", "ate", "nat", "bat"]));

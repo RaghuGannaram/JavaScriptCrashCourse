@@ -1,8 +1,15 @@
 /**
- * @param {number[]} nums
- * @param {number} k
- * @return {number[]}
- */
+	@url https://leetcode.com/problems/top-k-frequent-elements/
+	@title 347. Top K Frequent Elements
+	@difficulty medium
+
+	@description
+		Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+	
+	@params	{number[]} nums
+	@params	{number} k
+	@return {number[]}
+*/
 
 var topKFrequent1 = function (nums, k) {
 	let fz,
@@ -29,33 +36,13 @@ var topKFrequent1 = function (nums, k) {
 };
 
 var topKFrequent2 = function (nums, k) {
-	let map = {};
-	let topFqs = [];
-	let result = [];
+	let map = new Map();
 
 	for (let n of nums) {
-		map.hasOwnProperty(n) ? (map[n] = map[n] + 1) : (map[n] = 1);
+		map.set(n, (map.get(n) ?? 0) + 1);
 	}
 
-	topFqs = Object.entries(map)
-		.sort(([, a], [, b]) => b - a)
-		.slice(0, k);
-
-	for (let i in topFqs) {
-		result.push(topFqs[i][0]);
-	}
-	return result;
-};
-
-var topKFrequent3 = function (nums, k) {
-	let arr, map = new Map();
-
-	for (let n of nums) {
-			map.set(n, (map.get(n) ?? 0) + 1)
-	}
-	arr = Array.from(map);
-	arr.sort((a, b) => b[1] - a[1])
-	return arr.slice(0, k).map(x => x[0])
+	return Array.from(map).sort((a, b) => b[1] - a[1]).slice(0, k).map((x) => x[0])
 };
 
 console.log(topKFrequent1([7, 1, 2, 7, 1, 3, 7, 4, 2, 7, 2], 2));

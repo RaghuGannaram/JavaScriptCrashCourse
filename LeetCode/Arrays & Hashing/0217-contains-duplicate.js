@@ -1,7 +1,15 @@
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
+/** 
+	@url https://leetcode.com/problems/contains-duplicate/
+	@title 217. Contains Duplicate
+	@difficulty easy
+
+	@description
+		Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+	@param {number[]} nums
+	@return {boolean}	
+
+*/
 
 // Bruteforce |Time Complexity = O(n^2), Space Complexity = O(1)
 var containsDuplicate1 = function (nums) {
