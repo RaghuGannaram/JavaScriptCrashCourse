@@ -12,14 +12,17 @@
  */
 
 var removeDuplicates = function (nums) {
-    let unique = 0;
+    let l = 0, r = 0;
 
-    for (let i = 1; i < nums.length; i++) {
-        if (nums[unique] !== nums[i]) {
-            nums[++unique] = nums[i]
+    while (r < nums.length) {
+        if (nums[l] !== nums[r]) {
+            l++;
+            nums[l] = nums[r]
         }
+        r++;
     }
-    return unique + 1;
+
+    return l + 1;
 };
 
 let nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
