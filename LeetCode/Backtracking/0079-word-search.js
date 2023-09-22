@@ -1,62 +1,53 @@
-function findSubsets(nums) {
-	let result = [];
+/**
+	@url https://leetcode.com/problems/word-search/
+	@title 79. Word Search
+	@difficulty Medium
 
-	backtrack([], 0);
+	@description
+		Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+		The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. 
+		The same letter cell may not be used more than once.
 
-	return result;
+	@param {character[][]} board
+	@param {string} word
+	@return {boolean}
+ */
 
-	function backtrack(subset, index) {
-		if (index >= nums.length) {
-			result.push(subset);
-			return;
-		}
-		backtrack([...subset], index + 1);
-		subset.push(nums[index]);
-		backtrack([...subset], index + 1);
-	}
-}
+var exist = function (board, word) {
+	let m = board.length, n = board[0].length, visited = new Set();
 
-function wordsearch(board, word) {
-	let r = board.length,
-		c = board[0].length,
-		visited = new Set();
-
-	function backtrack(row, col, index) {
-		if (index === word.length) {
-			return true;
-		}
-		if (row < 0 || row >= r || col < 0 || col >= c || word[index] !== board[row][col] || visited.has((row, col))) {
-			return false;
-		}
-
-		visited.add((row, col));
-		let result =
-			backtrack(row + 1, col, index + 1) ||
-			backtrack(row - 1, col, index + 1) ||
-			backtrack(row, col + 1, index + 1) ||
-			backtrack(row, col - 1, index + 1);
-		visited.delete((row, col));
-		return result;
-	}
-
-	for (let i = 0; i < r; i++) {
-		for (let j = 0; j < c; j++) {
-			if (backtrack(i, j, 0)) {
-				return true;
-			}
+	for (let i = 0; i < m; i++) {
+		for (let j = 0; j < n; j++) {
+			if (backtrack(i, j, 0)) return true;
 		}
 	}
+
 	return false;
-}
 
-console.log(
-	wordsearch(
-		[
-			["A", "B", "C", "E"],
-			["S", "F", "C", "S"],
-			["A", "D", "E", "E"],
-		],
-		"ABCCED"
-	)
-);
+	function backtrack(r, c, index) {
+		if (index === word.length) return true;
 
+		if (r < 0
+			|| r >= board.length
+			|| c < 0
+			|| c >= board[r].length
+			|| visited.has(`${r}-${c}`)
+			|| board[r][c] !== word[index]) return false;
+
+		visited.add(`${r}-${c}`);
+
+		let res = backtrack(r, c - 1, index + 1)
+			|| backtrack(r, c + 1, index + 1)
+			|| backtrack(r - 1, c, index + 1)
+			|| backtrack(r + 1, c, index + 1)
+
+		visited.delete(`${r}-${c}`);
+
+		return res;
+	}
+};
+
+let board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]],
+	word = "ABCCED";
+
+console.log(exist(board, word));	// true
