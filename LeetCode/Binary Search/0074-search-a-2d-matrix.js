@@ -1,28 +1,46 @@
 /**
- * @param {number[][]} matrix
- * @param {number} target
- * @return {boolean}
+    @url https://leetcode.com/problems/search-a-2d-matrix/
+    @title 74. Search a 2D Matrix
+    @difficulty Medium
+
+    @description
+        Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+        Integers in each row are sorted from left to right.
+        The first integer of each row is greater than the last integer of the previous row.
+
+    @param {number[][]} matrix
+    @param {number} target
+    @return {boolean}
  */
+
 var searchMatrix = function (matrix, target) {
-  let t = 0, b = matrix.length, l, r, mr, mc;
+    let l = 0, r = matrix.length - 1, m;
 
-  while (t < b) {
-      mr = Math.floor((t + b) / 2);
-      if (matrix[mr][0] <= target && target <= matrix[mr].at(-1)) {
-          l = 0, r = matrix[mr].length;
-          while (l < r) {
-              mc = Math.floor((l + r) / 2);
-              if (target === matrix[mr][mc]) return true;
-              else if (target > matrix[mr][mc]) l = mc + 1;
-              else r = mc
-          }
-          return false;
+    while (l <= r) {
+        m = Math.floor((l + r) / 2);
 
-      } else if (target < matrix[mr][0]) b = mr;
-      else t = mr + 1;
-  }
+        if (matrix[m][0] <= target && target <= matrix[m].at(-1)) {
+            return binarySearch(matrix[m]);
+        }
 
-  return false;
+        if (matrix[m][0] < target) l = m + 1;
+        else r = m - 1;
+    }
+
+    return false;
+
+    function binarySearch(nums) {
+        let l = 0, r = nums.length - 1, m;
+
+        while (l <= r) {
+            m = Math.floor((l + r) / 2);
+
+            if (nums[m] === target) return true;
+
+            if (nums[m] < target) l = m + 1;
+            else r = m - 1;
+        }
+
+        return false;
+    }
 };
-
-console.log(searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13))
