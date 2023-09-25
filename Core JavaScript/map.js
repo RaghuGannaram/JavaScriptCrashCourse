@@ -21,14 +21,14 @@ console.log(map);
 map.set({ property: true }, "objValue");
 console.log(map);
 
-map.set(2, "twoValue");
+map.set(2, "twoValue1");
+map.set(2, "twoValue2");
 console.log(map);
 console.log(map.size);
 console.log(map.has(2));
 console.log(map.get(2));
 console.log(map.set(12));
 console.log(map.set(12));
-
 
 console.log(map.delete(2))
 
@@ -87,7 +87,7 @@ for (let i of mapThree.keys()) console.log(i);
 for (let i of mapThree.values()) console.log(i);
 for (let i of mapThree.entries()) console.log(i);
 
-mapThree.clear();
+console.log(mapThree.clear());
 for (let i of mapThree) console.log(i);
 
 let mapFour = new Map([{ 10: "a" }]);
