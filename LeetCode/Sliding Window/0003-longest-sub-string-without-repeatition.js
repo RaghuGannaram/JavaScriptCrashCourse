@@ -1,6 +1,13 @@
 /**
- * @param {string} s
- * @return {number}
+	@url https://leetcode.com/problems/longest-substring-without-repeating-characters/
+	@title 3. Longest Substring Without Repeating Characters
+	@difficulty Medium
+
+	@description
+		Given a string, find the length of the longest substring without repeating characters.
+		
+	@params {string} s
+	@return {number}
  */
 
 var lengthOfLongestSubstring1 = function (s) {
@@ -58,14 +65,16 @@ var lengthOfLongestSubstring4 = function (s) {
 	let arr = [], max = 0;
 
 	for (let ch of s) {
-			while (arr.includes(ch)) {
-					arr.shift()
-			}
-			arr.push(ch);
-			max = Math.max(max, arr.length);
+		while (arr.includes(ch)) {
+			arr.shift()
+		}
+		arr.push(ch);
+		max = Math.max(max, arr.length);
 	}
 
 	return max;
 };
 
-console.log(lengthOfLongestSubstring3("aab"));
+let s = "abcabcbb";
+
+console.log(lengthOfLongestSubstring1(s));	// 3

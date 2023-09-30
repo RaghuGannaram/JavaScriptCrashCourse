@@ -127,3 +127,4 @@ try {
 } catch (error) {
 	console.log(error);
 }
+console.log(new Map("abc"))

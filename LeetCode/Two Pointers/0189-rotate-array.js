@@ -64,3 +64,38 @@ var rotate3 = function (nums, k) {
         } while (start !== current);
     }
 }
+
+var rotate4 = function (nums, k) {
+    let l = 0, r = nums.length - 1;
+
+    k = k % nums.length;
+
+    while (l < r) {
+        [nums[l], nums[r]] = [nums[r], nums[l]];
+        l++;
+        r--;
+    }
+
+    l = 0;
+    r = k - 1;
+
+    while (l < r) {
+        [nums[l], nums[r]] = [nums[r], nums[l]];
+        l++;
+        r--;
+    }
+
+    l = k;
+    r = nums.length - 1;
+
+    while (l < r) {
+        [nums[l], nums[r]] = [nums[r], nums[l]];
+        l++;
+        r--;
+    }
+};
+
+
+let nums = [1, 2, 3, 4, 5, 6, 7];
+
+rotate4(nums, 3);   // [5,6,7,1,2,3,4]

@@ -53,6 +53,17 @@ var mergeAlternately3 = function (word1, word2) {
 
 };
 
+var mergeAlternately4 = function (word1, word2) {
+    let res = "", i = 0, l = Math.min(word1.length, word2.length);
+
+    while (i < l) {
+        res += word1[i] + word2[i];
+        i++;
+    }
+
+    return res + word1.slice(i) + word2.slice(i);
+};
+
 let word1 = "abc", word2 = "pqrst";
 
 console.log(mergeAlternately1(word1, word2));

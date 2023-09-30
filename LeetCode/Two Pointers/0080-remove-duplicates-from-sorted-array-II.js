@@ -16,18 +16,21 @@ var removeDuplicates = function (nums) {
 
     while (r < nums.length) {
         if (nums[l] !== nums[r]) {
+            choices = 1;
             l++;
             nums[l] = nums[r];
-            choices = 1;
         } else {
             if (choices) {
+                choices = 0;
                 l++;
                 nums[l] = nums[r];
-                choices = 0;
             }
         }
         r++;
     }
-
     return l + 1;
 };
+
+let nums = [1, 1, 1, 2, 2, 3];
+
+console.log(removeDuplicates(nums));    // 5

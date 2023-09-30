@@ -8,7 +8,7 @@ var characterReplacement = function (s, k) {
 	let maxFq = 0,
 		l = 0,
 		r = 0,
-    char,
+		char,
 		map = new Map();
 
 	while (r < s.length) {
@@ -22,6 +22,7 @@ var characterReplacement = function (s, k) {
 		}
 		r++;
 	}
+	
 	return r - l;
 };
 

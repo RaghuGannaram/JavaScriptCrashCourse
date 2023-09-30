@@ -11,14 +11,16 @@
     @param {number[]} nums1
     @param {number} m
     @param {number[]} nums2
+    @param {number} n
+    @return {void} Do not return anything, modify nums1 in-place instead.
  */
 
-var merge = function (nums1, m, nums2, n) {
+var merge1 = function (nums1, m, nums2, n) {
     let i1 = m - 1, i2 = n - 1;
 
     for (let i = m + n - 1; i >= 0; i--) {
         if (i2 < 0) break;
-        
+
         if (nums1[i1] > nums2[i2]) {
             nums1[i] = nums1[i1];
             i1--;
@@ -29,7 +31,34 @@ var merge = function (nums1, m, nums2, n) {
     }
 };
 
+var merge2 = function (nums1, m, nums2, n) {
+    let l = m + n;
+
+    while (n > 0) {
+        if (nums1[m - 1] > nums2[n - 1]) {
+            nums1[l - 1] = nums1[m - 1];
+            m--;
+            l--;
+        } else {
+            nums1[l - 1] = nums2[n - 1];
+            n--;
+            l--;
+        }
+    }
+};
+
+var merge3 = function (nums1, m, nums2, n) {
+    let l = m + n - 1;
+    m--;
+    n--;
+
+    while (n >= 0) {
+        nums1[l--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+    }
+};
+
 let nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3;
 
-merge(nums1, m, nums2, n);
+merge1(nums1, m, nums2, n);
+
 console.log(nums1);

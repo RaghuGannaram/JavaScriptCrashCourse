@@ -23,7 +23,6 @@ var generate1 = function (numRows) {
     return res;
 
     function next(arr) {
-        if (arr.length === 1) return [];
         let res = [];
 
         for (let i = 0; i < arr.length - 1; i++) {

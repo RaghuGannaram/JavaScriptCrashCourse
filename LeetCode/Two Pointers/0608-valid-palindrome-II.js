@@ -49,6 +49,7 @@ var validPalindrome2 = function (s, choices = 1) {
 };
 
 let s = "abcadc";
+
 console.log(validPalindrome2(s, 0));
 console.log(validPalindrome2(s, 1));
 console.log(validPalindrome2(s, 2));

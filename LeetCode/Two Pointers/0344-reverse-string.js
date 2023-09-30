@@ -23,5 +23,4 @@ var reverseString = function (s) {
 
 let s = ["h", "e", "l", "l", "o"];
 
-reverseString(s);
-console.log(s);
+reverseString(s);   // ["o","l","l","e","h"]

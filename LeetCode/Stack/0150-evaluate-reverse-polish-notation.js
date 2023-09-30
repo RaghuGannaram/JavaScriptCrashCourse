@@ -3,7 +3,7 @@
  * @return {number}
  */
 
-var evalRPN = function (tokens) {
+var evalRPN1 = function (tokens) {
 	let stack = [],
 		operators = new Set(["+", "-", "*", "/"]),
 		current,
@@ -31,6 +31,41 @@ var evalRPN = function (tokens) {
 		if (operation === "*") return a * b;
 		if (operation === "/") return a / b >= 0 ? Math.floor(a / b) : Math.ceil(a / b);
 	}
+};
+
+var evalRPN2 = function (tokens) {
+    let stack = [], x, y;
+
+    for (let token of tokens) {
+        switch (token) {
+            case "+":
+                y = stack.pop();
+                x = stack.pop();
+                stack.push(x + y);
+                break;
+            case "-":
+                y = stack.pop();
+                x = stack.pop();
+                stack.push(x - y);
+                break;
+            case "*":
+                y = stack.pop();
+                x = stack.pop();
+                stack.push(x * y);
+                break;
+            case "/":
+                y = stack.pop();
+                x = stack.pop();
+                stack.push(x / y >= 0 ? Math.floor(x / y) : Math.ceil(x / y));
+                break;
+            default:
+                stack.push(Number(token));
+                break;
+
+        }
+    }
+
+    return stack[0];
 };
 
 console.log(evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]));

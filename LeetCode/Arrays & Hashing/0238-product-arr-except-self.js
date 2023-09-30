@@ -42,6 +42,7 @@ var productExceptSelf2 = function (nums) {
 	for (let i = 0; i < l; i++) {
 		result.push(leftProductArr[i] * rightProductArr[i]);
 	}
+	
 	return result;
 };
 

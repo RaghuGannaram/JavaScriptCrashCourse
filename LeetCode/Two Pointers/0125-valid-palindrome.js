@@ -1,5 +1,5 @@
 /**
-    @url https://leetcode.com/problems/valid-palindrome/
+	@url https://leetcode.com/problems/valid-palindrome/
 	@title 125. Valid Palindrome
 	@difficulty Easy
 
@@ -10,6 +10,7 @@
 	@params {string} s
 	@return {boolean}
  */
+
 var validPalindrome1 = function (s) {
 	let l, r, str;
 
@@ -77,6 +78,20 @@ var validPalindrome4 = function (s) {
 		if ((48 <= num && num <= 57) || (65 <= num && num <= 90) || (97 <= num && num <= 122)) return true;
 		else return false;
 	}
+};
+
+var isPalindrome5 = function (s) {
+	let str = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+
+	let l = 0, r = str.length - 1;
+
+	while (l < r) {
+		if (str[l] !== str[r]) return false;
+		l++;
+		r--;
+	}
+
+	return true;
 };
 
 console.log(validPalindrome1("A man, a plan, a canal: Panama"));

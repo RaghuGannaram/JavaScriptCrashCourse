@@ -101,4 +101,19 @@ var isAnagram5 = function (s, t) {
 	return true;
 };
 
+var isAnagram6 = function (s, t) {
+    let map = new Map();
+
+    for (let ch of s) {
+        map.set(ch, (map.get(ch) ?? 0) + 1);
+    }
+
+    for (let ch of t) {
+        if (map.get(ch) === 1) map.delete(ch);
+        else map.set(ch, map.get(ch) - 1);
+    }
+
+    return map.size === 0;
+};
+
 console.log(isAnagram3("rat", "tar"));
