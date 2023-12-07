@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/sign-of-the-product-of-an-array/
     @title 1822. Sign of the Product of an Array
     @difficulty Easy
+    @url https://leetcode.com/problems/sign-of-the-product-of-an-array/
 
     @description
         There is a function signFunc(x) that returns:

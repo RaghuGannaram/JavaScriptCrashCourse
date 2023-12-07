@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/design-hashmap/
     @title 706. Design HashMap
     @difficulty easy
+    @url https://leetcode.com/problems/design-hashmap/
 
     @description
         Design a HashMap without using any built-in hash table libraries.

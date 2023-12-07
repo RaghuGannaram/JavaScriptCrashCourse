@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/number-of-pairs-of-interchangeable-rectangles/
     @title 2001. Number of Pairs of Interchangeable Rectangles
     @difficulty Medium
+    @url https://leetcode.com/problems/number-of-pairs-of-interchangeable-rectangles/
 
     @description
         You are given n rectangles represented by a 0-indexed 2D integer array rectangles,
@@ -17,7 +17,8 @@
 // Solution 1: Brute Force
 // Time: O(n^2) Space: O(1)
 var interchangeableRectangles1 = function (rectangles) {
-    let res = 0, arr = [];
+    let res = 0,
+        arr = [];
 
     for (let rectangle of rectangles) {
         arr.push(rectangle[0] / rectangle[1]);
@@ -37,7 +38,8 @@ var interchangeableRectangles1 = function (rectangles) {
 // Solution 2: Hash Map
 // Time: O(n) Space: O(n)
 var interchangeableRectangles2 = function (rectangles) {
-    let res = 0, map = new Map();
+    let res = 0,
+        map = new Map();
 
     for (let rectangle of rectangles) {
         map.set(rectangle[0] / rectangle[1], (map.get(rectangle[0] / rectangle[1]) ?? 0) + 1);
@@ -50,6 +52,11 @@ var interchangeableRectangles2 = function (rectangles) {
     return res;
 };
 
-let rectangles = [[4, 8], [3, 6], [10, 20], [15, 30]];
+let rectangles = [
+    [4, 8],
+    [3, 6],
+    [10, 20],
+    [15, 30],
+];
 
 console.log(interchangeableRectangles2(rectangles));

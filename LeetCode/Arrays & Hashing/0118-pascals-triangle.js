@@ -1,8 +1,8 @@
 /**
-    @url https://leetcode.com/problems/pascals-triangle/
     @title 118. Pascal's Triangle
     @difficulty easy
-
+    @url https://leetcode.com/problems/pascals-triangle/
+ 
     @description
         Given an integer numRows, return the first numRows of Pascal's triangle.
         In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
@@ -44,3 +44,8 @@ var generate2 = function (numRows) {
 
     return res;
 };
+
+let input = 5;
+
+console.log(generate1(input));
+console.log(generate2(input));

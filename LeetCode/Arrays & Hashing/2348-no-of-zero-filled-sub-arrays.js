@@ -7,7 +7,6 @@
         Given an array of integers nums and an integer k, return the number of non-empty subarrays that have a sum equal to 0.
 
     @params	{number[]} nums
-    @params {number} k
     @return {number}
  */
 

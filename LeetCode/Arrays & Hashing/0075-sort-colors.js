@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/sort-colors/
     @title 75. Sort Colors
     @difficulty medium
+    @url https://leetcode.com/problems/sort-colors/
 
     @description
         Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent,
@@ -13,22 +13,26 @@
     @return {void} Do not return anything, modify nums in-place instead.
  */
 
-var sortColors1 = function (nums) {
-    let l = 0, r = nums.length - 1;
+var sortColors = function (nums) {
+    let l = 0,
+        m = 0,
+        r = nums.length - 1;
 
-    for (let i = 0; i <= r; i++) {
-        if (nums[i] === 0) {
-            [nums[i], nums[l]] = [nums[l], nums[i]];
+    while (m <= r) {
+        if (nums[m] === 0) {
+            [nums[l], nums[m]] = [nums[m], nums[l]];
             l++;
-        } else if (nums[i] === 2) {
-            [nums[i], nums[r]] = [nums[r], nums[i]];
+            m++;
+        } else if (nums[m] === 2) {
+            [nums[m], nums[r]] = [nums[r], nums[m]];
             r--;
-            i--;
+        } else {
+            m++;
         }
     }
 };
-    
+
 let input = [2, 0, 2, 1, 1, 0];
 
-sortColors1(input);
+sortColors(input);
 console.log(input);

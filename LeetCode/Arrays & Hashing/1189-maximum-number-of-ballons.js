@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/maximum-number-of-balloons/
     @title 1189. Maximum Number of Balloons
     @difficulty Easy
+    @url https://leetcode.com/problems/maximum-number-of-balloons/
 
     @description
         Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
@@ -33,13 +33,15 @@ var maxNumberOfBalloons1 = function (text) {
         Math.floor(map.get("o") / 2),
         map.get("n")
     );
-}
+};
 
 var maxNumberOfBalloons2 = function (text) {
-    let res = 0, letters = ["a", "b", "l", "l", "n", "o", "o"], map = new Map();
+    let res = 0,
+        letters = ["a", "b", "l", "l", "n", "o", "o"],
+        map = new Map();
 
     for (let ch of text) {
-        map.set(ch, (map.get(ch) ?? 0) + 1)
+        map.set(ch, (map.get(ch) ?? 0) + 1);
     }
 
     outer: while (true) {

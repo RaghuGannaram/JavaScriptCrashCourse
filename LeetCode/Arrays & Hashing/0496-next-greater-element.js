@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/next-greater-element-i/
     @title 496. Next Greater Element I
     @difficulty easy
+    @url https://leetcode.com/problems/next-greater-element-i/
 
     @description
         The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.
@@ -16,20 +16,29 @@
  */
 
 var nextGreaterElement1 = function (nums1, nums2) {
-    let map = new Map(), stack = [];
+    const res = [],
+        map = new Map(),
+        stack = [];
 
-    for (let n of nums2) {
-        while (stack.length && n > stack.at(-1)) {
-            map.set(stack.pop(), n);
+    for (let i = nums2.length - 1; i >= 0; i--) {
+        while (stack.length > 0 && stack.at(-1) <= nums2[i]) {
+            stack.pop();
         }
-        stack.push(n);
+
+        map.set(nums2[i], stack.at(-1) ?? -1);
+
+        stack.push(nums2[i]);
     }
 
-    return nums1.map(n => map.get(n) ?? -1);
+    for (const num of nums1) {
+        res.push(map.get(num));
+    }
+
+    return res;
 };
 
 var nextGreaterElement2 = function (nums1, nums2) {
-    let res = new Array(nums1.length).fill(-1), i;
+    let res = new Array(nums1.length).fill(-1);
 
     for (let i = 0; i < nums1.length; i++) {
         j = nums2.indexOf(nums1[i]);
@@ -45,6 +54,7 @@ var nextGreaterElement2 = function (nums1, nums2) {
     return res;
 };
 
-let nums1 = [4, 1, 2], nums2 = [2, 1, 4, 2];
+let nums1 = [4, 1, 2],
+    nums2 = [2, 1, 4, 2];
 
 console.log(nextGreaterElement1(nums1, nums2));

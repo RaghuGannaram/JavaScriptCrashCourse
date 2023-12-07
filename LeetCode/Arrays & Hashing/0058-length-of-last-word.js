@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/length-of-last-word/
     @title 58. Length of Last Word
     @difficulty easy
+    @url https://leetcode.com/problems/length-of-last-word/
 
     @description
         Given a string s consisting of some words separated by some number of spaces, return the length of the last word in the string.

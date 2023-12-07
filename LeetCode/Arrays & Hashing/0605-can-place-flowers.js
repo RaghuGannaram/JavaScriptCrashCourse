@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/can-place-flowers/
     @title 605. Can Place Flowers
     @difficulty easy
+    @url https://leetcode.com/problems/can-place-flowers/
 
     @description
         You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
@@ -24,6 +24,7 @@ var canPlaceFlowers = function (flowerbed, n) {
     return n <= 0;
 };
 
-let flowerbed = [1, 0, 0, 0, 1], n = 1;
+let flowerbed = [1, 0, 0, 0, 1],
+    n = 1;
 
 console.log(canPlaceFlowers(flowerbed, n));

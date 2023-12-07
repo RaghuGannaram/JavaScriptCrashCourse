@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/design-hashset/
     @title 705. Design HashSet
     @difficulty easy
+    @url https://leetcode.com/problems/design-hashset/
 
     @description
         Design a HashSet without using any built-in hash table libraries.
@@ -15,7 +15,7 @@ var MyHashSet = function () {
     this.hashSet = {};
 };
 
-/** 
+/**
  * @param {number} key
  * @return {void}
  */
@@ -23,7 +23,7 @@ MyHashSet.prototype.add = function (key) {
     this.hashSet[key] = 1;
 };
 
-/** 
+/**
  * @param {number} key
  * @return {void}
  */
@@ -31,7 +31,7 @@ MyHashSet.prototype.remove = function (key) {
     delete this.hashSet[key];
 };
 
-/** 
+/**
  * @param {number} key
  * @return {boolean}
  */

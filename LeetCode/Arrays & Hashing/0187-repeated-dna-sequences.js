@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/repeated-dna-sequences/
     @title 187. Repeated DNA Sequences
     @difficulty medium
+    @url https://leetcode.com/problems/repeated-dna-sequences/
 
     @description
         The DNA sequence is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T'.
@@ -15,10 +15,12 @@
  */
 
 var findRepeatedDnaSequences = function (s) {
-    let set = new Set(), result = new Set(), window = "";
+    let set = new Set(),
+        result = new Set(),
+        window = "";
 
     for (let i = 0; i <= s.length - 10; i++) {
-        window = s.slice(i, i + 10)
+        window = s.slice(i, i + 10);
         if (set.has(window)) {
             result.add(window);
         } else {

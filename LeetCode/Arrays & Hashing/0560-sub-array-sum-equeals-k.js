@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/subarray-sum-equals-k/
     @title 560. Subarray Sum Equals K
     @difficulty Medium
+    @url https://leetcode.com/problems/subarray-sum-equals-k/
 
     @description    
         Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
@@ -41,9 +41,9 @@ var subarraySum2 = function (nums, k) {
 
     map.set(0, 1);
 
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = 0; i < nums.length; i++) { 
         sum += nums[i];
-
+        
         if (map.has(sum - k)) {
             count += map.get(sum - k);
         }

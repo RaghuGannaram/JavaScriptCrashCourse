@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/majority-element/
     @title 169. Majority Element
     @difficulty easy
+    @url https://leetcode.com/problems/majority-element/
 
     @description
         Given an array nums of size n, return the majority element.
@@ -24,7 +24,8 @@ var majorityElement1 = function (nums) {
 };
 
 var majorityElement2 = function (nums) {
-    let count = 0, candidate = nums[0];
+    let count = 0,
+        candidate = nums[0];
 
     for (let num of nums) {
         if (count === 0) {

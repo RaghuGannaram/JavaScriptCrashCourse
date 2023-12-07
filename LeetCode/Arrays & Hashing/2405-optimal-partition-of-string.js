@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/optimal-partition-of-string/
     @title 2405. Optimal Partition of String
     @difficulty medium
+    @url https://leetcode.com/problems/optimal-partition-of-string/
 
     @description
         Given a string s, partition s such that every substring of the partition is a palindrome.

@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
     @title 1963. Minimum Number of Swaps to Make the String Balanced
     @difficulty medium
+    @url https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
 
     @description
         You are given a 0-indexed string s of even length n. 
@@ -18,7 +18,8 @@
  */
 
 var minSwaps = function (s) {
-    let closed = 0, max = 0;
+    let closed = 0,
+        max = 0;
 
     for (let ch of s) {
         ch === "]" ? closed++ : closed--;
@@ -30,4 +31,4 @@ var minSwaps = function (s) {
 
 let s = "]]][[[";
 
-console.log(minSwaps(s));   // 2
+console.log(minSwaps(s));

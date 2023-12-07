@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/remove-element/
     @title 27. Remove Element
     @difficulty easy
+    @url https://leetcode.com/problems/remove-element/
 
     @description
         Given an array nums and a value val, remove all instances of that value in-place and return the new length.

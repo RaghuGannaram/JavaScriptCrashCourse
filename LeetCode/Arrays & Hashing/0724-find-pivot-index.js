@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/find-pivot-index/
     @title 724. Find Pivot Index
     @difficulty Easy
+    @url https://leetcode.com/problems/find-pivot-index/
 
     @description
         Given an array of integers nums, calculate the pivot index of this array.
@@ -15,19 +15,21 @@
  */
 
 var pivotIndex1 = function (nums) {
-    let left = 0, right = nums.reduce((acc, cur) => acc + cur, 0);
+    let lSum = 0,
+        rSum = nums.reduce((acc, cur) => acc + cur, 0);
 
     for (let i = 0; i < nums.length; i++) {
-        right -= nums[i];
-        if (left === right) return i;
-        left += nums[i];
+        rSum -= nums[i];
+        if (lSum === rSum) return i;
+        lSum += nums[i];
     }
 
     return -1;
 };
 
 var pivotIndex2 = function (nums) {
-    let left = 0, sum = nums.reduce((acc, cur) => acc + cur, 0);
+    let left = 0,
+        sum = nums.reduce((acc, cur) => acc + cur, 0);
 
     for (let i = 0; i < nums.length; i++) {
         if (left === sum - left - nums[i]) return i;

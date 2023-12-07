@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/word-pattern/
     @title 290. Word Pattern
     @difficulty Easy
+    @url https://leetcode.com/problems/word-pattern/
 
     @description
         Given a pattern and a string s, find if s follows the same pattern.
@@ -13,7 +13,9 @@
  */
 
 var wordPattern = function (pattern, s) {
-    let words = s.split(" "), map = new Map(), used = new Set();
+    let words = s.split(" "),
+        map = new Map(),
+        used = new Set();
 
     if (pattern.length !== words.length) return false;
 
@@ -23,13 +25,14 @@ var wordPattern = function (pattern, s) {
         } else {
             if (used.has(words[i])) return false;
             map.set(pattern[i], words[i]);
-            used.add(words[i])
+            used.add(words[i]);
         }
     }
 
     return true;
 };
 
-let pattern = "abba", s = "dog cat cat dog";
+let pattern = "abba",
+    s = "dog cat cat dog";
 
 console.log(wordPattern(pattern, s));

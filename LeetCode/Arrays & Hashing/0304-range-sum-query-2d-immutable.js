@@ -1,7 +1,7 @@
 /**
-    @url  https://leetcode.com/problems/range-sum-query-2d-immutable/
     @title 304. Range Sum Query 2D - Immutable
     @difficulty medium
+    @url  https://leetcode.com/problems/range-sum-query-2d-immutable/
 
     @description
         Given a 2D matrix matrix, handle multiple queries of the following type:

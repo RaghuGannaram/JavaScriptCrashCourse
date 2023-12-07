@@ -1,7 +1,7 @@
 /**
-    @url   https://leetcode.com/problems/isomorphic-strings/
     @title 205. Isomorphic Strings
     @difficulty easy
+    @url   https://leetcode.com/problems/isomorphic-strings/
 
     @description
         Given two strings s and t, determine if they are isomorphic.
@@ -15,7 +15,8 @@
  */
 
 var isIsomorphic = function (s, t) {
-    let map = new Map(), used = new Set();
+    let map = new Map(),
+        used = new Set();
 
     for (let i = 0; i < s.length; i++) {
         if (map.has(s[i])) {
@@ -30,6 +31,7 @@ var isIsomorphic = function (s, t) {
     return true;
 };
 
-let s = "egg", t = "add";
+let s = "egg",
+    t = "add";
 
 console.log(isIsomorphic(s, t));

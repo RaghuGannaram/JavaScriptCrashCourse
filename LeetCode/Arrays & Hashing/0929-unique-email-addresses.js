@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/unique-email-addresses/
     @title 929. Unique Email Addresses
     @difficulty Easy
+    @url https://leetcode.com/problems/unique-email-addresses/
 
     @description   
         Find unique email addresses from a list of email addresses.

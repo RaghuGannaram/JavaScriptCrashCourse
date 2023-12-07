@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/insert-delete-getrandom-o1/
     @title 380. Insert Delete GetRandom O(1)
     @difficulty medium
+    @url https://leetcode.com/problems/insert-delete-getrandom-o1/
 
     @description
         Implement the RandomizedSet class:
@@ -18,12 +18,12 @@
 
 /**
  * Initialize your data structure here.
- *  
+ *
  */
 var RandomizedSet = function () {
-    this.map = new Map();
+    this.set = new Set();
     this.arr = [];
-}
+};
 
 /**
  * Inserts a value to the set. Returns true if the set did not already contain the specified element.
@@ -31,12 +31,11 @@ var RandomizedSet = function () {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function (val) {
-    if (this.map.has(val)) return false;
-    this.map.set(val, this.arr.length);
+    if (this.set.has(val)) return false;
+    this.set.add(val);
     this.arr.push(val);
     return true;
-}
-
+};
 
 /**
  * Removes a value from the set. Returns true if the set contained the specified element.
@@ -44,18 +43,12 @@ RandomizedSet.prototype.insert = function (val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function (val) {
-    if (!this.map.has(val)) return false;
-    let index = this.map.get(val);
-    this.map.delete(val);
-    if (index === this.arr.length - 1) {
-        this.arr.pop();
-    } else {
-        let last = this.arr.pop();
-        this.arr[index] = last;
-        this.map.set(last, index);
-    }
+    if (!this.set.has(val)) return false;
+
+    this.set.delete(val);
+    this.arr = this.arr.filter((item) => item !== val);
     return true;
-}
+};
 
 /**
  * Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called).
@@ -63,4 +56,4 @@ RandomizedSet.prototype.remove = function (val) {
  */
 RandomizedSet.prototype.getRandom = function () {
     return this.arr[Math.floor(Math.random() * this.arr.length)];
-}
+};

@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/
     @title 1461. Check If a String Contains All Binary Codes of Size K
     @difficulty medium
+    @url https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/
 
     @description
         Given a binary string s and an integer k.
@@ -22,6 +22,7 @@ var hasAllCodes = function (s, k) {
     return set.size === Math.pow(2, k);
 };
 
-let s = "00110110", k = 2;
+let s = "00110110",
+    k = 2;
 
 console.log(hasAllCodes(s, k));

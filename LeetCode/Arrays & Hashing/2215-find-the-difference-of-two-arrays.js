@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/find-the-difference/
     @title 2215. Find the Difference
     @difficulty Easy
+    @url https://leetcode.com/problems/find-the-difference/
 
     @description
         You are given two strings s and t.

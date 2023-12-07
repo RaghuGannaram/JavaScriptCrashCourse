@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/brick-wall/
     @title 554. Brick Wall
     @difficulty medium
+    @url https://leetcode.com/problems/brick-wall/
 
     @description
         There is a rectangular brick wall in front of you with n rows of bricks.
@@ -20,24 +20,25 @@
  */
 
 var leastBricks = function (wall) {
-    let max = 0, sum, map = new Map();
+    let map = new Map();
 
     for (let row of wall) {
-        sum = 0;
-        for (let i = 0; i < row.length - 1; i++) {
+        for (let sum = 0, i = 0; i < row.length - 1; i++) {
             sum += row[i];
             map.set(sum, (map.get(sum) ?? 0) + 1);
         }
     }
-    for (let count of map.values()) {
-        if (count > max) {
-            max = count;
-        }
-    }
 
-    return wall.length - max;
+    return wall.length - Math.max(0, ...Array.from(map, (x) => x[1]));
 };
 
-let input = [[1, 2, 2, 1], [3, 1, 2], [1, 3, 2], [2, 4], [3, 1, 2], [1, 3, 1, 1]];
+let input = [
+    [1, 2, 2, 1],
+    [3, 1, 2],
+    [1, 3, 2],
+    [2, 4],
+    [3, 1, 2],
+    [1, 3, 1, 1],
+];
 
 console.log(leastBricks(input));
