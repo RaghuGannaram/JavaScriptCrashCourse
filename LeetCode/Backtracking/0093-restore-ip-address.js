@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/restore-ip-addresses/
     @title 93. Restore IP Addresses
     @difficulty Medium
+    @url https://leetcode.com/problems/restore-ip-addresses/
 
     @description
         Given a string s containing only digits, return all possible valid IP addresses that can be obtained from s. You can return them in any order.
@@ -11,7 +11,6 @@
     @return {string[]}
  */
 
-
 var restoreIpAddresses = function (s) {
     let res = [];
 
@@ -20,9 +19,10 @@ var restoreIpAddresses = function (s) {
     return res;
 
     function backtrack(i, cur) {
-        if (i === s.length) {
-            if (cur.length === 4)
+        if (cur.length === 4) {
+            if (i === s.length) {
                 res.push(cur.join("."));
+            }
             return;
         }
 
@@ -40,4 +40,4 @@ var restoreIpAddresses = function (s) {
 
 let s = "25525511135";
 
-console.log(restoreIpAddresses(s));
+console.log(restoreIpAddresses(s)); // ["255.255.11.135","255.255.111.35"]

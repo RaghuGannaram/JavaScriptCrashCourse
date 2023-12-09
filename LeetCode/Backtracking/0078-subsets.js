@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/subsets/
     @title 78. Subsets
     @difficulty Medium
+    @url https://leetcode.com/problems/subsets/
 
     @description
         Given an integer array nums of unique elements, return all possible subsets (the power set).
@@ -23,7 +23,7 @@ var subsets = function (nums) {
             res.push([...cur]);
             return;
         }
-        cur.push(nums[i])
+        cur.push(nums[i]);
         backtrack(i + 1, cur);
 
         cur.pop();

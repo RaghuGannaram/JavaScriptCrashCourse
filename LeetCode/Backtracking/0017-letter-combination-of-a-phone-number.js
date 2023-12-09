@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/letter-combinations-of-a-phone-number/
     @title 17. Letter Combinations of a Phone Number
     @difficulty Medium
+    @url https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
     @description
         Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. 
@@ -26,8 +26,7 @@ var letterCombinations1 = function (digits) {
             9: "wxyz"
         }
 
-    if (digits.length)
-        backtrack(0, "");
+    if (digits.length) backtrack(0, "");
 
     return res;
 

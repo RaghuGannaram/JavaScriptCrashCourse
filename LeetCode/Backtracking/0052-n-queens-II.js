@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/n-queens-ii/
     @title 52. N-Queens II
     @difficulty Hard
+    @url https://leetcode.com/problems/n-queens-ii/
 
     @description
         The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.

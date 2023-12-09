@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/subsets-ii/
     @title 90. Subsets II
     @difficulty Medium
+    @url https://leetcode.com/problems/subsets-ii/
 
     @description
         Given an integer array nums that may contain duplicates, return all possible subsets (the power set).
@@ -13,9 +13,8 @@
  */
 
 var subsetsWithDup = function (nums) {
-    nums.sort((a, b) => a - b);
-
     let res = [];
+    nums.sort((a, b) => a - b);
 
     backtrack(0, []);
 

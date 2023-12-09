@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/
     @title 1849. Splitting a String Into Descending Consecutive Values
     @difficulty Medium
+    @url https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/
 
     @description
         You are given a string s that consists of only digits.

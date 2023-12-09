@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/combination-sum-ii/
     @title 40. Combination Sum II
     @difficulty Medium
+    @url https://leetcode.com/problems/combination-sum-ii/
 
     @description
         Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
@@ -15,7 +15,6 @@
 
 var combinationSum2 = function (candidates, target) {
     let res = [];
-
     candidates.sort((a, b) => a - b);
 
     backtrack(0, [], 0);
