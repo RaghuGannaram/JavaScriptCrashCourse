@@ -69,13 +69,14 @@ var rotate4 = function (nums, k) {
     let l = 0, r = nums.length - 1;
 
     k = k % nums.length;
+    console.log(nums)
 
     while (l < r) {
         [nums[l], nums[r]] = [nums[r], nums[l]];
         l++;
         r--;
     }
-
+    console.log(nums)
     l = 0;
     r = k - 1;
 
@@ -84,6 +85,7 @@ var rotate4 = function (nums, k) {
         l++;
         r--;
     }
+    console.log(nums)
 
     l = k;
     r = nums.length - 1;
@@ -93,6 +95,8 @@ var rotate4 = function (nums, k) {
         l++;
         r--;
     }
+    console.log(nums)
+
 };
 
 

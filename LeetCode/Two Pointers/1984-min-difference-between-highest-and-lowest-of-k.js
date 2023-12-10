@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
     @title 1984. Minimum Difference Between Highest and Lowest of K Scores
     @difficulty Medium
+    @url https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
 
     @description
         You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student. You are also given an integer k.

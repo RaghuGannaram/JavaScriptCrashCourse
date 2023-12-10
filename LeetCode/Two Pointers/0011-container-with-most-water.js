@@ -1,7 +1,7 @@
 /**
-	@url https://leetcode.com/problems/container-with-most-water/
-	@title 11. Container With Most Water
-	@difficulty Medium
+ 	@title 11. Container With Most Water
+ 	@difficulty Medium
+ 	@url https://leetcode.com/problems/container-with-most-water/
 
 	@description
 		Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are
@@ -13,50 +13,36 @@
  */
 
 var maxArea1 = function (height) {
-	let l = 0,
-		r = height.length - 1,
-		container,
-		maxWater = 0;
+    let res = 0,
+        l = 0,
+        r = height.length - 1,
+        container;
 
-	while (l < r) {
-		if (height[l] < height[r]) {
-			container = height[l] * (r - l);
-			l++;
-		} else {
-			container = height[r] * (r - l);
-			r--;
-		}
-		if (container > maxWater) maxWater = container;
-	}
-	return maxWater;
+    while (l < r) {
+        if (height[l] < height[r]) {
+            container = height[l] * (r - l);
+            l++;
+        } else {
+            container = height[r] * (r - l);
+            r--;
+        }
+        if (container > res) res = container;
+    }
+    return res;
 };
 
 var maxArea2 = function (height) {
-	let l = 0,
-		r = height.length - 1,
-		maxWater = 0,
-		water;
-
-	while (l < r) {
-		water = Math.min(height[l], height[r]) * (r - l);
-		maxWater = Math.max(water, maxWater);
-		if (height[l] < height[r]) l++;
-		else r--;
-	}
-
-	return maxWater;
-};
-
-var maxArea3 = function (height) {
-    let [l, r] = [0, height.length - 1], container, max = 0;
+    let res = 0,
+        l = 0,
+        r = height.length - 1;
 
     while (l < r) {
-        container = Math.min(height[l], height[r]) * (r - l);
-        max = container > max ? container : max;
+        res = Math.max(res, (r - l) * Math.min(height[l], height[r]));
+
         height[l] < height[r] ? l++ : r--;
     }
 
-    return max;
+    return res;
 };
 
 console.log(maxArea1([1, 8, 6, 2, 5, 4, 8, 3, 7]));

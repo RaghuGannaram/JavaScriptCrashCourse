@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
     @title 80. Remove Duplicates from Sorted Array II
     @difficulty Medium
+    @url https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
 
     @description
         Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.
@@ -12,7 +12,9 @@
  */
 
 var removeDuplicates = function (nums) {
-    let l = 0, r = 1, choices = 1;
+    let l = 0,
+        r = 1,
+        choices = 1;
 
     while (r < nums.length) {
         if (nums[l] !== nums[r]) {
@@ -33,4 +35,4 @@ var removeDuplicates = function (nums) {
 
 let nums = [1, 1, 1, 2, 2, 3];
 
-console.log(removeDuplicates(nums));    // 5
+console.log(removeDuplicates(nums)); // 5

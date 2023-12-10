@@ -1,8 +1,8 @@
 /**
-    @url https://leetcode.com/problems/4sum/
     @title 18. 4Sum
     @difficulty Medium
-
+    @url https://leetcode.com/problems/4sum/
+ 
     @description
         Given an array nums of n integers, return an array of all the unique quadruplets
         [nums[a], nums[b], nums[c], nums[d]] such that:
@@ -21,10 +21,10 @@ var fourSum1 = function (nums, target) {
 
     nums.sort((a, b) => a - b);
 
-    for (let i = 0, l, r, sum; i < nums.length - 3; i++) {
+    for (let i = 0; i < nums.length - (4 - 1); i++) {
         if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-        for (let j = i + 1; j < nums.length - 2; j++) {
+        for (let l, r, sum, j = i + 1; j < nums.length - (3 - 1); j++) {
             if (j > i + 1 && nums[j] === nums[j - 1]) continue;
 
             l = j + 1;
@@ -32,22 +32,23 @@ var fourSum1 = function (nums, target) {
 
             while (l < r) {
                 sum = nums[i] + nums[j] + nums[l] + nums[r];
+
                 if (sum === target) {
                     res.push([nums[i], nums[j], nums[l], nums[r]]);
                     l++;
-                    while (l < r && nums[l] === nums[l - 1]) l++;
-                    continue;
+                    while (nums[l] === nums[l - 1] && l < r) l++;
                 }
+
                 sum < target ? l++ : r--;
             }
         }
     }
-
     return res;
 };
 
 var fourSum2 = function (nums, target) {
-    let res = [], cur = [];
+    let res = [],
+        cur = [];
 
     nums.sort((a, b) => a - b);
 
@@ -67,7 +68,9 @@ var fourSum2 = function (nums, target) {
             return;
         }
 
-        let sum, l = start, r = nums.length - 1;
+        let sum,
+            l = start,
+            r = nums.length - 1;
 
         while (l < r) {
             sum = nums[l] + nums[r];
@@ -75,14 +78,15 @@ var fourSum2 = function (nums, target) {
             if (sum === target) {
                 res.push([...cur, nums[l], nums[r]]);
                 l++;
-                while (l < r && nums[l] === nums[l - 1]) l++;
-                continue;
+                while (nums[l] === nums[l - 1] && l < r) l++;
             }
+
             sum < target ? l++ : r--;
         }
     }
 };
 
-let nums = [1, 0, -1, 0, -2, 2], target = 0;
+let nums = [1, 0, -1, 0, -2, 2],
+    target = 0;
 
-console.log(fourSum2(nums, target));    // [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+console.log(fourSum2(nums, target)); // [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]

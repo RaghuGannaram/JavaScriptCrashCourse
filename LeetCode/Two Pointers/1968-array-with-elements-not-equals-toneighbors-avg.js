@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/
     @title 1968. Array With Elements Not Equal to Average of Neighbors
     @difficulty Medium
+    @url https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/
 
     @description
         You are given a 0-indexed array nums of distinct integers. You want to rearrange the elements in the array such that every element in the rearranged array is not equal to the average of its neighbors.

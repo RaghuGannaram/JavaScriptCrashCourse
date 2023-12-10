@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/merge-sorted-array/
     @title 88. Merge Sorted Array
     @difficulty Easy
+     @url https://leetcode.com/problems/merge-sorted-array/
 
     @description
         Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.

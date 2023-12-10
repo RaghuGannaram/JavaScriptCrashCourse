@@ -1,7 +1,7 @@
 /**
-	@url https://leetcode.com/problems/3sum/
-	@title 15. 3Sum
-	@difficulty Medium
+ 	@title 15. 3Sum
+ 	@difficulty Medium
+ 	@url https://leetcode.com/problems/3sum/
 
 	@description 
 		Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]]
@@ -12,102 +12,30 @@
 	@return {number[][]}	
  */
 
-var threeSum1 = function (nums) {
-	let l,
-		r,
-		sum,
-		res = [];
+var threeSum = function (nums) {
+    let res = [];
 
-	nums.sort((a, b) => a - b);
+    nums.sort((a, b) => a - b);
 
-	for (let i = 0; i < nums.length; i++) {
-		l = i + 1;
-		r = nums.length - 1;
+    for (let l, r, sum, i = 0; i < nums.length - (3 - 1); i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-		if (i > 0 && nums[i] === nums[i - 1]) continue;
+        l = i + 1;
+        r = nums.length - 1;
 
-		while (l < r) {
-			sum = nums[i] + nums[l] + nums[r];
+        while (l < r) {
+            sum = nums[i] + nums[l] + nums[r];
 
-			if (sum === 0) {
-				res.push([nums[i], nums[l], nums[r]]);
-				l++;
-				while (nums[l] === nums[l - 1] && l < r) l++;
-			} else if (sum > 0) {
-				r--;
-			} else {
-				l++;
-			}
-		}
-	}
+            if (sum === 0) {
+                res.push([nums[i], nums[l], nums[r]]);
+                l++;
+                while (nums[l] === nums[l - 1] && l < r) l++;
+            }
+            sum > 0 ? r-- : l++;
+        }
+    }
 
-	return res;
+    return res;
 };
 
-var threeSum2 = function (nums) {
-	let l,
-		r,
-		sum,
-		res = [];
-
-	nums.sort((a, b) => a - b);
-
-	for (let i = 0; i < nums.length; i++) {
-		l = i + 1;
-		r = nums.length - 1;
-
-		if (i > 0 && nums[i - 1] === nums[i]) continue;
-
-		while (l < r) {
-			sum = nums[i] + nums[l] + nums[r];
-
-			if (sum < 0) {
-				l++;
-			}
-			if (sum > 0) {
-				r--;
-			}
-			if (sum === 0) {
-				res.push([nums[i], nums[l], nums[r]]);
-				l++;
-				while (nums[l - 1] === nums[l] && l < r) {
-					l++;
-				}
-			}
-		}
-	}
-
-	return res;
-};
-
-var threeSum3 = function (nums) {
-	let l,
-		r,
-		sum,
-		res = [];
-
-	nums.sort((a, b) => a - b);
-
-	for (let i = 0; i < nums.length; i++) {
-		if (i > 0 && nums[i] === nums[i - 1]) continue;
-
-		l = i + 1;
-		r = nums.length - 1;
-
-		while (l < r) {
-			sum = nums[i] + nums[l] + nums[r];
-
-			if (sum === 0) {
-				res.push([nums[i], nums[l], nums[r]]);
-				l++;
-				while (nums[l] === nums[l - 1] && l < r) l++;
-				continue;
-			}
-			sum > 0 ? r-- : l++;
-		}
-	}
-
-	return res;
-};
-
-console.log(threeSum2([-1, 0, 1, 2, -1, -4]));
+console.log(threeSum([-1, 0, 1, 2, -1, -4]));

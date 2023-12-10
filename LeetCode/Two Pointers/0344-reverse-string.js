@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/reverse-string/
     @title 344. Reverse String
     @difficulty Easy
+    @url https://leetcode.com/problems/reverse-string/
 
     @description
         Write a function that reverses a string. The input string is given as an array of characters s.

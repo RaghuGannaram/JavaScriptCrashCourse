@@ -1,7 +1,7 @@
 /**
-	@url https://leetcode.com/problems/valid-palindrome/
-	@title 125. Valid Palindrome
-	@difficulty Easy
+ 	@title 125. Valid Palindrome
+ 	@difficulty Easy
+ 	@url https://leetcode.com/problems/valid-palindrome/
 
 	@description
 		Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.

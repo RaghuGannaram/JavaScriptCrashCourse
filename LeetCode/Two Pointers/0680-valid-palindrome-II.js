@@ -1,7 +1,7 @@
 /**	
-	@url https://leetcode.com/problems/valid-palindrome-ii/
-	@title 680. Valid Palindrome II
-	@difficulty Easy
+ 	@title 680. Valid Palindrome II
+ 	@difficulty Easy
+ 	@url https://leetcode.com/problems/valid-palindrome-ii/
 
 	@description
 		Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.

@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/merge-strings-alternately/
     @title 1768. Merge Strings Alternately
     @difficulty Easy
+    @url https://leetcode.com/problems/merge-strings-alternately/
 
     @description 
         You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1.
@@ -14,7 +14,9 @@
  */
 
 var mergeAlternately1 = function (word1, word2) {
-    const result = [], arr1 = word1.split(""), arr2 = word2.split("");
+    const result = [],
+        arr1 = word1.split(""),
+        arr2 = word2.split("");
 
     while (arr1.length && arr2.length) {
         result.push(arr1.shift());
@@ -36,7 +38,8 @@ var mergeAlternately2 = function (word1, word2) {
 };
 
 var mergeAlternately3 = function (word1, word2) {
-    const result = [], l = Math.min(word1.length, word2.length);
+    const result = [],
+        l = Math.min(word1.length, word2.length);
 
     for (let i = 0; i < l; i++) {
         result.push(word1[i]);
@@ -44,17 +47,18 @@ var mergeAlternately3 = function (word1, word2) {
     }
 
     if (word1.length < word2.length) {
-        return result.join("").concat(word2.slice(l))
+        return result.join("").concat(word2.slice(l));
     } else if (word2.length < word1.length) {
-        return result.join("").concat(word1.slice(l))
+        return result.join("").concat(word1.slice(l));
     } else {
         return result.join("");
     }
-
 };
 
 var mergeAlternately4 = function (word1, word2) {
-    let res = "", i = 0, l = Math.min(word1.length, word2.length);
+    let res = "",
+        i = 0,
+        l = Math.min(word1.length, word2.length);
 
     while (i < l) {
         res += word1[i] + word2[i];
@@ -64,6 +68,7 @@ var mergeAlternately4 = function (word1, word2) {
     return res + word1.slice(i) + word2.slice(i);
 };
 
-let word1 = "abc", word2 = "pqrst";
+let word1 = "abc",
+    word2 = "pqrst";
 
 console.log(mergeAlternately1(word1, word2));

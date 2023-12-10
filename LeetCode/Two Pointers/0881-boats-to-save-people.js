@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/boats-to-save-people/
     @title 881. Boats to Save People
     @difficulty Medium
+    @url https://leetcode.com/problems/boats-to-save-people/
 
     @description
         The i-th person has weight people[i], and each boat can carry a maximum weight of limit.
@@ -16,8 +16,9 @@
 var numRescueBoats = function (people, limit) {
     people.sort((a, b) => a - b);
 
-    let boats = 0;
-    let l = 0, r = people.length - 1;
+    let boats = 0,
+        l = 0,
+        r = people.length - 1;
 
     while (l <= r) {
         if (people[l] + people[r] <= limit) l++;
