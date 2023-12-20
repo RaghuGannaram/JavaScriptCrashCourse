@@ -1,4 +1,4 @@
-//--------------------var is function scoped---------------------------
+//--------------------------------------var is function scoped---------------------------------------
 var a = 100;
 function one() {
   var a = 150;
@@ -14,7 +14,7 @@ var b = 100;
 }
 console.log(b);
 
-//----------------------let is block scoped----------------------------
+//---------------------------------------let is block scoped----------------------------------------
 let c = 100;
 function two() {
   let c = 150;
@@ -44,14 +44,25 @@ function four() {
   let res = three();
   console.log(res);
 }
+four()
 
 //Throws error as if three is assigned number, then the function declaration will be replaced with number and 3() will throw error
 // var three = 3
-three.n = 3 //this won't throw error as it is a property of function object
-console.log(three);
-four();
-var three = 3;
-console.log(three);
+// three.n = 3 //this won't throw error as it is a property of function object
+// console.log(three);
+// four();
+// var three = 3;
+// console.log(three);
+
+function test1(){
+  console.log(x);
+}
+
+// var x = 1;
+test1();
+var x = 1;
+
+
 
 //-------------------------------------Variable shadowing---------------------------------
 var varX = 10;
@@ -75,3 +86,4 @@ function five() {
 five();
 console.log(varX);
 console.log(letX);
+
