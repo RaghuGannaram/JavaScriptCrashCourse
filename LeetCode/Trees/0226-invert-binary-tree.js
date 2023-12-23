@@ -1,66 +1,43 @@
 /**
- * @param {TreeNode} root
- * @return {TreeNode}
+    @title 226. Invert Binary Tree
+    @difficulty easy
+    @url https://leetcode.com/problems/invert-binary-tree/
+
+	@description	
+		Given the root of a binary tree, invert the tree, and return its root.
+
+	@param {TreeNode} root
+	@return {TreeNode}
  */
 
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
+var invertTreeRecursive = function (root) {
+    return dfs(root);
 
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			root = new TreeNode(arr[index]);
-			root.left = insertLevelOrder(arr, 2 * index + 1);
-			root.right = insertLevelOrder(arr, 2 * index + 2);
-		}
-	}
-	return root;
-}
+    function dfs(node) {
+        if (!node) return null;
 
-var invertTree1 = function (root) {
-	dfs(root);
-	return root;
+        [node.left, node.right] = [node.right, node.left];
 
-	function dfs(node) {
-		if (!node) return;
-		let temp = node.left;
-		node.left = node.right;
-		node.right = temp;
-		dfs(node.left);
-		dfs(node.right);
-	}
+        dfs(node.left);
+        dfs(node.right);
+
+        return node;
+    }
 };
 
-var invertTree2 = function (root) {
-	if (!root) return null;
-	
-	let left = invertTree2(root.left);
-	let right = invertTree2(root.right);
+var invertTreeIterative = function (root) {
+    if (!root) return null;
 
-	root.left = right;
-	root.right = left;
+    let queue = [root];
 
-	return root;
+    while (queue.length) {
+        let current = queue.shift();
+
+        [current.left, current.right] = [current.right, current.left];
+
+        current.left && queue.push(current.left);
+        current.right && queue.push(current.right);
+    }
+
+    return root;
 };
-
-var invertTree3 = function (root) {
-	if (!root) return null;
-
-	[root.left, root.right] = [root.right, root.left];
-
-	invertTree(root.left);
-	invertTree(root.right);
-
-	return root;
-};
-
-let root = insertLevelOrder([4, 2, 7, 1, 3, 6, 9]);
-
-console.log(root);
-console.log(invertTree1(root));

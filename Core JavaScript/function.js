@@ -1,151 +1,163 @@
-//-----------------------------------------------Function Statement-----------------------------------------
+//-----------------------------------------------Function Statement----------------------------------------
 function funcStmt(name) {
-	return `Hello ${name}..! Executed by ${funcStmt.name}`;
+    return `Hello ${name}..! Executed by ${funcStmt.name}`;
 }
 
 console.log(funcStmt("John Doe"));
 console.log(funcStmt.toString());
 
-//-----------------------------------------------Function Expression-----------------------------------------
-var funcExpr = function (name) {
-	return `Hello ${name}..! Executed by ${funcExpr.name}`;
+//-------------------------------------------Function Expression (named)------------------------------------
+var namedFuncExpr = function funcName(name) {
+    return `Hello ${name}..! Executed by ${namedFuncExpr.name}`;
 };
 
-console.log(funcExpr("John Doe"));
-
-//--------------------------------------Function Expression with Arrow functions---------------------------
-var funcExprArr = (name) => {
-	return `Hello ${name}..! Executed by ${funcExprArr.name}`;
-};
-
-console.log(funcExprArr("John Doe"));
-
-//----------------------------------------------Named Function Expression-----------------------------------
-var namedFuncExpr1 = function funcName(name) {
-	return `Hello ${name}..! Executed by ${namedFuncExpr1.name}`;
-};
-
-console.log(namedFuncExpr1("John Doe"));
+console.log(namedFuncExpr("John Doe"));
 
 try {
-	console.log(funcName("John Doe"));
+    console.log(funcName("John Doe"));
 } catch (err) {
-	console.log(err);
+    console.log(err);
 }
 
-//----------------------------------------------Anonymus Function-----------------------------------------
-//Results in Syntax error | No use of try catch...
+//------------------------------------------Function Expression (anonymous)----------------------------------
+var anonymousFuncExpr = function (name) {
+    return `Hello ${name}..! Executed by ${anonymousFuncExpr.name}`;
+};
+
+console.log(anonymousFuncExpr("John Doe"));
+
+//--------------------------------------------Function Expression (arrow)-------------------------------------
+var arrFuncExpr = (name) => {
+    return `Hello ${name}..! Executed by ${arrFuncExpr.name}`;
+};
+
+console.log(arrFuncExpr("John Doe"));
+
+//----------------------------------------------Anonymus Function----------------------------------------------
 try {
-	// function (){
-	// 	return `Hello world`;
-	// }
+    // function (){            //Syntax error | Function statement requires a function name
+    // 	return `Hello world`;
+    // }
 } catch (err) {
-	// console.log(err)
+    // console.log(err)
+}
+
+try {
+    eval(`
+		function(){
+			return "Hello world";
+		}
+	`);
+} catch (err) {
+    console.log(err);
 }
 
 //---------------------------------------Immediatey Invokable Function Expression---------------------------
 (function () {
-	console.log(`Hello world...!`);
+    console.log(`Hello world...!`);
 })();
 
 (function (name) {
-	console.log(`Hello ${name}...!`);
+    console.log(`Hello ${name}...!`);
 })("John Doe");
 
 //-----------------------------------------------Function Properies-----------------------------------------
 
-function funcProp(param1, param2, param3, ...restParams) {
-	let a = param1,
-		b = param2,
-		c = param3,
-		d = restParams;
+function propsFunc(param1, param2, param3, ...restParams) {
+    console.log(param1, param2, param3, restParams);
 
-	console.log("Type of arguments : ", typeof arguments);
-	console.log(`Listof argumets passed : ${[...arguments]}`);
-	console.log(`Name of the function : ${funcProp.name}`);
-	console.log(`Arguments of the function : ${[...funcProp.arguments]}`);
-	console.log(`Length of function arguments : ${funcProp.length}`);
-	console.log(`Calling function : ${funcProp.caller.name}`);
-	console.log(`Calling calling function : ${funcProp.caller.caller.name}`);
+    console.log(arguments, this, new.target);
+
+    console.log(`Name of the function 				:`, propsFunc.name);
+    console.log(`Length of function arguments 		:`, propsFunc.length);
+    console.log(`Prototype of function arguments	:`, propsFunc.prototype);
+    console.log(`Arguments of the function 			:`, propsFunc.arguments);
+    console.log(`Calling function 					:`, propsFunc.caller.name);
+    console.log(`Calling calling function 			:`, propsFunc.caller.caller.name);
+    console.log(`Calling calling calling funcion   	:`, propsFunc.caller.caller.caller.name);
 }
 
 function callerFunc() {
-	funcProp(1, 2, 3, 4, 5);
+    propsFunc(1, 2, 3, 4, 5);
 }
 
 function callerCallerFunc() {
-	callerFunc();
+    callerFunc();
 }
 
-callerCallerFunc();
+function callerCallerCallerFunc() {
+    callerCallerFunc();
+}
+
+callerCallerCallerFunc();
 
 //------------------------------------------Function.prototype.toString()--------------------------------------------
-var funcProto = function () {
-	console.log("Hello world...!");
+var protoFunc = function () {
+    console.log("Hello world...!");
 };
-console.log(funcProto.toString());
+console.log(protoFunc.toString());
 
 //-----------------------------------------------Function as Object-----------------------------------------
 
-function funcObj(param1, param2, param3, param4) {
-	return `Hello world...!`;
+function objFunc(param1, param2, param3, param4) {
+    return `Hello world...!`;
 }
 
-console.log(funcObj);
+console.log(objFunc);
 
-funcObj.a = 1;
-funcObj.b = 2;
-funcObj.c = 3;
+objFunc.a = 1;
+objFunc.b = 2;
+objFunc.c = 3;
 
-funcObj.printProps = function () {
-	return `a: ${this.a} | b:${this.b} | c: ${this.c}`;
+objFunc.printProps = function () {
+    return `a: ${this.a} | b:${this.b} | c: ${this.c}`;
 };
 
-console.log(funcObj);
-console.log(funcObj.name);
-console.log(funcObj.length);
-console.log(funcObj.arguments);
-console.log(funcObj.prototype);
+console.log(objFunc);
+console.log(objFunc.name);
+console.log(objFunc.length);
+console.log(objFunc.arguments);
+console.log(objFunc.prototype);
 
-console.log(funcObj.printProps());
-console.log(funcObj());
-console.log(funcObj.toString());
+console.log(objFunc.printProps());
+console.log(objFunc());
+console.log(objFunc.toString());
 
 //-----------------------------------------------Function on a context-----------------------------------------
 const context = {
-	firstName: "John",
-	lastName: "Doe",
+    firstName: "John",
+    lastName: "Doe",
 };
 
 var firstName = "Jane";
 var lastName = "Doe";
 
 context.info = function () {
-	return `First name: ${this.firstName} | Last name : ${this.lastName}`;
+    return `First name: ${this.firstName} | Last name : ${this.lastName}`;
 };
 console.log(context.info());
 
 function greet(salutation) {
-	return `Hello ${salutation} ${this.firstName} ${this.lastName}...!`;
+    return `Hello ${salutation} ${this.firstName} ${this.lastName}...!`;
 }
 console.log(greet.call(context, "Mr."));
 console.log(greet.call({ firstName, lastName }, "M."));
 
 //-----------------------------------------------Once Function-----------------------------------------
 function once1(func) {
-	let called = false;
+    let called = false;
 
-	return function () {
-		if (!called) {
-			called = true;
-			return func();
-		}
-		return;
-	};
+    return function () {
+        if (!called) {
+            called = true;
+            return func();
+        }
+        return;
+    };
 }
 
 var greetOnce1 = once1(function () {
-	return `Greeting only once...!`;
+    return `Greeting only once...!`;
 });
 
 console.log(greetOnce1());
@@ -153,22 +165,22 @@ console.log(greetOnce1());
 console.log(greetOnce1());
 
 function once2(func) {
-	var ran = false,
-		memo;
-	return function () {
-		if (ran) return memo;
-		ran = true;
-		memo = func.apply(this, arguments);
-		func = null;
-		// memo = func();
-		return memo;
-	};
+    var ran = false,
+        memo;
+    return function () {
+        if (ran) return memo;
+        ran = true;
+        memo = func.apply(this, arguments);
+        func = null;
+        // memo = func();
+        return memo;
+    };
 }
 let global = 1;
 
 const shouldNotBeCalledAgain = function (k) {
-	global += k;
-	return global;
+    global += k;
+    return global;
 };
 var incrementGlobal = once2(shouldNotBeCalledAgain);
 // console.log(shouldNotBeCalledAgain(10));
@@ -178,19 +190,19 @@ console.log(incrementGlobal(10));
 
 //-----------------------------------------------Nth time callable Function-----------------------------------------
 function NthTimeCallable(func, n) {
-	let count = 0;
+    let count = 0;
 
-	return function () {
-		if (count < n) {
-			count++;
-			return func();
-		}
-		return `${func.name} has already been called ${count} times...!`;
-	};
+    return function () {
+        if (count < n) {
+            count++;
+            return func();
+        }
+        return `${func.name} has already been called ${count} times...!`;
+    };
 }
 
 var greetThreePeople = NthTimeCallable(function Greet() {
-	return `Hello bro...!`;
+    return `Hello bro...!`;
 }, 3);
 
 console.log(greetThreePeople());
@@ -201,32 +213,32 @@ console.log(greetThreePeople());
 //-------------------------------------------this in Arrow Fn vs Fn statement-----------------------------------------
 
 function fnStatement() {
-	console.log(this);
+    console.log(this);
 }
 const fnArrow = () => {
-	console.log(this === global);
+    console.log(this === global);
 };
 
 fnStatement();
 fnArrow();
 
 const scopeObj = {
-	state: "simple state",
-	fnStatement: function () {
-		console.log(this);
-	},
-	fnArrow: () => {
-		console.log(this);
-	},
+    state: "simple state",
+    fnStatement: function () {
+        console.log(this);
+    },
+    fnArrow: () => {
+        console.log(this);
+    },
 };
 const state = "global state";
 scopeObj.fnStatement();
 scopeObj.fnArrow();
 
 const enclosingObj = {
-	state: "enclosing state",
-	fn : function(){
-		scopeObj.fnArrow();
-	}
-}
+    state: "enclosing state",
+    fn: function () {
+        scopeObj.fnArrow();
+    },
+};
 enclosingObj.fn();

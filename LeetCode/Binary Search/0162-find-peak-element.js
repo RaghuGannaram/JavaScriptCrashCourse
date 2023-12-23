@@ -14,47 +14,65 @@
  */
 
 var findPeakElement1 = function (nums) {
-    let l = 0, r = nums.length - 1, m;
+    let l = 0,
+        r = nums.length - 1,
+        m;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
 
-        if (nums[m] < nums[m + 1]) l = m + 1;
-        else r = m - 1;
+        nums[m] < nums[m + 1] ? (l = m + 1) : (r = m - 1);
     }
 
     return l;
 };
 
-
 var findPeakElement2 = function (nums) {
-    let l = 0, r = nums.length - 1, m;
+    let l = 0,
+        r = nums.length - 1,
+        m;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
 
-        if (nums[m] < nums[m - 1]) r = m - 1;
-        else l = m + 1;
+        nums[m] < nums[m - 1] ? (r = m - 1) : (l = m + 1);
     }
 
     return r;
 };
 
 var findPeakElement3 = function (nums) {
-    let l = 0, r = nums.length - 1, m;
+    let l = 0,
+        r = nums.length - 1,
+        m;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
 
-        if ((nums[m - 1] ?? Number.MIN_SAFE_INTEGER) < nums[m] &&
-            nums[m] > (nums[m + 1] ?? Number.MIN_SAFE_INTEGER))
+        if ((nums[m - 1] ?? Number.MIN_SAFE_INTEGER) < nums[m] && nums[m] > (nums[m + 1] ?? Number.MIN_SAFE_INTEGER))
             return m;
 
-        if (nums[m] < nums[m + 1]) l = m + 1;
-        else r = m - 1;
+        nums[m] < nums[m + 1] ? (l = m + 1) : (r = m - 1);
     }
 
     return l;
+};
+
+var findPeakElement4 = function (nums) {
+    let l = 0,
+        r = nums.length - 1,
+        m;
+
+    while (l <= r) {
+        m = Math.floor((l + r) / 2);
+
+        if ((nums[m - 1] ?? Number.MIN_SAFE_INTEGER) < nums[m] && nums[m] > (nums[m + 1] ?? Number.MIN_SAFE_INTEGER))
+            return m;
+
+        nums[m] < nums[m - 1] ? (r = m - 1) : (l = m + 1);
+    }
+
+    return r;
 };
 
 let nums = [1, 2, 3, 1];

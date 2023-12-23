@@ -1,83 +1,66 @@
 /**
- * @param {TreeNode} root
- * @return {number[]}
+	@title 199. Binary Tree Right Side View
+	@difficulty medium
+	@url https://leetcode.com/problems/binary-tree-right-side-view/
+
+	@description
+		Given the root of a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+		Example 1:
+			Input: root = [1,2,3,null,5,null,4]
+			Output: [1,3,4]
+		Example 2:
+			Input: root = [1,null,3]
+			Output: [1,3]
+		Example 3:
+			Input: root = []
+			Output: []
+
+	@param {TreeNode} root
+	@return {number[]}
  */
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
 
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			if (arr[index]) {
-				root = new TreeNode(arr[index]);
-				root.left = insertLevelOrder(arr, 2 * index + 1);
-				root.right = insertLevelOrder(arr, 2 * index + 2);
-			}
-		}
-	}
-	return root;
-}
+var rightSideViewRecursive = function (root) {
+    let res = [];
 
-var rightSideView1 = function (root) {
-	let result = [];
+    if (!root) return res;
 
-	dfs(root, 0);
+    dfs(root, 0);
 
-	return result;
+    return res;
 
-	function dfs(root, level) {
-		if (!root) return;
-		if (result[level] === undefined) {
-			result.push(root.val);
-		}
-		dfs(root.right, level + 1);
-		dfs(root.left, level + 1);
-	}
+    function dfs(node, depth) {
+        if (!node) return;
+
+        res[depth] = node.val;
+
+        dfs(node.left, depth + 1);
+        dfs(node.right, depth + 1);
+    }
 };
 
-var rightSideView2 = function (root) {
-	let result = [],
-		current,
-		l;
-	if (!root) return result;
-	bfs([root]);
-	return result;
+var rightSideViewIterative = function (root) {
+    let res = [],
+        current,
+        view,
+        queue = [],
+        l;
 
-	function bfs(queue) {
-		while (queue.length > 0) {
-			l = queue.length;
-			for (let i = 0; i < l; i++) {
-				current = queue.shift();
-				current.left && queue.push(current.left);
-				current.right && queue.push(current.right);
-				if (i === l - 1) result.push(current.val);
-			}
-		}
-	}
+    if (!root) return res;
+
+    queue.push(root);
+
+    while (queue.length > 0) {
+        l = queue.length;
+
+        for (let i = 0; i < l; i++) {
+            current = queue.shift();
+            view = current.val;
+
+            current.left && queue.push(current.left);
+            current.right && queue.push(current.right);
+        }
+
+        res.push(view);
+    }
+    return res;
 };
-
-var rightSideView3 = function (root) {
-	if (!root) return [];
-	let res = [];
-
-	dfs(root, 0);
-
-	return res;
-
-	function dfs(root, d) {
-			if (!root) return;
-			res[d] = root.val;
-			dfs(root.left, d + 1);
-			dfs(root.right, d + 1);
-	}
-};
-
-let root = insertLevelOrder([1, 2, 3, null, 5, null, 4]);
-
-console.log(rightSideView1(root));

@@ -1,42 +1,18 @@
 /**
- * @param {TreeNode} root
- * @return {number}
+ 	@title 104. Maximum Depth of Binary Tree
+ 	@difficulty easy
+ 	@url https://leetcode.com/problems/maximum-depth-of-binary-tree/
+
+	@description
+		Given the root of a binary tree, return its maximum depth.
+		A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+	@param {TreeNode} root
+	@return {number}
  */
 
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
+var maxDepthRecursive = function (root) {
+    if (!root) return 0;
 
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			root = new TreeNode(arr[index]);
-			root.left = insertLevelOrder(arr, 2 * index + 1);
-			root.right = insertLevelOrder(arr, 2 * index + 2);
-		}
-	}
-	return root;
-}
-
-var maxDepth1 = function (root) {
-	if (!root) return 0;
-	return Math.max(maxDepth1(root.left), maxDepth1(root.right)) + 1;
+    return 1 + Math.max(maxDepthDFS(root.left), maxDepthDFS(root.right));
 };
-
-var maxDepth2 = function (root) {
-	if (!root) return 0;
-	let left = maxDepth1(root.left);
-	let right = maxDepth1(root.right);
-	let max = Math.max(left, right);
-	return max + 1;
-};
-
-let root = insertLevelOrder([3, 9, 20, null, null, 15, 7]);
-
-console.log(root);
-console.log(maxDepth2(root));

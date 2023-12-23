@@ -2,9 +2,11 @@ let map = new Map();
 
 console.log(map);
 console.log(typeof map);
-console.log(map instanceof Object);
-console.log(map instanceof Map);
+
 console.log(map instanceof Array);
+console.log(map instanceof Set);
+console.log(map instanceof Map);
+console.log(map instanceof Object);
 
 map.set(true, "boolValue");
 console.log(map);
@@ -28,9 +30,10 @@ console.log(map.size);
 console.log(map.has(2));
 console.log(map.get(2));
 console.log(map.set(12));
+console.log(map.set(12, "twelve"));
 console.log(map.set(12));
 
-console.log(map.delete(2))
+console.log(map.delete(2));
 
 console.log(map);
 console.log(map.size);
@@ -56,31 +59,20 @@ for (let i of map.keys()) console.log(typeof i);
 for (let i of map.keys()) console.log(i instanceof Array);
 for (let i of map.keys()) console.log(i instanceof Object);
 
-try {
-	new Map([10, 20, 30, 40, 50]);
-} catch (error) {
-	console.log(error);
-}
-
-try {
-	new Map({ 10: "a", 20: "b", 40: "c", 50: "d", 30: "e", 30: "f" });
-} catch (error) {
-	console.log(error);
-}
-
 let mapTwo = new Map([[10], [20], [40], [50], [30], [30]]);
+console.log(mapTwo);
 for (let i of mapTwo) console.log(i);
 for (let i of mapTwo.keys()) console.log(i);
 for (let i of mapTwo.values()) console.log(i);
 for (let i of mapTwo.entries()) console.log(i);
 
 let mapThree = new Map([
-	[10, "a"],
-	[20, "b"],
-	[40, "c"],
-	[50, "d"],
-	[30, "e"],
-	[30, "f"],
+    [10, "a"],
+    [20, "b"],
+    [40, "c"],
+    [50, "d"],
+    [30, "e"],
+    [30, "f"],
 ]);
 for (let i of mapThree) console.log(i);
 for (let i of mapThree.keys()) console.log(i);
@@ -90,41 +82,48 @@ for (let i of mapThree.entries()) console.log(i);
 console.log(mapThree.clear());
 for (let i of mapThree) console.log(i);
 
-let mapFour = new Map([{ 10: "a" }]);
-console.log(mapFour);
+try {
+    console.log(
+        new Map([
+            [1, 2, 3],
+            [4, 5, 6],
+        ])
+    );
+} catch (error) {
+    console.log(error);
+}
 
 try {
-	console.log(new Map("123"));
+    console.log(new Map([1, 2, 3]));
 } catch (error) {
-	console.log(error);
+    console.log(error);
 }
+
 try {
-	console.log(new Map([1, 2, 3]));
+    console.log(new Map(["a", "b", "c"]));
 } catch (error) {
-	console.log(error.name);
-	console.log(error.message);
-	console.log(error.stack);
-	console.log(error.toString());
+    console.log(error);
 }
+
 try {
-	console.log(
-		new Map([
-			[1, "one"],
-			[2, "two"],
-			[3, "three"],
-		])
-	);
+    console.log(new Map([{ a: 1 }, { b: 2 }, { c: 3 }]));
 } catch (error) {
-	console.log(error);
+    console.log(error);
 }
+
 try {
-	console.log(new Map(["123", "456", "789"]));
+    console.log(
+        new Map([
+            { 0: "key1", 1: "val1" },
+            { 0: "key2", 1: "val2" },
+            { 0: "key3", 1: "val3" },
+            { 0: true, 1: "boolValue" },
+            { 0: "strKey", 1: "strValue" },
+            { 0: 1, 1: "numValue" },
+            { 0: [10, 20, 30], 1: "arrValue" },
+            { 0: { a: 1, b: 2 }, 1: "objValue" },
+        ])
+    );
 } catch (error) {
-	console.log(error);
+    console.log(error);
 }
-try {
-	console.log(new Map([{ a: "123" }, { b: "456" }, { c: "789" }]));
-} catch (error) {
-	console.log(error);
-}
-console.log(new Map("abc"))

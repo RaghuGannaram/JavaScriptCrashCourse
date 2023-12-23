@@ -1,58 +1,51 @@
 /**
- * @param {TreeNode} root
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {TreeNode}
+	@title 235. Lowest Common Ancestor of a Binary Search Tree
+	@difficulty Easy
+	@url https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+	@description
+		Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
+		According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q 
+		as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”	
+
+	@param {TreeNode} root
+	@param {TreeNode} p
+	@param {TreeNode} q
+	@return {TreeNode}
  */
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
 
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			if (arr[index]) {
-				root = new TreeNode(arr[index]);
-				root.left = insertLevelOrder(arr, 2 * index + 1);
-				root.right = insertLevelOrder(arr, 2 * index + 2);
-			}
-		}
-	}
-	return root;
-}
+var lowestCommonAncestorRecursive = function (root, p, q) {
+    return dfs(root, p, q);
 
-var lowestCommonAncestor1 = function (root, p, q) {
-	if (p.val < root.val && q.val < root.val) {
-		return lowestCommonAncestor1(root.left, p, q);
-	} else if (p.val > root.val && q.val > root.val) {
-		return lowestCommonAncestor1(root.right, p, q);
-	} else {
-		return root;
-	}
+    function dfs(node, p, q) {
+        if (p.val < node.val && q.val < node.val) {
+            return dfs(node.left, p, q);
+        }
+
+        if (p.val > node.val && q.val > node.val) {
+            return dfs(node.right, p, q);
+        }
+
+        return node;
+    }
 };
 
-var lowestCommonAncestor2 = function (root, p, q) {
-	while (root !== null) {
-		if (root.val < p.val && root.val < q.val) {
-			root = root.right;
-			continue;
-		}
+var lowestCommonAncestorIterative = function (root, p, q) {
+    let node = root;
 
-		if (p.val < root.val && q.val < root.val) {
-			root = root.left;
-			continue;
-		}
+    while (node !== null) {
+        if (p.val < node.val && q.val < node.val) {
+            node = node.left;
+            continue;
+        }
 
-		break;
-	}
+        if (p.val > node.val && q.val > node.val) {
+            node = node.right;
+            continue;
+        }
 
-	return root;
+        break;
+    }
+
+    return node;
 };
-
-let root = insertLevelOrder([6, 2, 8, 0, 4, 7, 9, null, null, 3, 5]);
-console.log(lowestCommonAncestor1(root, new TreeNode(3), new TreeNode(5)));

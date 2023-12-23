@@ -1,72 +1,61 @@
 /**
- * @param {TreeNode} root
- * @return {number}
+    @title 543. Diameter of Binary Tree
+    @difficulty easy
+    @url https://leetcode.com/problems/diameter-of-binary-tree/
+
+	@description
+		Given the root of a binary tree, return the length of the diameter of the tree.
+		The diameter of a binary tree is the length of the longest path between any two nodes in a tree.
+		This path may or may not pass through the root.
+		The length of a path between two nodes is represented by the number of edges between them.
+
+	@param {TreeNode} root
+	@return {number}
  */
 
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
+var diameterOfBinaryTreeRecursive = function (root) {
+    let res = 0;
 
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			root = new TreeNode(arr[index]);
-			root.left = insertLevelOrder(arr, 2 * index + 1);
-			root.right = insertLevelOrder(arr, 2 * index + 2);
-		}
-	}
-	return root;
-}
+    dfs(root);
 
-var diameterOfBinaryTree1 = function (root) {
-	let dist,
-		max = 0,
-		current,
-		queue = [];
+    return res;
 
-	queue.push(root);
+    function dfs(node) {
+        if (!node) return 0;
 
-	while (queue.length > 0) {
-		current = queue.shift();
-		dist = dfs(current.left) + dfs(current.right);
-		max = Math.max(max, dist);
-		if (current.left && current.right) {
-			queue.push(current.left);
-			queue.push(current.right);
-		}
-	}
+        const left = dfs(node.left);
+        const right = dfs(node.right);
 
-	return max;
+        res = Math.max(res, left + right);
 
-	function dfs(root) {
-		if (!root) return 0;
-		return Math.max(dfs(root.left), dfs(root.right)) + 1;
-	}
+        return 1 + Math.max(left, right);
+    }
 };
 
-var diameterOfBinaryTree2 = function (root) {
-	let result = 0;
+var diameterOfBinaryTreeIterative = function (root) {
+    let dist,
+        max = 0,
+        current,
+        queue = [];
 
-	dfs(root);
+    queue.push(root);
 
-	return result;
+    while (queue.length > 0) {
+        current = queue.shift();
 
-	function dfs(root) {
-		if (!root) return -1;
+        dist = dfs(current.left) + dfs(current.right);
 
-		let left = dfs(root.left);
-		let right = dfs(root.right);
+        max = Math.max(max, dist);
+        if (current.left && current.right) {
+            queue.push(current.left);
+            queue.push(current.right);
+        }
+    }
 
-		result = Math.max(result, 2 + left + right);
+    return max;
 
-		return 1 + Math.max(left, right);
-	}
+    function dfs(root) {
+        if (!root) return 0;
+        return 1 + Math.max(dfs(root.left), dfs(root.right));
+    }
 };
-let root = insertLevelOrder([1, 2, 3, 4, 5, 6, 7]);
-
-console.log(diameterOfBinaryTree1(root));

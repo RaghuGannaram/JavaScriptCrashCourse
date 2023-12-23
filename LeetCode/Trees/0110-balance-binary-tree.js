@@ -1,46 +1,31 @@
 /**
- * @param {TreeNode} root
- * @return {boolean}
+    @title 110. Balanced Binary Tree
+    @difficulty easy
+    @url https://leetcode.com/problems/balanced-binary-tree/
+
+	@description
+		Given a binary tree, determine if it is height-balanced.
+		For this problem, a height-balanced binary tree is defined as:
+		a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
+
+	@param {TreeNode} root
+	@return {boolean}
  */
 
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
-
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			if (arr[index]) {
-				root = new TreeNode(arr[index]);
-				root.left = insertLevelOrder(arr, 2 * index + 1);
-				root.right = insertLevelOrder(arr, 2 * index + 2);
-			}
-		}
-	}
-	return root;
-}
-
 var isBalanced = function (root) {
-	if (!root) return true;
+    const result = dfs(root);
 
-	return checkBalance(root) !== -1;
+    return result.balanced;
 
-	function checkBalance(root) {
-		if (!root) return 0;
-		let left = checkBalance(root.left);
-		let right = checkBalance(root.right);
-		if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
-			return -1;
-		}
-		return 1 + Math.max(left, right);
-	}
+    function dfs(node) {
+        if (!node) return { height: 0, balanced: true };
+
+        const leftTree = dfs(node.left);
+        const rightTree = dfs(node.right);
+
+        const height = 1 + Math.max(leftTree.height, rightTree.height);
+        const balanced = Math.abs(leftTree.height - rightTree.height) <= 1 && leftTree.balanced && rightTree.balanced;
+
+        return { height, balanced };
+    }
 };
-
-let root = insertLevelOrder([1, 2, null, 4, 5, null, null, 6, 7]);
-
-console.log(isBalanced(root));

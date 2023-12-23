@@ -11,12 +11,27 @@
     @param {number} n
     @return {number}
  */
+
 var arrangeCoins1 = function (n) {
-    let l = 0, r = n, m, acc;
+    let row = 1;
+
+    while (n >= row) {
+        n = n - row;
+        row++;
+    }
+
+    return row - 1;
+};
+
+var arrangeCoins2 = function (n) {
+    let l = 0,
+        r = n,
+        m,
+        acc;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
-        acc = m * (m + 1) / 2;
+        acc = (m * (m + 1)) / 2;
 
         if (acc === n) return m;
 
@@ -27,15 +42,39 @@ var arrangeCoins1 = function (n) {
     return r;
 };
 
-var arrangeCoins2 = function (n) {
-    let row = 1;
+var arrangeCoins3 = function (n) {
+    let l = 1,
+        r = Math.floor((Math.sqrt(8 * n + 1) - 1) / 2),
+        m,
+        cur;
 
-    while (n >= row) {
-        n = n - row;
-        row++;
+    while (l <= r) {
+        m = Math.floor((l + r) / 2);
+        cur = (m * (m + 1)) / 2;
+        if (cur === n) return m;
+
+        cur < n ? (l = m + 1) : (r = m - 1);
     }
 
-    return row - 1;
+    return r;
+};
+
+var arrangeCoins4 = function (n) {
+    let l = 1,
+        r = Math.floor((Math.sqrt(8 * n + 1) - 1) / 2),
+        m,
+        cur;
+
+    while (l <= r) {
+        m = Math.floor((l + r) / 2);
+        cur = (m * (m + 1)) / 2;
+
+        if (cur === n) return m;
+
+        cur < n ? (l = m + 1) : (r = m - 1);
+    }
+
+    return l - 1;
 };
 
 let n = 8;

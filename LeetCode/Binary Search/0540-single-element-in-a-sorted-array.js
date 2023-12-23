@@ -12,17 +12,19 @@
  */
 
 var singleNonDuplicate1 = function (nums) {
-    let l = 0, r = nums.length - 1, m;
+    let l = 0,
+        r = nums.length - 1,
+        m;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
 
+        if (nums[m - 1] !== nums[m] && nums[m] !== nums[m + 1]) return nums[m];
+
         if (m % 2 === 0) {
-            if (nums[m] === nums[m + 1]) l = m + 1;
-            else r = m - 1;
+            nums[m] === nums[m + 1] ? (l = m + 1) : (r = m - 1);
         } else {
-            if (nums[m] === nums[m - 1]) l = m + 1;
-            else r = m - 1;
+            nums[m] === nums[m - 1] ? (l = m + 1) : (r = m - 1);
         }
     }
 
@@ -30,22 +32,18 @@ var singleNonDuplicate1 = function (nums) {
 };
 
 var singleNonDuplicate2 = function (nums) {
-    let l = 0, r = nums.length - 1, m;
+    let l = 0,
+        r = nums.length - 1,
+        m;
 
-    while (l <= r) {
+    while (l < r) {
         m = Math.floor((l + r) / 2);
-        if (m % 2 === 0) {
-            if (nums[m] === nums[m + 1]) l = m + 1;
-            else if (nums[m - 1] === nums[m]) r = m - 1;
-            else return nums[m];
-        } else {
-            if (nums[m] === nums[m + 1]) r = m - 1;
-            else if (nums[m - 1] === nums[m]) l = m + 1;
-            else return nums[m];
-        }
+        if (m % 2 === 1) m--;
+
+        nums[m] === nums[m + 1] ? (l = m + 2) : (r = m);
     }
 
-    return nums[l - 1];
+    return nums[l];
 };
 
 let nums = [1, 1, 2, 3, 3, 4, 4, 8, 8];

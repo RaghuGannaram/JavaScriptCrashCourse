@@ -1,46 +1,29 @@
 /**
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {boolean}
+	@title 100. Same Tree
+	@difficulty easy
+    @url https://leetcode.com/problems/same-tree/
+    
+	@description
+		Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+		Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+	@param {TreeNode} p
+	@param {TreeNode} q
+	@return {boolean}
  */
 
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
+var isSameTreeRecursive = function (p, q) {
+    return travel(p, q);
 
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			if (arr[index]) {
-				root = new TreeNode(arr[index]);
-				root.left = insertLevelOrder(arr, 2 * index + 1);
-				root.right = insertLevelOrder(arr, 2 * index + 2);
-			}
-		}
-	}
-	return root;
-}
+    function travel(root1, root2) {
+        if (!root1 && !root2) {
+            return true;
+        }
+        
+        if (!root1 || !root2 || root1.val !== root2.val) {
+            return false;
+        }
 
-var isSameTree = function (p, q) {
-	return travel(p, q);
-
-	function travel(root1, root2) {
-		if (!root1 && !root2) {
-			return true;
-		}
-		if (!root1 || !root2 || root1.val !== root2.val) {
-			return false;
-		}
-		return travel(root1.left, root2.left) && travel(root1.right, root2.right);
-	}
+        return travel(root1.left, root2.left) && travel(root1.right, root2.right);
+    }
 };
-
-let root1 = insertLevelOrder([1, 2, null, 3]);
-let root2 = insertLevelOrder([1, 2, null, 3]);
-
-console.log(isSameTree(root1, root2));

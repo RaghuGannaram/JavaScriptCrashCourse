@@ -14,36 +14,36 @@
     @param {number} D
     @return {number}    
  */
-var shipWithinDays = function (weights, days) {
-    let res,
-        l = Math.max(...weights),
-        r = weights.reduce((acc, cur) => acc + cur, 0);
 
-    res = r;
+var shipWithinDays = function (weights, days) {
+    let l = Math.max(...weights),
+        r = weights.reduce((acc, cur) => acc + cur, 0),
+        m;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
 
-        if (calcDays(m) <= days) {
-            res = Math.min(res, m);
-            r = m - 1;
-        } else l = m + 1;
+        ship(m) ? (r = m - 1) : (l = m + 1);
     }
 
-    return res;
+    return l;
 
-    function calcDays(capacity) {
-        let days = 1;
+    function ship(capacity) {
+        let load = 0,
+            d = 0;
 
-        for (let i = 0, sum = 0; i < weights.length; i++) {
-            sum += weights[i];
+        for (let i = 0; i < weights.length; i++) {
+            load += weights[i];
 
-            if (sum > capacity) {
-                days++;
-                sum = weights[i];
+            if (load > capacity) {
+                d++;
+                load = weights[i];
             }
         }
-        return days;
+
+        if (load > 0) d++;
+
+        return d <= days;
     }
 };
 

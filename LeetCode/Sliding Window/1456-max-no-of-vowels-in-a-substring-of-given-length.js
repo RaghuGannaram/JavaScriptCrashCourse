@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
     @title 1456. Maximum Number of Vowels in a Substring of Given Length
     @difficulty Medium
+    @url https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
 
     @description
         Given a string s and an integer k.
@@ -13,24 +13,44 @@
     @return {number}
  */
 
-var maxVowels = function (s, k) {
-    let res = 0, cur = 0;
+var maxVowels1 = function (s, k) {
+    let res = 0,
+        r = 0,
+        count = 0,
+        window = "";
 
-    for (let i = 0; i < k; i++) {
-        if (/[aeiou]/.test(s[i])) cur++;
-    }
-    res = cur;
+    while (r < s.length) {
+        if (s[r].match(/[aeiou]/)) count++;
+        window += s[r];
 
-    for (let i = 1; i < s.length - (k - 1); i++) {
-        if (/[aeiou]/.test(s[i - 1])) cur--;
-        if (/[aeiou]/.test(s[i + k - 1])) cur++;
+        if (window.length > k) {
+            if (window[0].match(/[aeiou]/)) count--;
+            window = window.slice(1);
+        }
 
-        res = Math.max(res, cur);
+        res = Math.max(res, count);
+        r++;
     }
 
     return res;
 };
 
-let s = "abciiidef", k = 3;
+var maxVowels2 = function (s, k) {
+    let res = 0,
+        count = 0;
 
-console.log(maxVowels(s, k));   // 3
+    for (let i = 0; i < s.length; i++) {
+        if (/[aeiou]/.test(s[i])) count++;
+
+        if (i >= k && /[aeiou]/.test(s[i - k])) count--;
+
+        res = Math.max(res, count);
+    }
+
+    return res;
+};
+
+let s = "abciiidef",
+    k = 3;
+
+console.log(maxVowels1(s, k)); // 3

@@ -1,95 +1,46 @@
 /**
- * @param {ListNode} head
- * @param {number} n
- * @return {ListNode}
+	@title 19. Remove Nth Node From End of List
+	@difficulty Medium
+	@url https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+
+	@description
+		Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+	@params {ListNode} head
+	@params {number} n
+	@return {ListNode}
  */
 
-class ListNode {
-	constructor(val) {
-		this.val = val;
-		this.next = null;
-	}
-}
+var removeNthFromEnd = function (head, n) {
+    let length = getLength(head),
+        pos,
+        prev = null,
+        current = head;
 
-function generateLinkedList(arr) {
-	return generate(arr);
+    pos = length - n;
 
-	function generate(list) {
-		if (!list.length) return null;
+    if (pos === 0) {
+        head = head.next;
+        return head;
+    }
 
-		let node = new ListNode(list.shift());
-		node.next = generate(list);
-		return node;
-	}
-}
+    for (let i = 1; i <= pos; i++) {
+        prev = current;
+        current = current.next;
+    }
 
-function generateArray(head) {
-	let result = [];
-	while (head) {
-		result.push(head.val);
-		head = head.next;
-	}
-	return result;
-}
+    prev.next = current.next;
 
-var removeNthFromEnd1 = function (head, n) {
-	let i = 0,
-		current = head,
-		prev = null,
-		pos = getLength(head) - n;
+    return head;
 
-	if (pos === 0) {
-		head = head.next;
-		return head;
-	}
+    function getLength(head) {
+        let length = 0;
 
-	while (current) {
-		if (pos === i) {
-			prev.next = current.next;
-			return head;
-		}
-		prev = current;
-		current = current.next;
-		i++;
-	}
+        while (head) {
+            length++;
+            head = head.next;
+        }
 
-	function getLength(head) {
-		let l = 0;
-		while (head) {
-			l++;
-			head = head.next;
-		}
-		return l;
-	}
-	return head;
+        return length;
+    }
 };
-
-var removeNthFromEnd2 = function (head, n) {
-	let current = head,
-		pos = getLength(head) - n;
-
-	if (pos === 0) {
-		head = head.next;
-		return head;
-	}
-
-	for (let i = 0; i < pos - 1; i++) {
-		current = current.next;
-	}
-
-	current.next = current.next.next;
-
-	function getLength(head) {
-		let l = 0;
-		while (head) {
-			l++;
-			head = head.next;
-		}
-		return l;
-	}
-	return head;
-};
-
-let head = generateLinkedList([1, 2, 3, 4, 5]);
-let result = removeNthFromEnd1(head, 2);
-console.log(generateArray(result));

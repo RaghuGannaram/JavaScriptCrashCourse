@@ -3,7 +3,7 @@ let numbers = [234, 43, 234, -57, -56, -20, 55, 63, 5, 6, 235, 547];
 let planets = ["Mercury", "Venus", "Earth", "Mars", "Jupitor", "Saturn", "Uranus", "Neptune", "Pluto"];
 
 //-----------------------------------------------Array() constructor----------------------------
-//(n)=> [1...n], (n1,n2..)=> [n1,n2,...] | Shallow Copies 
+//(n)=> [1...n], (n1,n2..)=> [n1,n2,...] | Shallow Copies
 console.log(new Array());
 console.log(new Array().length);
 console.log(new Array(0));
@@ -19,6 +19,7 @@ console.log(new Array(" "));
 console.log(new Array("  "));
 console.log(new Array("  ").length);
 console.log(new Array(5));
+console.log(new Array("5"));
 console.log(new Array(5)[0]);
 console.log(new Array(5).length);
 console.log(new Array("a", "b"));
@@ -31,30 +32,29 @@ console.log(new Array({ a: 1 }));
 console.log(new Array(new Set(["foo", "bar", "baz", "foo"])));
 console.log(new Array(...new Set(["foo", "bar", "baz", "foo"])));
 console.log(
-	new Array(
-		new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		])
-	)
+    new Array(
+        new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ])
+    )
 );
 console.log(
-	new Array(
-		...new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		])
-	)
+    new Array(
+        ...new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ])
+    )
 );
 
 let arrCnstr1 = [10, 20, 30, [40, 50]];
 let arrCnstr2 = new Array(...arrCnstr1);
-console.log(arrCnstr2)
+console.log(arrCnstr2);
 arrCnstr1[3].push(60);
-console.log(arrCnstr2)
-
+console.log(arrCnstr2);
 
 console.log(Array());
 console.log(Array().length);
@@ -84,24 +84,24 @@ console.log(Array(new Set(["foo", "bar", "baz", "foo"])));
 console.log(Array(...new Set(["foo", "bar", "baz", "foo"])));
 console.log(Array(...new Set([10])));
 console.log(
-	Array(
-		new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		])
-	)
+    Array(
+        new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ])
+    )
 );
 console.log(
-	Array(
-		...new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		])
-	)
+    Array(
+        ...new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ])
+    )
 );
-//-----------------------------------------Array.prototype.of()----------------------------------
+//-----------------------------------------Array.of()----------------------------------
 //(n) => [n] | Shallow Copies
 console.log(Array.of());
 console.log(Array.of(undefined));
@@ -120,62 +120,63 @@ console.log(arrOf2);
 arrOf1[3].push(60);
 console.log(arrOf2);
 console.log(Array.of(new Set(["foo", "bar", "baz", "foo"])));
-console.log(Array.of(...(new Set(["foo", "bar", "baz", "foo"]))));
-console.log(Array.of(...(new Set([10]))));
+console.log(Array.of(...new Set(["foo", "bar", "baz", "foo"])));
+console.log(Array.of(...new Set([10])));
 console.log(
-	Array.of(
-		new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		])
-	)
+    Array.of(
+        new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ])
+    )
 );
 console.log(
-	Array.of(
-		...(new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		]))
-	)
+    Array.of(
+        ...new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ])
+    )
 );
 
-//-----------------------------------------Array.prototype.from()----------------------------------
+//-----------------------------------------Array.from()----------------------------------
 //(Iterable) => newArr | Shallow Copies
 try {
-	// console.log(Array.from());
-	console.log(Array.from(undefined));
+    // console.log(Array.from());
+    console.log(Array.from(undefined));
 } catch (error) {
-	console.log(error);
+    console.log(error);
 }
 try {
-	console.log(Array.from(5, 6));
+    console.log(Array.from(5, 6));
 } catch (error) {
-	console.log(error);
+    console.log(error);
 }
 console.log(Array.from(5));
 console.log(Array.from(""));
 console.log(Array.from(" "));
 console.log(Array.from("  "));
-console.log(Array.from("foo"));
+console.log(Array.from("foo", (x) => x + "z"));
 console.log(Array.from([5, 6]));
 console.log(Array.from([...[5, 6], [7, 8]]));
 console.log(Array.from([5, 6], (x) => x + 10));
 console.log(Array.from(new Set(["foo", "bar", "baz", "foo"])));
 try {
-	console.log(Array.from(...(new Set(["foo", "bar", "baz", "foo"]))));
+    console.log(Array.from(...new Set(["foo", "bar", "baz", "foo"])));
 } catch (error) {
-	console.log(error);
+    console.log(error);
 }
 console.log(
-	Array.from(
-		new Map([
-			[1, 2],
-			[2, 4],
-			[4, 8],
-		])
-	)
+    Array.from(
+        new Map([
+            [1, 2],
+            [2, 4],
+            [4, 8],
+        ]),
+        (x) => x[0]
+    )
 );
 let arrFrm1 = [10, 20, 30, [40, 50]];
 let arrFrm2 = Array.from(arrFrm1);
@@ -192,8 +193,8 @@ console.log(Array.isArray("abc"));
 console.log(Array.isArray(Array()));
 
 //-----------------------------------------------Array.prototype.slice()----------------------------
-//time complexity = O(n), non-mutating, returns => sliced out portion 
-//null is treated as 0, undefined is treated as no input
+//time complexity = O(n), non-mutating, returns => sliced out portion
+//null is treated as 0, undefined is treated as no input, NaN is treated as 0
 console.log(fruits.slice());
 console.log(fruits.slice(-2));
 console.log(fruits.slice(-5));
@@ -222,7 +223,7 @@ console.log(fruits);
 
 //-----------------------------------------------Array.prototype.splice()--------------------------
 //time complexity = O(n), mutating, returns => removed portion
-//null and undefined are treated as 0
+//null and undefined are treated as 0, NaN is treated as 0
 console.log(fruits.splice());
 console.log(fruits);
 console.log(fruits.splice(3));
@@ -249,6 +250,8 @@ console.log(fruits.splice(2, "a", "Dummy fruit"));
 console.log(fruits);
 console.log(fruits.splice(2, "1"));
 console.log(fruits);
+console.log(fruits.splice("a", 2));
+console.log(fruits);
 
 fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.splice(undefined));
@@ -271,8 +274,19 @@ fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
 console.log(fruits.splice(null, null, null));
 console.log(fruits);
 
-fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango", "Apple"];
+fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango"];
+//-----------------------------------------------Array.prototype.toSpliced()---------------------------
+//time complexity = O(n), non-mutating, returns => new array after splicing
+console.log(fruits);
 
+console.log(fruits.toSpliced());
+console.log(fruits.toSpliced(4));
+console.log(fruits.toSpliced(-1));
+console.log(fruits.toSpliced(1, 1, "Strange fruit"));
+
+console.log(fruits);
+
+fruits = ["Apple", "Banana", "Cherries", "Orange", "Mango", "Apple"];
 //-----------------------------------------------Array.prototype.includes()------------------------
 //time complexity = O(n), non-mutating, returns => boolean
 console.log(fruits.indexOf("Banana"));
@@ -316,29 +330,32 @@ console.log(numbers);
 //-----------------------------------------------Array.prototype.find()---------------------------
 //time complexity = O(n), non-mutating, returns => found first element
 console.log(numbers.find((num) => num > 100));
-console.log(numbers.find((num) => num > 500));
 console.log(numbers.find((num) => num > 600));
 console.log(numbers.find((num) => true));
 console.log(numbers.find((num) => false));
 
-// //Array.prototype.findLast() : time complexity = O(n), non-mutating, returns => found last element
-// console.log(numbers.findLast((num) => num > 500));
-// console.log(numbers.findLast((num) => num > 600));
-// console.log(numbers.findLast((num) => true));
-// console.log(numbers.findLast((num) => false));
+//-----------------------------------------------Array.prototype.findLast()------------------------
+//time complexity = O(n), non-mutating, returns => found last element
+console.log(numbers.findLast((num) => num > 100));
+console.log(numbers.findLast((num) => num > 600));
+console.log(numbers.findLast((num) => true));
+console.log(numbers.findLast((num) => false));
 
 //-----------------------------------------------Array.prototype.findIndex()-----------------------
 //time complexity = O(n), non-mutating, returns => found element's first index
+console.log(numbers.findIndex((num) => num > 100));
 console.log(numbers.findIndex((num) => num > 500));
 console.log(numbers.findIndex((num) => num > 600));
 console.log(numbers.findIndex((num) => true));
 console.log(numbers.findIndex((num) => false));
 
-// //Array.prototype.findLastIndex() : time complexity = O(n), non-mutating, returns => found element's last index
-// console.log(numbers.findLastIndex((num) => num > 500));
-// console.log(numbers.findLastIndex((num) => num > 600));
-// console.log(numbers.findLastIndex((num) => true));
-// console.log(numbers.findLastIndex((num) => false));
+//-----------------------------------------------Array.prototype.findLastIndex()---------------------
+//time complexity = O(n), non-mutating, returns => found element's last index
+console.log(numbers.findLastIndex((num) => num > 100));
+console.log(numbers.findLastIndex((num) => num > 500));
+console.log(numbers.findLastIndex((num) => num > 600));
+console.log(numbers.findLastIndex((num) => true));
+console.log(numbers.findLastIndex((num) => false));
 
 console.log(planets);
 //------------------------------------------------Array.prototype.pop()----------------------------
@@ -355,8 +372,7 @@ console.log(planets.shift());
 //time complexity = O(n), mutating, returns => final length
 console.log(planets.unshift("Mercury"));
 
-
-//-----------------------------------------------Array.prototype.join()----------------------------
+//------------------------------------------------Array.prototype.join()----------------------------
 //time complexity = O(n), non-mutating, returns => specifier-separated items as string
 console.log(fruits);
 console.log(fruits.join());
@@ -372,13 +388,13 @@ let arrToStr1 = [10, 20, 30];
 console.log(arrToStr1.toString.toString());
 console.log(arrToStr1.join.toString());
 console.log(arrToStr1.toString());
-arrToStr1.join = "Hello World...!";
+arrToStr1.join = "Overridden";
 console.log(arrToStr1.toString());
 arrToStr1.join = () => "a";
 console.log(arrToStr1.toString());
 arrToStr1.join = function () {
-	return Array.prototype.join.call(this);
-	// return this.reduce((a, i) => a + "," + i, "").slice(1);
+    return Array.prototype.join.call(this);
+    // return this.reduce((a, i) => a + "," + i, "").slice(1);
 };
 // arrToStr1.join = Array.prototype.join.apply(arrToStr1);
 console.log(arrToStr1.toString());
@@ -389,6 +405,7 @@ console.log(fruits);
 console.log(fruits.concat([]));
 console.log(fruits.concat(["a", , "b"], "Pears"));
 console.log(fruits.concat("Pears", ["a", "b"]));
+console.log(fruits.concat("Pears", ["a", "b", ["c", "d"]]));
 console.log(fruits.concat("Pears"));
 console.log(fruits);
 let nestedArr1 = [[10, 20], 3, 4];
@@ -400,7 +417,7 @@ nestedArr2[0].push(300);
 console.log(concatedArr1);
 
 //-----------------------------------------------Array.prototype.copyWithin()-----------------------
-//shallow copies,mutating, mutating, returns => mutated array
+//shallow copies,mutating, returns => mutated array
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
@@ -409,7 +426,7 @@ fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(2, 1, 3));
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(3, 1));
-console.log(fruits)
+console.log(fruits);
 fruits = ["Apple", "Banana", "Cherries", , "Orange", "Mango"];
 console.log(fruits.copyWithin(0, 1));
 
@@ -431,14 +448,15 @@ console.log(numbers);
 //non-mutating, returns => boolean
 console.log(numbers.every((num) => num < 1000));
 console.log([10, , 15].every((num) => num >= 10));
+console.log([10, undefined, 15].every((num) => num >= 10));
 console.log([10, , 15].every((num) => num !== undefined && num >= 10));
 console.log([10, undefined, 15].every((num) => num !== undefined && num >= 10));
 
 console.log([].every((num) => num >= 10));
 console.log(
-	[].every(() => {
-		return;
-	})
+    [].every(() => {
+        return;
+    })
 );
 console.log(numbers.every((num) => false));
 console.log([].every(() => false));
@@ -484,13 +502,21 @@ console.log(numbers.sort((a, b) => a - b)[numbers.length - 1]);
 console.log(numbers);
 
 let pairs = [
-	[100, 20],
-	[1, 200],
-	[10, 2],
+    [100, 20],
+    [1, 200],
+    [10, 2],
 ];
 console.log(pairs.sort((a, b) => a[0] - b[0]));
 console.log(pairs.sort((a, b) => a[1] - b[1]));
 for (let [i, j] of pairs) console.log(i, j);
+
+//-----------------------------------------------Array.prototype.toSorted()------------------------
+//time complexity = O(nlog(n)), non-mutating, returns => sorted array
+numbers = [234, 43, 234, -57, -56, -20, 55, 63, 5, 6, 235, 547];
+console.log(numbers);
+console.log(numbers.toSorted());
+console.log(numbers.toSorted((a, b) => a - b));
+console.log(numbers);
 
 //-----------------------------------------------Array.prototype.reverse()------------------------
 //time complexity = O(n), mutating, returns => reversed array
@@ -498,9 +524,16 @@ console.log(numbers);
 console.log(numbers.reverse());
 console.log(numbers);
 
+//-----------------------------------------------Array.prototype.toReversed()------------------------
+//time complexity = O(n), non-mutating, returns => reversed array
+console.log(numbers);
+console.log(numbers.toReversed());
+console.log(numbers);
+
 //----------------------------------------------Array.prototype.entries()--------------------------
 //time complexity = O(n), non-mutating, returns => Array Iterator
 let numsItr = [10, , 20, 30].entries();
+console.log(typeof numsItr);
 console.log(numsItr instanceof Array);
 console.log(numsItr instanceof Object);
 console.log(numsItr);
@@ -517,6 +550,7 @@ console.log(numsItr.next());
 //-----------------------------------------------Array.prototype.keys()-----------------------------
 //time complexity = O(n), non-mutating, returns => Array Iterator
 let numKeys = [10, 20, 30, , 50].keys();
+console.log(typeof numKeys);
 console.log(numKeys instanceof Array);
 console.log(numKeys instanceof Object);
 console.log(numKeys);
@@ -534,6 +568,7 @@ console.log(numKeys.next());
 //------------------------------------------------Array.prototype.values()---------------------------
 //time complexity = O(n), non-mutating, returns => Array Iterator
 let numValues = [10, 20, 30, , 50].values();
+console.log(typeof numValues);
 console.log(numValues instanceof Array);
 console.log(numValues instanceof Object);
 console.log(numValues);
@@ -558,39 +593,39 @@ console.log(team);
 avengerList(...avengers);
 
 function avengerList(...heros) {
-	for (let hero of heros) {
-		console.log(`Hello ${hero} 👍`);
-	}
+    for (let hero of heros) {
+        console.log(`Hello ${hero} 👍`);
+    }
 }
 avengers.forEach((hero) => {
-	console.log(hero.toUpperCase());
-	console.log(hero.toLowerCase());
+    console.log(hero.toUpperCase());
+    console.log(hero.toLowerCase());
 });
 
 console.log(avengers);
 
 console.log(
-	avengers.map((hero) => {
-		return hero.toUpperCase();
-	})
+    avengers.map((hero) => {
+        return hero.toUpperCase();
+    })
 );
 
 console.log(
-	avengers.filter((hero) => {
-		return hero.toLowerCase().startsWith("i");
-	})
+    avengers.filter((hero) => {
+        return hero.toLowerCase().startsWith("i");
+    })
 );
 console.log(
-	avengers.filter((hero) => {
-		return hero.match(/man/i);
-	})
+    avengers.filter((hero) => {
+        return hero.match(/man/i);
+    })
 );
 
-console.log(avengers);
-avengers.forEach((hero) => {
-	console.log(hero.toUpperCase());
-});
-console.log(avengers);
+let words = ["A", "Quick", "Brown", "Fox", "Jumps", "Over", "A", "Lazy", "Dog"];
+
+console.log(words.reduce((acc, cur) => acc + " " + cur));
+
+console.log(words.reduceRight((acc, cur) => acc + " " + cur));
 
 for (let i in avengers) console.log(i);
 for (let i of avengers) console.log(i);

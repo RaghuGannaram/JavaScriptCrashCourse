@@ -1,22 +1,47 @@
-let nums = [1,2,3,4,5];
+let nums = [1, 2, 3, 4, 5];
 
 console.log(nums.filter((x) => x % 2 === 0));
 console.log(Array.prototype.filter.toString());
 
-Array.prototype.filter = () => "Filter is destroyed...!";
+Array.prototype.filter = null;
 
-console.log(Array.prototype.filter.toString());
-console.log(nums.filter((x) => x % 2 === 0));
+try {
+    console.log(nums.filter((x) => x % 2 === 0));
+} catch (err) {
+    console.log(err);
+}
 
-Array.prototype.filter = function (fn) {
-    let result = [];
-    for(let i = 0; i < this.length; i++) {
-        if(fn(this[i], i, this)) {
-            result.push(this[i]);
+if (!Array.prototype.filter) {
+    Array.prototype.filter = function (callback, thisArgs) {
+        if (typeof callback !== "function") {
+            throw new TypeError(callback + " is not a function");
         }
-    }
-    return result;
+
+        const result = [];
+
+        for (let i = 0; i < this.length; i++) {
+            if (callback.call(thisArgs, this[i], i, this)) {
+                result.push(this[i]);
+            }
+        }
+
+        return result;
+    };
+}
+
+console.log(nums.filter((x) => x % 2 === 0));
+
+const bookshelf = {
+    minPageCount: 300,
+    isThickBook(book) {
+        return book.pageCount >= this.minPageCount;
+    },
 };
 
-console.log(Array.prototype.filter.toString());
-console.log(nums.filter((x) => x % 2 === 0));
+const books = [
+    { title: "Book A", pageCount: 150 },
+    { title: "Book B", pageCount: 350 },
+    { title: "Book C", pageCount: 500 },
+];
+
+console.log(books.filter(bookshelf.isThickBook, bookshelf));

@@ -20,7 +20,7 @@ var MyHashSet = function () {
  * @return {void}
  */
 MyHashSet.prototype.add = function (key) {
-    this.hashSet[key] = 1;
+    this.hashSet[key] = null;
 };
 
 /**
@@ -36,7 +36,7 @@ MyHashSet.prototype.remove = function (key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function (key) {
-    return this.hashSet[key] !== undefined;
+    return this.hashSet.hasOwnProperty(key);
 };
 
 /**

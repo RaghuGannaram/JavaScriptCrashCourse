@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/find-k-closest-elements/
     @title 658. Find K Closest Elements
     @difficulty Medium
+    @url https://leetcode.com/problems/find-k-closest-elements/
 
     @description
         Given a sorted integer array arr, two integers k and x, return the k closest integers to x in the array. The result should also be sorted in ascending order.
@@ -16,7 +16,9 @@
  */
 
 var findClosestElements1 = function (arr, k, x) {
-    let res = arr.slice(0, k), cur = 0, min = Number.MAX_SAFE_INTEGER;
+    let res = arr.slice(0, k),
+        cur = 0,
+        min = Number.MAX_SAFE_INTEGER;
 
     cur = res.reduce((acc, cur) => acc + Math.abs(cur - x), 0);
     min = cur;
@@ -36,7 +38,9 @@ var findClosestElements1 = function (arr, k, x) {
 };
 
 var findClosestElements2 = function (arr, k, x) {
-    let l = 0, r = arr.length - k, m;
+    let l = 0,
+        r = arr.length - k,
+        m;
 
     while (l < r) {
         m = Math.floor((l + r) / 2);
@@ -48,6 +52,8 @@ var findClosestElements2 = function (arr, k, x) {
     return arr.slice(l, l + k);
 };
 
-let arr = [1, 2, 3, 4, 5], k = 4, x = 3;
+let arr = [1, 2, 3, 4, 5],
+    k = 4,
+    x = 3;
 
-console.log(findClosestElements1(arr, k, x));   // [1,2,3,4]
+console.log(findClosestElements1(arr, k, x)); // [1,2,3,4]

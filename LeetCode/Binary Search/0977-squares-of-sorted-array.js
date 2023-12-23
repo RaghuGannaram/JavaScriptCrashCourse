@@ -11,23 +11,24 @@
  */
 
 var sortedSquares = function (nums) {
-    let len = nums.length;
-    let l = 0, r = len - 1, n1, n2, res = new Array(len);
-
-    len--;
+    let l = 0,
+        r = nums.length - 1,
+        i = nums.length - 1,
+        res = new Array(nums.length),
+        lsq,
+        rsq;
 
     while (l <= r) {
-        n1 = nums[l] * nums[l];
-        n2 = nums[r] * nums[r];
-
-        if (n1 > n2) {
-            res[len] = n1;
+        lsq = nums[l] ** 2;
+        rsq = nums[r] ** 2;
+        if (lsq > rsq) {
+            res[i] = lsq;
             l++;
         } else {
-            res[len] = n2;
+            res[i] = rsq;
             r--;
         }
-        len--;
+        i--;
     }
 
     return res;

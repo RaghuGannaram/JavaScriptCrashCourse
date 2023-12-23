@@ -13,21 +13,18 @@
  */
 
 var mySqrt = function (x) {
-    let l = 0, r = Math.ceil(x / 2), m, res;
-    res = l;
+    let l = 0,
+        r = Math.ceil(x / 2),
+        m;
 
     while (l <= r) {
         m = Math.floor((l + r) / 2);
+        if (m * m === x) return m;
 
-        if (m * m <= x) {
-            res = Math.max(res, m);
-            l = m + 1;
-        }
-        else r = m - 1;
+        m * m < x ? (l = m + 1) : (r = m - 1);
     }
 
-    return res;
-
+    return r;
 };
 let x = 8;
 

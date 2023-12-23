@@ -1,52 +1,31 @@
 /**
- * @param {TreeNode} root
- * @param {TreeNode} subRoot
- * @return {boolean}
+    @title 572. Subtree of Another Tree
+    @difficulty easy
+    @url https://leetcode.com/problems/subtree-of-another-tree/
+
+	@description
+		Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+		A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
+
+	@param {TreeNode} root
+	@param {TreeNode} subRoot
+	@return {boolean}
  */
 
-class TreeNode {
-	constructor(val) {
-		this.val = val;
-		this.left = null;
-		this.right = null;
-	}
-}
-
-function insertLevelOrder(arr, index = 0) {
-	let root = null;
-	if (index < arr.length) {
-		if (arr[index]) {
-			if (arr[index]) {
-				root = new TreeNode(arr[index]);
-				root.left = insertLevelOrder(arr, 2 * index + 1);
-				root.right = insertLevelOrder(arr, 2 * index + 2);
-			}
-		}
-	}
-	return root;
-}
-
 var isSubtree = function (root, subRoot) {
-	if (!root) {
-		return false;
-	} else if (isMatch(root, subRoot)) {
-		return true;
-	} else {
-		return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
-	}
+    return dfs(root);
+
+    function dfs(node) {
+        if (!node) return false;
+        if (compare(node, subRoot)) return true;
+
+        return dfs(node.left) || dfs(node.right);
+    }
+
+    function compare(node1, node2) {
+        if (!node1 && !node2) return true;
+        if (!node1 || !node2 || node1.val !== node2.val) return false;
+
+        return compare(node1.left, node2.left) && compare(node1.right, node2.right);
+    }
 };
-
-function isMatch(root1, root2) {
-	if (!root1 && !root2) {
-		return true;
-	}
-	if (!root1 || !root2 || root1.val !== root2.val) {
-		return false;
-	}
-	return isMatch(root1.left, root2.left) && isMatch(root1.right, root2.right);
-}
-
-let root = insertLevelOrder([3, 4, 5, 1, 2]);
-let subRoot = insertLevelOrder([4, 1, 2]);
-
-console.log(isSubtree(root, subRoot));

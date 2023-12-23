@@ -29,3 +29,15 @@ var guessNumber = function (n) {
         else r = m - 1;
     }
 };
+
+let guess = function (num) {
+    let pick = 6;
+
+    if (num === pick) return 0;
+    else if (num > pick) return -1;
+    else return 1;
+};
+
+let n = 10;
+
+console.log(guessNumber(n));

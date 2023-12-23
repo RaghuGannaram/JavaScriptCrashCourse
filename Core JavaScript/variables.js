@@ -33,6 +33,17 @@ try {
 
 console.log(b);
 
+try {
+    console.log(b2);
+} catch (err) {
+    console.log(err);
+}
+
+let b2;
+console.log(b2);
+
+b2 = 22;
+
 //--------------------------------------------------const----------------------------------------
 // console.log(c)
 try {
@@ -80,7 +91,11 @@ function dummy() {
 }
 
 console.log(i);
-console.log(j);
+try {
+    console.log(j);
+} catch (err) {
+    console.log(err);
+}
 try {
     console.log(k);
 } catch (err) {

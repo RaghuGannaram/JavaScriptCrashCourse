@@ -13,7 +13,6 @@ console.log(stro instanceof Object);
 console.log(Object.getOwnPropertyDescriptors("1"));
 console.log(Object.getOwnPropertyDescriptors(new String("1")));
 
-
 console.log(strl.__proto__);
 console.log(strl.__proto__.__proto__);
 console.log(strl.length);
@@ -21,13 +20,13 @@ console.log(strl);
 
 console.log(stro.__proto__);
 console.log(stro.__proto__.__proto__);
+console.log(stro.length);
 console.log(stro);
 
 //------------------------------------------------String.prototype.valueOf()-------------------------------
 //used internally by JS engine, not to use directly in code
 console.log(stro.valueOf());
 console.log(strl.valueOf());
-
 
 //------------------------------------------------String.prototype.toString()-------------------------------
 let strts = new String("Example String Object");
@@ -40,8 +39,8 @@ strts.toString = () => "Overridden";
 console.log(`${strts}`);
 
 strts.toString = function () {
-	return String.prototype.toString.call(this);
-}
+    return String.prototype.toString.call(this);
+};
 console.log(`${strts}`);
 
 //---------------------------------------------String.prototype.toLowerCase()-----------------------------
@@ -53,6 +52,7 @@ console.log("The quick brown fox jumps over the lazy dog.".toUpperCase());
 //------------------------------------------------String.prototype.at()-------------------------------
 //default parameter : 0 | negative indexing : true | returns undefined for index outofbounds
 console.log("".at());
+console.log(" ".at());
 console.log(strl.at());
 console.log(strl.at(0));
 console.log(strl.at("1"));
@@ -66,6 +66,8 @@ console.log(typeof stro.at());
 
 //-----------------------------------------------String.prototype.charAt()--------------------------------
 //default parameter : 0 | negative indexing : false | returns [empty string] for index outofbounds
+console.log("".charAt());
+console.log(" ".charAt());
 console.log(strl.charAt());
 console.log(strl.charAt(0));
 console.log(strl.charAt("1"));
@@ -94,14 +96,16 @@ console.log(strcnct1.concat(strcnct2, " ", strcnct3, " ", strcnct4, " ", strcnct
 console.log(strcnct1.concat(strcnct2, " ", strcnct3, " ", strcnct4, "\n", JSON.stringify(strcnct5)));
 console.log(strcnct1);
 
-console.log("Coercion".concat(1, " ", undefined, " ", null, " ", true, " ", false, " ", NaN, " ", Infinity, " ", -Infinity));
+console.log(
+    "Coercion".concat(1, " ", undefined, " ", null, " ", true, " ", false, " ", NaN, " ", Infinity, " ", -Infinity)
+);
 
 //--------------------------------------------String.prototype.repeat()-----------------------------
-//default parameter : 0 | NaN coerced to 0 | negative parameter and large parameter throws error 
+//default parameter : 0 | NaN coerced to 0 | negative parameter and large parameter throws error
 try {
-	"abc".repeat(-1);
+    "abc".repeat(-1);
 } catch (error) {
-	console.log(error)
+    console.log(error);
 }
 console.log("abc".repeat());
 console.log("abc".repeat(0));
@@ -109,9 +113,9 @@ console.log("abc".repeat(1));
 console.log("abc".repeat(2));
 console.log("abc".repeat(3.5));
 try {
-	"abc".repeat(1 / 0);
+    "abc".repeat(1 / 0);
 } catch (error) {
-	console.log(error)
+    console.log(error);
 }
 
 //--------------------------------------------String.prototype.substring()-----------------------------
@@ -131,7 +135,6 @@ console.log(strl.substring(-5, -2));
 console.log(strl.substring("a", 5));
 console.log(strl.substring("a", -5));
 
-
 //--------------------------------------------String.prototype.slice()-----------------------------
 //negative indexing : true | default parameter : 0 | NaN coerced to 0
 console.log(strl);
@@ -146,13 +149,12 @@ console.log(strl.slice(-9));
 console.log(strl.slice("a", 4));
 console.log(strl.slice("a", -4));
 
-
 let quote = "A Phoenix in the sky, Sun in the Sky";
 console.log(quote);
 console.log(quote.length);
 
 //----------------------------------------------String.prototype.indexOf()-----------------------------
-//default first parameter : "" | default second parameter : 0 | returns -1 if not found 
+//default first parameter : "" | default second parameter : 0 | returns -1 if not found
 //second param is index from where to start search | negative index is clapped to 0 | if second param > string length, returns -1
 console.log(quote.indexOf(""));
 console.log(quote.indexOf("sky"));
@@ -204,8 +206,8 @@ console.log(quote.split("", 3));
 console.log(quote.split(" ", 4));
 console.log(quote.split(" ", 10));
 
-console.log("".split("x"))
-console.log("".split(""))
+console.log("".split("x"));
+console.log("".split(""));
 
 console.log("😄😄".split(/(?:)/));
 console.log("😄😄".split(/(?:)/u));
@@ -291,7 +293,7 @@ console.log(quote.match(/sky/gi));
 console.log(quote.match(/phoenix/));
 
 //---------------------------------------------String.prototype.matchAll()-----------------------------
-// default parameter : "" | returns an iterator of matches | returns 
+// default parameter : "" | returns an iterator of matches | returns
 console.log(quote);
 console.log(quote.matchAll(/the/gi));
 console.log(...quote.matchAll(/sky/gi));

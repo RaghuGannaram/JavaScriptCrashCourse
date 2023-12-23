@@ -419,10 +419,10 @@ try {
 	console.log(err);
 }
 
+Object.defineProperty(objPrevEx1, "e", {
+    value: 5,
+});
 try {
-	Object.defineProperty(objPrevEx1, "e", {
-		value: 5,
-	});
 } catch (err) {
 	console.log(err);
 }

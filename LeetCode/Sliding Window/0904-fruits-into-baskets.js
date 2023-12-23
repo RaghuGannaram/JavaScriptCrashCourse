@@ -1,7 +1,7 @@
 /**
-    @url https://leetcode.com/problems/fruit-into-baskets/
     @title 904. Fruit Into Baskets
     @difficulty Medium
+    @url https://leetcode.com/problems/fruit-into-baskets/
 
     @description
         In a row of trees, the i-th tree produces fruit with type tree[i].
@@ -19,7 +19,10 @@
  */
 
 var totalFruit = function (fruits) {
-    let res = 0, l = 0, r = 0, map = new Map();
+    let res = 0,
+        l = 0,
+        r = 0,
+        map = new Map();
 
     while (r < fruits.length) {
         map.set(fruits[r], (map.get(fruits[r]) ?? 0) + 1);
@@ -38,6 +41,6 @@ var totalFruit = function (fruits) {
     return res;
 };
 
-let fruits = [1, 2, 1];
+let fruits = [1, 1, 1, 2, 3, 2, 2];
 
-console.log(totalFruit(fruits));    // 3
+console.log(totalFruit(fruits)); // 3
