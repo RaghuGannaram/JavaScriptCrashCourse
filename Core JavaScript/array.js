@@ -3,6 +3,20 @@ let numbers = [234, 43, 234, -57, -56, -20, 55, 63, 5, 6, 235, 547];
 let planets = ["Mercury", "Venus", "Earth", "Mars", "Jupitor", "Saturn", "Uranus", "Neptune", "Pluto"];
 
 //-----------------------------------------------Array() constructor----------------------------
+const objArr = new Array();
+console.log(objArr);
+objArr[0] = "a";
+objArr[1] = "b";
+objArr[2] = "c";
+objArr["firstName"] = "John";
+objArr["lastName"] = "Doe";
+objArr["age"] = 30;
+
+console.log(objArr);
+
+for(let i in objArr) console.log(i);
+for(let i of objArr) console.log(i);
+
 //(n)=> [1...n], (n1,n2..)=> [n1,n2,...] | Shallow Copies
 console.log(new Array());
 console.log(new Array().length);
