@@ -18,10 +18,12 @@ Function.prototype.apply = null;
 
 if (!Function.prototype.apply) {
     Function.prototype.apply = function (context, args) {
-        context.fn = this;
+        const fnSymbol = Symbol("fn");
 
-        const result = context.fn(...args);
-        delete context.fn;
+        context[fnSymbol] = this;
+
+        const result = context[fnSymbol](...args);
+        delete context[fnSymbol];
 
         return result;
     };

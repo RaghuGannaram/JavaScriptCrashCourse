@@ -18,10 +18,12 @@ Function.prototype.call = null;
 
 if (!Function.prototype.call) {
     Function.prototype.call = function (context, ...args) {
-        context.fn = this;
-        
-        const result = context.fn(...args);
-        delete context.fn;
+        const fnSymbol = Symbol("fn");
+
+        context[fnSymbol] = this;
+
+        const result = context[fnSymbol](...args);
+        delete context[fnSymbol];
 
         return result;
     };
