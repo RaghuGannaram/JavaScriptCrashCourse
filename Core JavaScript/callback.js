@@ -15,7 +15,7 @@ button.addEventListener("click", function (event) {
     console.log("Button was clicked!");
 });
 
-//-------------------------------------------------------Array Methods-------------------------------------------------------
+//---------------------------------------------------------Array Methods-------------------------------------------------------
 const numbers = [1, 2, 3, 4, 5];
 const evenNumbers = numbers.filter(function (number) {
     return number % 2 === 0;

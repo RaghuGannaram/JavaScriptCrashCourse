@@ -695,3 +695,15 @@ let x = {
 console.log(x["abc"]);
 console.log(x["a"]["b"]["c"]);
 console.log(x.a.b.c);
+
+
+let sample = NaN;
+
+console.log(sample);
+console.log(typeof sample);
+console.log(sample === NaN);
+console.log(sample.__proto__);
+console.log(Object.getPrototypeOf(sample));
+console.log(sample.__proto__.__proto__);
+console.log(Object.getPrototypeOf(sample.__proto__));
+console.log(sample.__proto__.__proto__.__proto__);
