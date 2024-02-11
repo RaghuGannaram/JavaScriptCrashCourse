@@ -1,3 +1,15 @@
+async function fetchData() {
+    console.log("Fetching data...");
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log("Data fetched");
+}
+
+console.log("Start");
+fetchData();
+console.log("End");
+
+// console          : "Start" "Fetching data..." "End" "Data fetched"
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 setTimeout(() => {
     new Promise((resolve) => {
@@ -20,7 +32,6 @@ new Promise((resolve) => {
 });
 console.log(2);
 
-
 // console          :  3 2 1 6 7 4 5
 
 // ____________________
@@ -33,7 +44,6 @@ console.log(2);
 // Callback Queue   : [
 
 // ]
-
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +62,6 @@ console.log(2);
 // setTimeout(() => console.log("#1 s5"), 0);
 // console.log("#1 Hello");
 
-
 // // console          : "#1 Hello" "#1 p1" "#1 p2" "#1 p6" "#1 s1" "#1 s2" "#1 s3" "#1 p3" "#1 p5" "#1 s5" "#1 p4" "#1 s4"
 
 // // ____________________
@@ -65,7 +74,6 @@ console.log(2);
 // // Callback Queue   : [
 
 // // ]
-
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 function taskListOne() {
@@ -110,7 +118,6 @@ function task() {
 
 // task();
 
-
 // console          : "#1 Hello" "#2 Hello" "#1 p1" "#1 p2" "#1 p6" "#2 p1" "#2 p2" "#2 p6" "#1 s1" "#1 s2" "#1 s3" "#1 p3" "#1 p5" "#1 s5" "#2 s1" "#2 s2" "#2 s3" "#2 p3" "#2 p5" "#2 s5" "#1 p4" "#1 s4" "#2 p4" "#2 s4"
 
 // ____________________
@@ -139,7 +146,6 @@ btn.addEventListener("click", taskListTwo);
 
 btn.click();
 
-
 // console          : "#1 Hello" "#2 Hello" "#1 p1" "#1 p2" "#1 p6" "#2 p1" "#2 p2" "#2 p6" "#1 s1" "#1 s2" "#1 s3" "#1 p3" "#1 p5" "#1 s5" "#2 s1" "#2 s2" "#2 s3" "#2 p3" "#2 p5" "#2 s5" "#1 p4" "#1 s4" "#2 p4" "#2 s4"
 
 // () => {
@@ -157,23 +163,19 @@ btn.click();
 
 // ]
 
-
 // ------------------------------------------------Case 3: User click (event handler)------------------------------------------------------------------
 // Note: EventListeners are called asynchronously
 
 // console          :"#1 Hello" "#1 p1" "#1 p2" "#1 p6" "#2 Hello" "#2 p1" "#2 p2" "#2 p6" "#1 s1" "#1 s2" "#1 s3" "#1 p3" "#1 p5" "#1 s5" "#2 s1" "#2 s2" "#2 s3" "#2 p3" "#2 p5" "#2 s5" "#1 p4" "#1 s4" "#2 p4" "#2 s4"
 
-
 // ____________________
 // Stack            :
 
 // Microtask Queue  : [
-    
-    
+
 // ]
 
 // Callback Queue   : [
-    // taskListOne();
-    // taskListTwo();
+// taskListOne();
+// taskListTwo();
 // ]
-
