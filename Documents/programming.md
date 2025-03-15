@@ -2,6 +2,43 @@
 
 This document provides an overview of various programming paradigms, including their formal definitions, detailed explanations, and examples of programming languages that exemplify each paradigm.
 
+# Programming Paradigms
+
+```
+Programming Paradigms
+│
+├── Imperative Programming (How to do it)
+│   │
+│   ├── Unstructured Programming (Uses Goto)
+│   ├── Structured Programming (Uses loops & conditionals)
+│   │   ├── Procedural Programming (Uses functions/procedures)
+│   │   ├── Object-Oriented Programming (OOP) (Encapsulation, Polymorphism)
+│   │   ├── Parallel & Concurrent Programming (Multi-threaded execution)
+│   │   ├── Event-Driven Programming (GUI-based, Asynchronous)
+│   │
+│   ├── Low-Level Programming (Assembly, Direct Memory Manipulation)
+│
+├── Declarative Programming (What to do)
+│   │
+│   ├── Functional Programming (Mathematical Functions, Pure Functions)
+│   │   ├── Pure Functional Programming (No Side Effects, Haskell)
+│   │   ├── Hybrid Functional Programming (FP + OOP, JavaScript, Scala)
+│   │
+│   ├── Logic Programming (Uses Rules and Facts, Prolog)
+│   │
+│   ├── Database Query Languages (SQL, GraphQL)
+│   │
+│   ├── Markup & Styling Languages (HTML, CSS)
+│
+├── Symbolic Programming (Uses Symbols Instead of Variables, Lisp)
+│
+├── Constraint-Based Programming (Solving Optimization Problems)
+│
+├── Reactive Programming (Streams & Observables, RxJS)
+│
+└── AI-Based Programming (Machine Learning & Expert Systems)
+```
+
 ## Imperative Programming
 
 -   **Definition**: Specifies the sequence of commands for the computer to perform.
